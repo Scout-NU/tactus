@@ -1,5 +1,6 @@
 import Carousel from "./components/Carousel/Carousel";
 import CustomHeader from "./components/CustomHeader/CustomHeader";
+import CustomMasonry from "./components/CustomMasonry/CustomMasonry";
 import ProductDescription from "./components/ProductDescription/ProductDescription";
 import "./HomePage.css";
 
@@ -34,12 +35,10 @@ export default function Home() {
         <ProductDescription />
         <div className="tag-line-container">
           <div className="tag-line">
-            <h1 className="tag-line-text">
-              IMPRESSIONS FROM THE COMMUNITY
-            </h1>
+            <h1 className="tag-line-text">IMPRESSIONS FROM THE COMMUNITY</h1>
           </div>
         </div>
-        
+        <CustomMasonry />
       </div>
     </div>
   );
