@@ -1,0 +1,52 @@
+.product-description {
+    padding-top: 92px;
+}
+
+.product-section {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+.product-section.normal {
+  flex-direction: row-reverse;
+}
+
+.product-section.reverse {
+  flex-direction: row;
+}
+
+.text-container {
+  padding: 0px 105px;
+  gap: 20px;
+  display: flex;
+  width: 610px;
+  flex-direction: column;
+  flex-wrap: nowrap;
+}
+
+.section-title {
+  color: #000;
+  font-family: Stratos, sans-serif;
+  font-size: 40px;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.section-description {
+  color: #000;
+  font-family: "DM Sans";
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 300;
+  line-height: 150%; /* 30px */
+  align-self: stretch;
+}
+
+.image-container {
+  width: 610px;
+  height: 477px;
+  flex-shrink: 0;
+  background: #d9d9d9;
+}
