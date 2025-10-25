@@ -1,36 +1,64 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Tactus
+
+A Next.js e-commerce application built with React 19, TypeScript, and Tailwind CSS.
 
 ## Getting Started
 
-First, run the development server:
+### Development Server
+
+Run the development server with Turbopack:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) in your browser to view the application.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Production Build
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Build and start the production server:
 
-## Learn More
+```bash
+npm run build
+npm start
+```
 
-To learn more about Next.js, take a look at the following resources:
+## Available Commands
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+| Command | Description |
+|---------|-------------|
+| `npm run dev` | Start development server with Turbopack |
+| `npm run build` | Build production bundle |
+| `npm start` | Start production server |
+| `npm run lint` | Run ESLint to check for code issues |
+| `npm run format` | Format all files with Prettier |
+| `npm run format:check` | Check if files are formatted correctly |
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Code Quality
 
-## Deploy on Vercel
+This project uses ESLint and Prettier to maintain code quality and consistency. It's recommended to:
+- Run `npm run lint` before committing
+- Set up your editor to format on save
+- Run `npm run format` to format all files
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## How App Router Works
+
+**File-based Routing**: Each folder in `src/app/` becomes a URL route:
+- `app/page.tsx` → `/` (home page)
+- `app/shop/page.tsx` → `/shop`
+- `app/about/page.tsx` → `/about` (add this folder to create the route)
+
+**Special Files**:
+- `layout.tsx` - Shared UI that wraps pages (header, footer, etc.)
+- `page.tsx` - Unique content for each route
+
+**Components Folder**: 
+- Store reusable components in `app/components/`
+- Not part of routing (doesn't create routes)
+- Import into your pages as needed
+
+**Example**: To add a new "Products" page at `/products`:
+1. Create `app/products/page.tsx`
+2. Export a React component
+3. It's automatically accessible at `/products`
