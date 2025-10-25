@@ -1,5 +1,4 @@
 import Carousel from "./components/Carousel/Carousel";
-import CustomHeader from "./components/CustomHeader/CustomHeader";
 import CustomMasonry from "./components/CustomMasonry/CustomMasonry";
 import ProductDescription from "./components/ProductDescription/ProductDescription";
 import "./HomePage.css";
@@ -7,7 +6,6 @@ import "./HomePage.css";
 export default function Home() {
   return (
     <div className="home-page">
-      <CustomHeader />
       <div className="home-page-content">
         <div className="product-info">
           <div className="product-text">

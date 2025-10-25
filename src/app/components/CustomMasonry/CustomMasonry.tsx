@@ -1,5 +1,6 @@
 import React from "react";
 import { BentoGrid, BentoGridItem } from "../ui/bento-grid";
+import "./CustomMasonryStyle.css";
 
 export default function CustomMasonry() {
   return (
