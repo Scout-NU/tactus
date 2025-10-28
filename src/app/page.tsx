@@ -35,13 +35,9 @@ export default function Home() {
         </div>
         <div
           style={{
-            position: "absolute",
             top: "50vh",
-            width: "100%",
-            height: "100%",
-            zIndex: 1,
-            overflow: "hidden",
           }}
+          className="wave-pattern-orange"
         >
           <Image
             alt="wave pattern"
@@ -180,13 +176,9 @@ export default function Home() {
         </div>
         <div
           style={{
-            position: "absolute",
             top: "190vh",
-            width: "100%",
-            height: "100%",
-            zIndex: 0,
-            overflow: "hidden",
           }}
+          className="wave-pattern-blue"
         >
           <Image
             alt="wave pattern"
@@ -197,13 +189,9 @@ export default function Home() {
         </div>
         <div
           style={{
-            position: "absolute",
             top: "260vh",
-            width: "100%",
-            height: "100%",
-            zIndex: 0,
-            overflow: "hidden",
           }}
+          className="wave-pattern-orange"
         >
           <Image
             alt="wave pattern"
