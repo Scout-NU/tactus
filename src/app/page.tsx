@@ -1,7 +1,5 @@
 import Image from "next/image";
 import Carousel from "./components/Carousel/Carousel";
-import CustomMasonry from "./components/CustomMasonry/CustomMasonry";
-import ProductDescription from "./components/ProductDescription/ProductDescription";
 import "./HomePage.css";
 
 export default function Home() {
@@ -79,13 +77,141 @@ export default function Home() {
           </div>
           <button className="learn-more-button orange">LEARN MORE</button>
         </div>
-        <ProductDescription />
-        <div className="tag-line-container">
-          <div className="tag-line">
-            <h1 className="tag-line-text">IMPRESSIONS FROM THE COMMUNITY</h1>
+        <div className="community-section">
+          <div
+            className="community-content"
+            style={{
+              position: "relative",
+              zIndex: 2,
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            <div className="community-text">
+              <h1 className="community-header">
+                IMPRESSIONS FROM THE COMMUNITY
+              </h1>
+              <h2 className="community-quote">
+                “I feel like my soul is moving.”
+              </h2>
+            </div>
+            <div className="carousel-content">
+              <div className="people-carousel">
+                <Carousel
+                  items={[
+                    <Image
+                      src={"/community-images/Person1.png"}
+                      alt="afya"
+                      key={1}
+                      width={303}
+                      height={540}
+                    />,
+                    <Image
+                      src={"/community-images/Person2.png"}
+                      alt="idea venture accelerator"
+                      key={2}
+                      width={283}
+                      height={540}
+                    />,
+                    <Image
+                      src={"/community-images/Person3.png"}
+                      alt="mass challenge"
+                      key={3}
+                      width={294}
+                      height={540}
+                    />,
+                    <Image
+                      src={"/community-images/Person4.png"}
+                      alt="sherman center"
+                      key={4}
+                      width={282}
+                      height={540}
+                    />,
+                  ]}
+                  gap={25}
+                />
+              </div>
+              <div className="sponsor-carousel">
+                <Carousel
+                  items={[
+                    <Image
+                      src={"/carousel-sponsor-images/affya.png"}
+                      alt="afya"
+                      key={1}
+                      width={167}
+                      height={76}
+                    />,
+                    <Image
+                      src={"/carousel-sponsor-images/idea-venture.png"}
+                      alt="idea venture accelerator"
+                      key={2}
+                      width={168}
+                      height={76}
+                    />,
+                    <Image
+                      src={"/carousel-sponsor-images/mass-challenge.png"}
+                      alt="mass challenge"
+                      key={3}
+                      width={92}
+                      height={76}
+                    />,
+                    <Image
+                      src={"/carousel-sponsor-images/sherman-center.png"}
+                      alt="sherman center"
+                      key={4}
+                      width={224}
+                      height={42}
+                    />,
+                    <Image
+                      src={"/carousel-sponsor-images/y-startup.png"}
+                      alt="y startup school"
+                      key={5}
+                      width={190}
+                      height={76}
+                    />,
+                  ]}
+                  gap={64}
+                />
+              </div>
+            </div>
           </div>
         </div>
-        <CustomMasonry />
+        <div
+          style={{
+            position: "absolute",
+            top: "190vh",
+            width: "100%",
+            height: "100%",
+            zIndex: 0,
+            overflow: "hidden",
+          }}
+        >
+          <Image
+            alt="wave pattern"
+            src="/blue-waves.svg"
+            fill
+            style={{ objectFit: "cover" }}
+          />
+        </div>
+        <div
+          style={{
+            position: "absolute",
+            top: "260vh",
+            width: "100%",
+            height: "100%",
+            zIndex: 0,
+            overflow: "hidden",
+          }}
+        >
+          <Image
+            alt="wave pattern"
+            src="/wave-pattern.svg"
+            fill
+            style={{ objectFit: "cover" }}
+          />
+        </div>
       </div>
     </div>
   );
