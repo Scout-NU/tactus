@@ -10,14 +10,13 @@ export default function Home() {
           <div className="product-info">
             <div className="product-text">
               <h1 className="product-info-text">
-                WEARABLE TECH DEVELOPED{" "}
-                <span className="product-info-orange-text">WITH</span> AND{" "}
-                <span className="product-info-orange-text">FOR</span> THE DEAF
-                COMMUNITY
+                YOU DON’T NEED TO{" "}
+                <span className="product-info-orange-text">HEAR</span> THE MUSIC
+                TO <span className="product-info-orange-text">FEEL</span>{" "}
+                IT.{" "}
               </h1>
               <p className="product-description-text">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                Wearable tech developed with and for the deaf community.{" "}
               </p>
               <button className="learn-more-button">LEARN MORE</button>
             </div>
@@ -221,7 +220,10 @@ export default function Home() {
                 image: "/product-image.png",
               },
             ].map((product) => (
-              <div key={product.name + product.price} className="product-item-container">
+              <div
+                key={product.name + product.price}
+                className="product-item-container"
+              >
                 <div className="product-item">
                   <div className="product-display-container">
                     <Image
@@ -237,7 +239,9 @@ export default function Home() {
                       <h2 className="product-name">{product.name}</h2>
                       <p>{product.price}</p>
                     </div>
-                    <button className="learn-more-button small">View Details</button>
+                    <button className="learn-more-button small">
+                      View Details
+                    </button>
                   </div>
                 </div>
               </div>

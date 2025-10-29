@@ -33,7 +33,6 @@ body {
   justify-content: center;
   align-items: flex-start;
   gap: 21px;
-  width: 45%;
   min-width: 300px;
   max-width: 700px;
   height: 100%;
@@ -45,15 +44,14 @@ body {
   flex-shrink: 0;
 }
 .product-info-text {
-  font-family: "Stratos", sans-serif;
-  vertical-align: middle;
-  letter-spacing: 0%;
   color: #05365f;
-  font-size: 64px;
+  font-family: "Stratos", sans-serif;
+  font-size: 93.007px;
   font-style: normal;
   font-weight: 700;
-  line-height: normal;
+  line-height: 110%; /* 102.307px */
   text-transform: uppercase;
+  z-index: 0;
 }
 
 .product-description-text {
@@ -141,7 +139,7 @@ body {
 .community-header {
   color: #000;
   text-align: center;
-  font-family: Stratos, sans-serif;
+  font-family: "Stratos", sans-serif;
   font-size: 44px;
   font-style: normal;
   font-weight: 700;
@@ -152,7 +150,7 @@ body {
 .community-quote {
   color: #000;
   text-align: center;
-  font-family: Stratos, sans-serif;
+  font-family: "Stratos", sans-serif;
   font-size: 32px;
   font-style: normal;
   font-weight: 600;
@@ -179,7 +177,7 @@ body {
 .tag-line-text {
   color: #fff;
   text-align: center;
-  font-family: Stratos, sans-serif;
+  font-family: "Stratos", sans-serif;
   font-size: 64px;
   font-style: normal;
   font-weight: 700;
@@ -245,7 +243,7 @@ body {
 .products-header {
   color: #fff;
   text-align: center;
-  font-family: Stratos, sans-serif;
+  font-family: "Stratos", sans-serif;
   font-size: 64px;
   font-style: normal;
   font-weight: 600;
@@ -320,11 +318,11 @@ body {
 
 .product-name {
   color: #000;
-font-family: Stratos, sans-serif;
-font-size: 21px;
-font-style: normal;
-font-weight: 600;
-line-height: normal;
+  font-family: "Stratos", sans-serif;
+  font-size: 21px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
 }
 
 /* ...existing code... */
