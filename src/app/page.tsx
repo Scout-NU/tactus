@@ -45,7 +45,48 @@ export default function Home() {
             style={{ objectFit: "cover" }}
           />
         </div>
-        <div className="tag-line-container">
+        <div
+          className="tag-line-container"
+          style={{
+            position: "relative",
+            overflow: "hidden",
+          }}
+        >
+          <div className="photoshoot-images">
+            <Image
+              src={"/photoshoot-photos/sidelook.png"}
+              alt="sidelook-photo"
+              width={335}
+              height={492}
+              style={{
+                position: "absolute",
+                left: 0,
+              }}
+            />
+
+            <Image
+              src={"/photoshoot-photos/faceshot.png"}
+              alt="faceshot-photo"
+              width={223}
+              height={335}
+              style={{
+                position: "absolute",
+                right: 100,
+                zIndex: 1,
+              }}
+            />
+            <Image
+              src={"/photoshoot-photos/faceshot.png"}
+              alt="faceshot-photo"
+              width={345}
+              height={520}
+              style={{
+                position: "absolute",
+                right: -70,
+                bottom: -50,
+              }}
+            />
+          </div>
           <div className="tag-line">
             <h1 className="tag-line-text">
               TRANSFORMING THE WAY MUSIC IS EXPERIENCED.
@@ -250,7 +291,13 @@ export default function Home() {
         </div>
 
         <div className="contact-form-section">
-          <div className="contact-form-overview">
+          <div
+            className="contact-form-overview"
+            style={{
+              position: "relative",
+              zIndex: 2,
+            }}
+          >
             <div className="contact-form-info">
               <div className="contact-form-text">
                 <h1 className="contact-form-info-text">
@@ -288,6 +335,20 @@ export default function Home() {
             ></div>
           </div>
         </div>
+        <div
+          style={{
+            top: "405vh",
+          }}
+          className="wave-pattern-orange"
+        >
+          <Image
+            alt="wave pattern"
+            src="/orange-waves.svg"
+            fill
+            style={{ objectFit: "cover" }}
+          />
+        </div>
+
         <div className="bottom-padding"></div>
       </div>
     </div>
