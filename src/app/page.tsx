@@ -108,17 +108,7 @@ export default function Home() {
           <button className="learn-more-button orange">LEARN MORE</button>
         </div>
         <div className="community-section">
-          <div
-            className="community-content"
-            style={{
-              position: "relative",
-              zIndex: 2,
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-              justifyContent: "center",
-            }}
-          >
+          <div className="community-content">
             <div className="community-text">
               <h1 className="community-header">
                 IMPRESSIONS FROM THE COMMUNITY
