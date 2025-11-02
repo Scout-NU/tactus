@@ -17,7 +17,7 @@ export default function CustomHeader() {
       </div>
       <div className="navigation-buttons">
         <nav className="navbar">
-          <a href="" style={boldedPath === "/" ? { fontWeight: "bold" } : {}}>
+          <a href="/" style={boldedPath === "/" ? { fontWeight: "bold" } : {}}>
             Product
           </a>
           <a
