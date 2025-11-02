@@ -45,13 +45,7 @@ export default function Home() {
             style={{ objectFit: "cover" }}
           />
         </div>
-        <div
-          className="tag-line-container"
-          style={{
-            position: "relative",
-            overflow: "hidden",
-          }}
-        >
+        <div className="tag-line-container">
           <div className="photoshoot-images">
             <Image
               src={"/photoshoot-photos/sidelook.png"}

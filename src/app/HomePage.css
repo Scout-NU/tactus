@@ -114,6 +114,8 @@ body {
 }
 
 .tag-line-container {
+  position: relative;
+  overflow: hidden;
   display: flex;
   flex-direction: column;
   gap: 57px;
@@ -399,9 +401,8 @@ body {
 }
 
 .bottom-padding {
-  background: #05365F;
+  background: #05365f;
   height: 421px;
-
 }
 
 /* ...existing code... */
