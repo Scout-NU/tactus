@@ -6,7 +6,8 @@ body {
   width: 100%;
 }
 
-.product-overview {
+.product-overview,
+.contact-form-overview {
   display: flex;
   justify-content: flex-end;
   height: 100vh;
@@ -16,7 +17,8 @@ body {
   overflow: hidden;
 }
 
-.product-info {
+.product-info,
+.contact-form-info {
   display: flex;
   background-color: transparent;
   width: 100%;
@@ -43,6 +45,11 @@ body {
   height: 1171px;
   flex-shrink: 0;
 }
+
+.product-image-container.record {
+  overflow: hidden;
+}
+
 .product-info-text {
   color: #05365f;
   font-family: "Stratos", sans-serif;
@@ -325,6 +332,78 @@ body {
   line-height: normal;
 }
 
+.contact-form-section {
+  height: 75vh;
+  background: linear-gradient(180deg, #fff 0%, #95e2e2 100%);
+  overflow: hidden;
+}
+
+.contact-form-text {
+  max-width: 657px;
+}
+
+.contact-form-info-text {
+  color: #05365f;
+  font-family: "Stratos", sans-serif;
+  font-size: 72px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
+.contact-form-description-text {
+  color: #05365f;
+
+  font-family: "DM Sans", sans-serif;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.contact-form-input {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  max-width: 700px;
+  position: relative;
+}
+
+.contact-form-text-input {
+  flex: 1 1 auto;
+  min-width: 0;
+  height: 56px;
+  background: white;
+  text-indent: 22px;
+  box-sizing: border-box;
+  border-radius: 11px;
+  padding-right: 64px;
+}
+
+.contact-form-submit-button {
+  background-color: #fa7a57;
+  width: 40px;
+  height: 40px;
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
+  margin-left: 0;
+}
+
+.bottom-padding {
+  background: #05365F;
+  height: 421px;
+
+}
+
 /* ...existing code... */
 @media (max-width: 768px) {
   .product-text {
@@ -336,7 +415,8 @@ body {
     z-index: 2;
     align-items: center;
   }
-  .product-info {
+  .product-info,
+  .contact-form-info {
     padding: 0 0;
     justify-content: center;
   }

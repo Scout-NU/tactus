@@ -248,6 +248,47 @@ export default function Home() {
             ))}
           </div>
         </div>
+
+        <div className="contact-form-section">
+          <div className="contact-form-overview">
+            <div className="contact-form-info">
+              <div className="contact-form-text">
+                <h1 className="contact-form-info-text">
+                  DON&#39;T MISS A BEAT
+                </h1>
+                <p className="contact-form-description-text">
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+                  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                </p>
+                <div className="contact-form-input">
+                  <input
+                    type="text"
+                    placeholder="example@provider.com"
+                    className="contact-form-text-input"
+                  />
+                  <button className="contact-form-submit-button">
+                    <Image
+                      alt="wave pattern"
+                      src="/Arrow.svg"
+                      width={20}
+                      height={20}
+                    />
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div
+              className="product-image-container record"
+              style={{
+                backgroundImage: 'url("/record.png")',
+                backgroundSize: "cover",
+                position: "absolute",
+                right: -235,
+              }}
+            ></div>
+          </div>
+        </div>
+        <div className="bottom-padding"></div>
       </div>
     </div>
   );
