@@ -351,6 +351,12 @@ body {
 
 .contact-form-text {
   max-width: 657px;
+  display: flex;
+  flex-direction: column;
+}
+
+.contact-form-description-text {
+  padding-bottom: 41px;
 }
 
 .contact-form-info-text {
