@@ -17,6 +17,12 @@ body {
   overflow: hidden;
 }
 
+.product-overview {
+  background: radial-gradient(80.72% 78.16% at 42.05% 34.86%, #05365F 19.71%, #041C39 59.86%, #030213 100%);
+  /* background z index */
+  z-index: 0;
+}
+
 .product-info,
 .contact-form-info {
   display: flex;
@@ -171,12 +177,13 @@ body {
   font-family: "Stratos", sans-serif;
   font-size: 32px;
   font-style: normal;
-  font-weight: 600;
+  font-weight: normal;
   line-height: normal;
 }
 
 .community-text {
   margin-bottom: 50px;
+  max-width: 35vw;
 }
 
 .sponsor-carousel {

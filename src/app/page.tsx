@@ -45,73 +45,11 @@ export default function Home() {
             style={{ objectFit: "cover" }}
           />
         </div>
-        <div className="tag-line-container">
-          <div className="photoshoot-images">
-            <Image
-              src={"/photoshoot-photos/sidelook.png"}
-              alt="sidelook-photo"
-              width={335}
-              height={492}
-              style={{
-                position: "absolute",
-                left: 0,
-              }}
-            />
-
-            <Image
-              src={"/photoshoot-photos/faceshot.png"}
-              alt="faceshot-photo"
-              width={223}
-              height={335}
-              style={{
-                position: "absolute",
-                right: 100,
-                zIndex: 1,
-              }}
-            />
-            <Image
-              src={"/photoshoot-photos/faceshot.png"}
-              alt="faceshot-photo"
-              width={345}
-              height={520}
-              style={{
-                position: "absolute",
-                right: -70,
-                bottom: -50,
-              }}
-            />
-          </div>
-          <div className="tag-line">
-            <h1 className="tag-line-text">
-              TRANSFORMING THE WAY MUSIC IS EXPERIENCED.
-            </h1>
-            <p className="tag-line-description">
-              We’re providing a new medium that allows deaf and hard-of-hearing
-              individuals to truly enjoy music and connect with one another
-              through shared musical experiences.
-            </p>
-          </div>
-          <div className="features">
-            <div className="features-list">
-              {[
-                "This is a feature",
-                "This is a feature2",
-                "This is a feature3",
-              ].map((feature) => (
-                <div key={feature} className="feature-item">
-                  <Image src={"Star.svg"} alt="star" width={35} height={33} />
-                  <p className="feature-text">{feature}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-          <button className="learn-more-button orange">LEARN MORE</button>
-        </div>
         <div className="community-section">
           <div className="community-content">
             <div className="community-text">
               <h1 className="community-header">
-                IMPRESSIONS FROM THE COMMUNITY
+                TRANSFORMING THE WAY MUSIC IS EXPERIENCED.
               </h1>
               <h2 className="community-quote">
                 “I feel like my soul is moving.”
