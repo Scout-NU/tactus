@@ -11,14 +11,13 @@ export default function Home() {
             <div className="product-text">
               <h1 className="product-info-text">
                 YOU DON’T NEED TO{" "}
-                <span className="product-info-orange-text">HEAR</span> THE MUSIC
-                TO <span className="product-info-orange-text">FEEL</span>{" "}
-                IT.{" "}
+                <span className="product-info-blue-text">HEAR</span> THE MUSIC
+                TO <span className="product-info-blue-text">FEEL</span> IT.{" "}
               </h1>
               <p className="product-description-text">
                 Wearable tech developed with and for the deaf community.{" "}
               </p>
-              <button className="learn-more-button">LEARN MORE</button>
+              <button className="learn-more-button orange">LEARN MORE</button>
             </div>
           </div>
           <div
@@ -31,19 +30,40 @@ export default function Home() {
               zIndex: -1,
             }}
           ></div>
-        </div>
-        <div
-          style={{
-            top: "50vh",
-          }}
-          className="wave-pattern-orange"
-        >
-          <Image
-            alt="wave pattern"
-            src="/wave-pattern.svg"
-            fill
-            style={{ objectFit: "cover" }}
-          />
+          <div
+            style={{
+              top: "18vh",
+            }}
+            className="wave-pattern-orange"
+          >
+            <Image
+              alt="wave pattern"
+              src="/wave-in-landing.svg"
+              fill
+              style={{ objectFit: "cover" }}
+            />
+          </div>
+
+          <div className="blue-pixels">
+            <Image
+              alt="blue pixels"
+              src="/pixels/left.svg"
+              width={515}
+              height={360}
+            />
+            <Image
+              alt="blue pixels"
+              src="/pixels/middle.svg"
+              width={254}
+              height={304}
+            />
+            <Image
+              alt="blue pixels"
+              src="/pixels/right.svg"
+              width={515}
+              height={360}
+            />
+          </div>
         </div>
         <div className="community-section">
           <div className="community-content">
@@ -138,26 +158,26 @@ export default function Home() {
         </div>
         <div
           style={{
-            top: "190vh",
+            top: "120vh",
           }}
           className="wave-pattern-blue"
         >
           <Image
             alt="wave pattern"
-            src="/blue-waves.svg"
+            src="/wave-in-community.svg"
             fill
             style={{ objectFit: "cover" }}
           />
         </div>
         <div
           style={{
-            top: "260vh",
+            top: "160vh",
           }}
-          className="wave-pattern-orange"
+          className="wave-pattern-blue"
         >
           <Image
             alt="wave pattern"
-            src="/wave-pattern.svg"
+            src="/wave-2-in-community.svg"
             fill
             style={{ objectFit: "cover" }}
           />
@@ -230,7 +250,8 @@ export default function Home() {
                   do eiusmod tempor incididunt ut labore et dolore magna aliqua.
                 </p>
                 <div className="contact-form-input">
-                  <input
+                  <button className="learn-more-button">STAY IN TOUCH</button>
+                  {/* <input
                     type="text"
                     placeholder="example@provider.com"
                     className="contact-form-text-input"
@@ -242,7 +263,7 @@ export default function Home() {
                       width={20}
                       height={20}
                     />
-                  </button>
+                  </button> */}
                 </div>
               </div>
             </div>
@@ -259,19 +280,17 @@ export default function Home() {
         </div>
         <div
           style={{
-            top: "405vh",
+            top: "280vh",
           }}
           className="wave-pattern-orange"
         >
           <Image
             alt="wave pattern"
-            src="/orange-waves.svg"
+            src="/wave-in-contact.svg"
             fill
             style={{ objectFit: "cover" }}
           />
         </div>
-
-        <div className="bottom-padding"></div>
       </div>
     </div>
   );
