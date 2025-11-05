@@ -25,6 +25,7 @@ body {
     #030213 100%
   );
   /* background z index */
+  height: 100vh;
   z-index: 0;
 }
 
@@ -202,7 +203,9 @@ body {
 .blue-pixels {
   display: flex;
   position: absolute;
-  top: 70vh;
+  top: 76vh;
+  z-index: 0;
+  background-color: transparent;
 }
 
 .sponsor-carousel {

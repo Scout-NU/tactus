@@ -28,6 +28,8 @@ export default function Home() {
               position: "absolute",
               right: -235,
               zIndex: -1,
+              width: 710,
+              height: 914,
             }}
           ></div>
           <div
@@ -43,28 +45,28 @@ export default function Home() {
               style={{ objectFit: "cover" }}
             />
           </div>
-
-          <div className="blue-pixels">
-            <Image
-              alt="blue pixels"
-              src="/pixels/left.svg"
-              width={515}
-              height={360}
-            />
-            <Image
-              alt="blue pixels"
-              src="/pixels/middle.svg"
-              width={254}
-              height={304}
-            />
-            <Image
-              alt="blue pixels"
-              src="/pixels/right.svg"
-              width={515}
-              height={360}
-            />
-          </div>
         </div>
+        <div className="blue-pixels">
+          <Image
+            alt="blue pixels"
+            src="/pixels/left.svg"
+            width={515}
+            height={360}
+          />
+          <Image
+            alt="blue pixels"
+            src="/pixels/middle.svg"
+            width={254}
+            height={304}
+          />
+          <Image
+            alt="blue pixels"
+            src="/pixels/right.svg"
+            width={515}
+            height={360}
+          />
+        </div>
+
         <div className="community-section">
           <div className="community-content">
             <div className="community-text">
