@@ -63,6 +63,21 @@ export const SHOP_PRODUCTS: readonly ShopProduct[] = [
         className: "object-cover lg:object-contain lg:scale-[1.50] lg:origin-top lg:-translate-y-[13%]",
         priority: true,
       },
+      {
+        src: "/assets/shop/Jacket.png",
+        alt: "Close-up of the Tactus jacket on a mannequin",
+        objectFit: "cover",
+      },
+      {
+        src: "/assets/shop/Folded-Arms-Jacket.jpg",
+        alt: "Jeremy wearing the Tactus jacket with folded arms",
+        objectFit: "cover",
+      },
+      {
+        src: "/assets/shop/Jeremy-Happy-Jacket.jpg",
+        alt: "Jeremy smiling while wearing the Tactus jacket in the city",
+        objectFit: "cover",
+      },
     ],
   },
 ];
