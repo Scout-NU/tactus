@@ -77,7 +77,10 @@
         }
 
   * {
-    @apply border-border outline-ring/50;
+    @apply border-border;
+      outline: 2px solid transparent;
+      outline-offset: 2px;
+      outline-color: var(--ring);
   }
 
   body {
