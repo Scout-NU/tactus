@@ -71,6 +71,8 @@ module.exports = {
       fontFamily: {
         sans: ["var(--font-geist-sans)", ...fontFamily.sans],
         mono: ["var(--font-geist-mono)", ...fontFamily.mono],
+        heading: ["Stratos", ...fontFamily.sans],
+        body: ["DM Sans", ...fontFamily.sans],
       },
     },
   },
