@@ -27,7 +27,7 @@ export default function Home() {
               backgroundSize: "cover",
               position: "absolute",
               right: -235,
-              zIndex: -1,
+              zIndex: 2,
               width: 710,
               height: 914,
             }}
@@ -42,11 +42,14 @@ export default function Home() {
               alt="wave pattern"
               src="/wave-in-landing.svg"
               fill
-              style={{ objectFit: "cover" }}
+              style={{ 
+                objectFit: "cover",
+                zIndex: -1,
+              }}
             />
           </div>
         </div>
-        <div className="blue-pixels">
+        {/* <div className="blue-pixels">
           <Image
             alt="blue pixels"
             src="/pixels/left.svg"
@@ -65,7 +68,7 @@ export default function Home() {
             width={515}
             height={360}
           />
-        </div>
+        </div> */}
 
         <div className="community-section">
           <div className="community-content">
@@ -195,12 +198,12 @@ export default function Home() {
           <div className="products-list">
             {[
               {
-                name: "TACTUS CODEC VEST",
+                name: "CODEC VEST",
                 price: "$99",
                 image: "/product-image.png",
               },
               {
-                name: "TACTUS CODEC VEST",
+                name: "CODEC VEST",
                 price: "$199",
                 image: "/product-image.png",
               },
@@ -245,7 +248,7 @@ export default function Home() {
             <div className="contact-form-info">
               <div className="contact-form-text">
                 <h1 className="contact-form-info-text">
-                  DON&#39;T MISS A BEAT
+                  DON'T MISS A BEAT
                 </h1>
                 <p className="contact-form-description-text">
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
@@ -282,7 +285,7 @@ export default function Home() {
         </div>
         <div
           style={{
-            top: "280vh",
+            top: "310vh",
           }}
           className="wave-pattern-orange"
         >
