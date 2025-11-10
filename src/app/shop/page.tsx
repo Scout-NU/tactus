@@ -32,10 +32,13 @@ export default function ShopPage() {
         {SHOP_PRODUCTS.map((product) => (
           <ProductSection
             key={product.id}
+            productId={product.id}
             title={product.title}
             description={product.description}
             price={product.price}
             originalPrice={product.originalPrice}
+            priceInCents={product.priceInCents}
+            stripePriceId={product.stripePriceId}
             galleryVariant={product.galleryVariant}
             sizes={product.sizes ?? SHOP_SIZES}
             galleryImages={product.galleryImages}
