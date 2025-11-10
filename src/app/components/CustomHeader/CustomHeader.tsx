@@ -7,7 +7,7 @@ import "./HeaderStyle.css";
 export default function CustomHeader() {
   const pathname = usePathname();
   
-  const lightBackgroundPages = ["/shop", "/about"];
+  const lightBackgroundPages = ["/about"];
   const isDarkText = lightBackgroundPages.includes(pathname);
   const textColor = isDarkText ? "#05365f" : "#FFF";
 
@@ -38,7 +38,7 @@ export default function CustomHeader() {
           >
             Shop
           </Link>
-          <Link
+          {/* <Link
             href="/about"
             style={{ 
               fontWeight: pathname === "/about" ? "bold" : "normal",  
@@ -46,7 +46,7 @@ export default function CustomHeader() {
             }}
           >
             About Us
-          </Link>
+          </Link> */}
           <Link
             href="/community"
             style={{ 
