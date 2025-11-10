@@ -24,12 +24,18 @@ export default function Home() {
             className="product-image-container"
             style={{
               backgroundImage: 'url("/product-home-photo.png")',
-              backgroundSize: "cover",
+              backgroundSize: "contain",
+              backgroundRepeat: "no-repeat",
+              backgroundPosition: "center",
               position: "absolute",
-              left: 750,
+              right: "6vw",
+              top: "50%",
+              transform: "translateY(-50%)",
               zIndex: 2,
-              width: 614,
-              height: 790,
+              width: "min(80vw, 800px)",
+              height: "min(110vh, 1000px)",
+              aspectRatio: "614/790",
+              maxWidth: "calc(100vw - 40vw - 16vw)",
             }}
           ></div>
           <div
