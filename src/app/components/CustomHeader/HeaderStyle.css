@@ -5,16 +5,30 @@
   flex-wrap: nowrap;
   justify-content: space-between;
   align-items: center;
-  padding: 25px 0px 25px 0px;
+  padding: 25px 1.75rem 25px 1.61rem;
+    position: fixed;
+    /* Change from sticky to fixed */
+    top: 0;
+    left: 0;
+    /* Add this to ensure it spans from the left edge */
+    z-index: 1000;
+    background: transparent;
 }
 
-.company-name {
-  width: 70;
-  height: 29;
+.company-name h1 {
+  color: #FFF;
+  font-family: "Stratos", sans-serif;
+  font-size: 1.45381rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  margin: 0;
+  /* Good to add this to remove default h1 margins */
 }
 
 h1 {
   font-family: "Stratos", sans-serif;
+  color: #fff;
   /* font-weight: 550; */
   /* font-size: 23.26px; */
 }
@@ -24,5 +38,16 @@ h1 {
   gap: 20px;
   font-family: "Stratos", sans-serif;
   font-weight: 200;
-  font-size: 16.36px;
+  font-size: 1.02244rem;
+    color: #fff;
+  }
+  
+  .navbar a {
+    color: #fff;
+    text-decoration: none;
+  }
+  
+  .company-name a {
+    color: #fff;
+    text-decoration: none;
 }
