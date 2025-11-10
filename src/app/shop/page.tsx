@@ -13,12 +13,12 @@ export default function ShopPage() {
       <div className="pointer-events-none" aria-hidden>
         <BackgroundWave
           src="/assets/shop/wave-top.svg"
-          className="-top-1 left-[40%] h-[900px] w-[max(2100px,150vw)] -translate-x-[40%] md:-translate-x-1/3"
+          className="-top-1 left-[40%] h-[900px] w-[2100px] -translate-x-[40%] md:-translate-x-1/3"
           priority
         />
         <BackgroundWave
           src="/assets/shop/wave-bottom.svg"
-          className="top-[65%] right-[-10%] h-[900px] w-[max(2100px,150vw)] scale-y-[1]"
+          className="top-[65%] right-[-10%] h-[900px] w-[2100px] scale-y-[1]"
         />
       </div>
 
