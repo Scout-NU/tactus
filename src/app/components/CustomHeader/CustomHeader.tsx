@@ -1,9 +1,9 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import "./HeaderStyle.css";
 
 export default function CustomHeader() {
-  const [boldedPath, setBoldedPath] = useState("/");
+  const [boldedPath] = useState("/");
 
   // const currentPath = window.location.pathname;
   // useEffect(() => {
