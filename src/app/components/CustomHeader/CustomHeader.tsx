@@ -15,7 +15,7 @@ export default function CustomHeader() {
     <header className="custom-header" style={{ color: textColor }}>
       <div className="company-name">
         <Link href="/" style={{ 
-          fontWeight: pathname === "/" ? "bold" : "normal",  // Changed from boldedPath to pathname
+          fontWeight: pathname === "/" ? "bold" : "normal",  
           color: textColor 
         }}>
           <h1 style={{ color: textColor }}>Tactus</h1>
@@ -24,7 +24,7 @@ export default function CustomHeader() {
       <div className="navigation-buttons">
         <nav className="navbar">
           <Link href="/product" style={{ 
-            fontWeight: pathname === "/product" ? "bold" : "normal",  // Changed
+            fontWeight: pathname === "/product" ? "bold" : "normal",  
             color: textColor 
           }}>
             Product
@@ -32,7 +32,7 @@ export default function CustomHeader() {
           <Link
             href="/shop"
             style={{ 
-              fontWeight: pathname === "/shop" ? "bold" : "normal",  // Changed
+              fontWeight: pathname === "/shop" ? "bold" : "normal", 
               color: textColor 
             }}
           >
@@ -41,7 +41,7 @@ export default function CustomHeader() {
           <Link
             href="/about"
             style={{ 
-              fontWeight: pathname === "/about" ? "bold" : "normal",  // Changed
+              fontWeight: pathname === "/about" ? "bold" : "normal",  
               color: textColor 
             }}
           >
@@ -50,7 +50,7 @@ export default function CustomHeader() {
           <Link
             href="/community"
             style={{ 
-              fontWeight: pathname === "/community" ? "bold" : "normal",  // Changed
+              fontWeight: pathname === "/community" ? "bold" : "normal",  
               color: textColor 
             }}
           >
