@@ -15,9 +15,9 @@ export default function Home() {
                 TO <span className="product-info-blue-text">FEEL</span> IT.{" "}
               </h1>
               <p className="product-description-text">
-                Wearable tech developed with and for the deaf community.{" "}
+                Wearable tech developed with and for the Deaf community.{" "}
               </p>
-              <button className="learn-more-button orange">LEARN MORE</button>
+              <button className="learn-more-button orange" style={{zIndex:2}}>LEARN MORE</button>
             </div>
           </div>
           <div
@@ -26,10 +26,10 @@ export default function Home() {
               backgroundImage: 'url("/product-home-photo.png")',
               backgroundSize: "cover",
               position: "absolute",
-              right: -235,
+              left: 750,
               zIndex: 2,
-              width: 710,
-              height: 914,
+              width: 614,
+              height: 790,
             }}
           ></div>
           <div
@@ -163,7 +163,7 @@ export default function Home() {
         </div>
         <div
           style={{
-            top: "120vh",
+            top: "130vh",
           }}
           className="wave-pattern-blue"
         >
