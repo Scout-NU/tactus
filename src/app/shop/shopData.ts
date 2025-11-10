@@ -36,7 +36,7 @@ export const SHOP_PRODUCTS: readonly ShopProduct[] = [
       {
         src: "/assets/shop/Jacket.png",
         alt: "Close-up of the Tactus jacket on a mannequin",
-        objectFit: "cover",
+        objectFit: "contain",
       },
       {
         src: "/assets/shop/Folded-Arms-Jacket.jpg",
@@ -67,9 +67,9 @@ export const SHOP_PRODUCTS: readonly ShopProduct[] = [
         priority: true,
       },
       {
-        src: "/assets/shop/Jacket.png",
+        src: "/assets/shop/vest.png",
         alt: "Close-up of the Tactus jacket on a mannequin",
-        objectFit: "cover",
+        objectFit: "contain",
       },
       {
         src: "/assets/shop/Folded-Arms-Jacket.jpg",

@@ -38,7 +38,7 @@ export default function CustomHeader() {
           >
             Shop
           </Link>
-          <Link
+          {/* <Link
             href="/about"
             style={{ 
               fontWeight: pathname === "/about" ? "bold" : "normal",  
@@ -46,7 +46,7 @@ export default function CustomHeader() {
             }}
           >
             About Us
-          </Link>
+          </Link> */}
           <Link
             href="/community"
             style={{ 
