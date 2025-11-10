@@ -1,14 +1,12 @@
 "use client";
-import React, { useState } from "react";
+import React from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import "./HeaderStyle.css";
 
 export default function CustomHeader() {
-  const [boldedPath] = useState("/");
   const pathname = usePathname();
   
-
   const lightBackgroundPages = ["/shop", "/about"];
   const isDarkText = lightBackgroundPages.includes(pathname);
   const textColor = isDarkText ? "#05365f" : "#FFF";
@@ -17,7 +15,7 @@ export default function CustomHeader() {
     <header className="custom-header" style={{ color: textColor }}>
       <div className="company-name">
         <Link href="/" style={{ 
-          fontWeight: boldedPath === "/" ? "bold" : "normal",
+          fontWeight: pathname === "/" ? "bold" : "normal",  // Changed from boldedPath to pathname
           color: textColor 
         }}>
           <h1 style={{ color: textColor }}>Tactus</h1>
@@ -25,8 +23,8 @@ export default function CustomHeader() {
       </div>
       <div className="navigation-buttons">
         <nav className="navbar">
-          <Link href="/" style={{ 
-            fontWeight: boldedPath === "/" ? "bold" : "normal",
+          <Link href="/product" style={{ 
+            fontWeight: pathname === "/product" ? "bold" : "normal",  // Changed
             color: textColor 
           }}>
             Product
@@ -34,7 +32,7 @@ export default function CustomHeader() {
           <Link
             href="/shop"
             style={{ 
-              fontWeight: boldedPath === "shop" ? "bold" : "normal",
+              fontWeight: pathname === "/shop" ? "bold" : "normal",  // Changed
               color: textColor 
             }}
           >
@@ -43,7 +41,7 @@ export default function CustomHeader() {
           <Link
             href="/about"
             style={{ 
-              fontWeight: boldedPath === "about" ? "bold" : "normal",
+              fontWeight: pathname === "/about" ? "bold" : "normal",  // Changed
               color: textColor 
             }}
           >
@@ -52,7 +50,7 @@ export default function CustomHeader() {
           <Link
             href="/community"
             style={{ 
-              fontWeight: boldedPath === "community" ? "bold" : "normal",
+              fontWeight: pathname === "/community" ? "bold" : "normal",  // Changed
               color: textColor 
             }}
           >
