@@ -254,7 +254,7 @@ export default function Home() {
             <div className="contact-form-info">
               <div className="contact-form-text">
                 <h1 className="contact-form-info-text">
-                  DON'T MISS A BEAT
+                  DON&apos;T MISS A BEAT
                 </h1>
                 <p className="contact-form-description-text">
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
