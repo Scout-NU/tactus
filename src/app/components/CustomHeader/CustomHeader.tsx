@@ -7,7 +7,7 @@ import "./HeaderStyle.css";
 export default function CustomHeader() {
   const pathname = usePathname();
   
-  const lightBackgroundPages = ["/shop", "/about"];
+  const lightBackgroundPages = ["/about"];
   const isDarkText = lightBackgroundPages.includes(pathname);
   const textColor = isDarkText ? "#05365f" : "#FFF";
 

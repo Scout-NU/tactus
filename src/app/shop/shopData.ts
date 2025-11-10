@@ -11,6 +11,7 @@ export type ShopProduct = {
   description: string;
   galleryVariant: ProductGalleryVariant;
   price: string;
+  originalPrice?: string;
   sizes?: readonly ShopSize[];
   galleryImages?: readonly GalleryImage[];
 };
@@ -22,7 +23,8 @@ export const SHOP_PRODUCTS: readonly ShopProduct[] = [
     description:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.",
     galleryVariant: "feature",
-    price: "$100",
+    price: "$459",
+    originalPrice: "$500",
     sizes: SHOP_SIZES,
     galleryImages: [
       {
@@ -50,11 +52,12 @@ export const SHOP_PRODUCTS: readonly ShopProduct[] = [
   },
   {
     id: "codec-vest",
-    title: "TACTUS CODEC VEST",
+    title: "TACTUS CODEC JACKET",
     description:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.",
     galleryVariant: "simple",
-    price: "$100",
+    price: "$459",
+    originalPrice: "$500",
     sizes: SHOP_SIZES,
     galleryImages: [
       {

@@ -5,7 +5,11 @@ import { SHOP_PRODUCTS, SHOP_SIZES } from "./shopData";
 
 export default function ShopPage() {
   return (
-    <main className="relative overflow-hidden bg-white">
+    <main className="relative overflow-hidden" style={{ 
+      background: 'radial-gradient(ellipse 1145px 1606.4px at 605.5px 720.26px, rgba(5,54,95,1) 19.712%, rgba(4,28,57,1) 59.856%, rgba(4,15,38,1) 79.928%, rgba(3,2,19,1) 100%)',
+      paddingTop: '50px',
+      paddingBottom: '100px',
+    }}>
       <div className="pointer-events-none" aria-hidden>
         <BackgroundWave
           src="/assets/shop/wave-top.svg"
@@ -14,13 +18,13 @@ export default function ShopPage() {
         />
         <BackgroundWave
           src="/assets/shop/wave-bottom.svg"
-          className="bottom-[5%] right-[-10%] h-[900px] w-[2100px] scale-y-[1]"
+          className="top-[65%] right-[-10%] h-[900px] w-[2100px] scale-y-[1]"
         />
       </div>
 
       <div className="relative mx-auto flex min-h-screen max-w-7xl flex-col gap-20 px-4 pb-24 pt-24 sm:px-6 lg:px-12">
         <header className="space-y-6">
-          <h1 className="font-heading max-w-3xl text-4xl font-bold uppercase tracking-tight text-[#101828] sm:text-5xl lg:text-[4rem] lg:leading-[1.05]">
+          <h1 className="font-heading max-w-3xl text-4xl font-bold uppercase tracking-tight text-white sm:text-5xl lg:text-[4rem] lg:leading-[1.05]">
             Explore Our Products
           </h1>
         </header>
@@ -31,14 +35,13 @@ export default function ShopPage() {
             title={product.title}
             description={product.description}
             price={product.price}
+            originalPrice={product.originalPrice}
             galleryVariant={product.galleryVariant}
             sizes={product.sizes ?? SHOP_SIZES}
             galleryImages={product.galleryImages}
           />
         ))}
       </div>
-
-      <footer className="relative h-60 w-full bg-[#05365f]" aria-hidden />
     </main>
   );
 }
