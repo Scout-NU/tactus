@@ -66,13 +66,13 @@ export function ProductSection<Size extends string = string>({
         <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-4">
           <button
             type="button"
-            className="font-body flex items-center justify-center rounded-lg border border-white bg-white px-10 py-3 text-base font-medium text-[#05365f] transition hover:bg-white/90 focus-visible:outline-none focus-visible:ring focus-visible:ring-white/30"
+            className="font-body flex items-center justify-center rounded-lg border border-white bg-white px-10 py-3 text-lg font-medium text-[#05365f] transition hover:bg-white/90 focus-visible:outline-none focus-visible:ring focus-visible:ring-white/30"
           >
             {viewDetailsLabel}
           </button>
           <button
             type="button"
-            className="font-body flex items-center justify-center rounded-lg bg-[#FF6B4A] px-10 py-3 text-base font-medium text-white transition hover:bg-[#FF5A39] focus-visible:outline-none focus-visible:ring focus-visible:ring-[#FF6B4A]/60"
+            className="font-body flex items-center justify-center rounded-lg bg-[#FF6B4A] px-10 py-3 text-lg font-medium text-white transition hover:bg-[#FF5A39] focus-visible:outline-none focus-visible:ring focus-visible:ring-[#FF6B4A]/60"
           >
             {quickAddLabel}
           </button>
