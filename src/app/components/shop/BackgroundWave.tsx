@@ -11,7 +11,7 @@ type BackgroundWaveProps = {
 export function BackgroundWave({ src, className, priority }: BackgroundWaveProps) {
   return (
     <div className={cn("absolute", className)}>
-      <Image src={src} alt="" fill priority={priority} className="object-contain" />
+      <Image src={src} alt="" fill priority={priority} className="object-cover" />
     </div>
   );
 }
