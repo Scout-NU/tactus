@@ -10,11 +10,23 @@ body {
 .contact-form-overview {
   display: flex;
   justify-content: flex-end;
-  height: 100vh;
+  height: 75vh;
 
   /* add these to clip the absolutely-positioned image to 100vh */
   position: relative;
   overflow: hidden;
+}
+
+.product-overview {
+  background: radial-gradient(
+    80.72% 78.16% at 42.05% 34.86%,
+    #05365f 19.71%,
+    #041c39 59.86%,
+    #030213 100%
+  );
+  /* background z index */
+  height: 100vh;
+  z-index: 0;
 }
 
 .product-info,
@@ -38,6 +50,7 @@ body {
   min-width: 300px;
   max-width: 700px;
   height: 100%;
+  z-index:2; 
 }
 
 .product-image-container {
@@ -51,7 +64,7 @@ body {
 }
 
 .product-info-text {
-  color: #05365f;
+  color: #fff;
   font-family: "Stratos", sans-serif;
   font-size: 93.007px;
   font-style: normal;
@@ -62,7 +75,7 @@ body {
 }
 
 .product-description-text {
-  color: #05365f;
+  color: #fff;
   font-family: "DM Sans", sans-serif;
   font-size: 20px;
   font-style: normal;
@@ -70,8 +83,8 @@ body {
   line-height: normal;
 }
 
-.product-info-orange-text {
-  color: #f06532;
+.product-info-blue-text {
+  color: #95e2e2;
 }
 
 .wave-pattern-orange,
@@ -142,23 +155,29 @@ body {
 }
 
 .community-section {
-  margin-top: 150px;
+  padding-top: 120px;
+  background: linear-gradient(
+    180deg,
+    #05365f 14.44%,
+    #4daab5 65.78%,
+    #fff 100%
+  );
   display: flex;
   flex-direction: column;
   gap: 57px;
   justify-content: center;
   align-items: center;
   width: 100%;
-  height: 100vh;
+  height: 140vh;
   text-align: center;
   margin-bottom: 100px;
 }
 
 .community-header {
-  color: #000;
+  color: #FFF;
   text-align: center;
   font-family: "Stratos", sans-serif;
-  font-size: 44px;
+  font-size: 4rem;
   font-style: normal;
   font-weight: 700;
   line-height: normal;
@@ -166,17 +185,29 @@ body {
 }
 
 .community-quote {
-  color: #000;
+  color: #FFF;
   text-align: center;
   font-family: "Stratos", sans-serif;
-  font-size: 32px;
+  font-size: 2.5rem;
   font-style: normal;
-  font-weight: 600;
+  font-weight: normal;
   line-height: normal;
 }
 
 .community-text {
   margin-bottom: 50px;
+  width: 700px;
+  display: flex;
+  flex-direction: column;
+  gap: 31px;
+}
+
+.blue-pixels {
+  display: flex;
+  position: absolute;
+  top: 76vh;
+  z-index: 0;
+  background-color: transparent;
 }
 
 .sponsor-carousel {
@@ -249,6 +280,8 @@ body {
   align-items: center;
   justify-content: center;
   gap: 87px;
+  margin-left: 20px;
+  margin-right: 20px;
 }
 
 .products-section-text {
@@ -413,11 +446,6 @@ body {
   transform: translateY(-50%);
   z-index: 2;
   margin-left: 0;
-}
-
-.bottom-padding {
-  background: #05365f;
-  height: 421px;
 }
 
 /* ...existing code... */

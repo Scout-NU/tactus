@@ -11,107 +11,76 @@ export default function Home() {
             <div className="product-text">
               <h1 className="product-info-text">
                 YOU DON’T NEED TO{" "}
-                <span className="product-info-orange-text">HEAR</span> THE MUSIC
-                TO <span className="product-info-orange-text">FEEL</span>{" "}
-                IT.{" "}
+                <span className="product-info-blue-text">HEAR</span> THE MUSIC
+                TO <span className="product-info-blue-text">FEEL</span> IT.{" "}
               </h1>
               <p className="product-description-text">
-                Wearable tech developed with and for the deaf community.{" "}
+                Wearable tech developed with and for the Deaf community.{" "}
               </p>
-              <button className="learn-more-button">LEARN MORE</button>
+              <button className="learn-more-button orange" style={{zIndex:2}}>LEARN MORE</button>
             </div>
           </div>
           <div
             className="product-image-container"
             style={{
               backgroundImage: 'url("/product-home-photo.png")',
-              backgroundSize: "cover",
+              backgroundSize: "contain",
+              backgroundRepeat: "no-repeat",
+              backgroundPosition: "center",
               position: "absolute",
-              right: -235,
-              zIndex: -1,
+              right: "6vw",
+              top: "50%",
+              transform: "translateY(-50%)",
+              zIndex: 2,
+              width: "min(80vw, 800px)",
+              height: "min(110vh, 1000px)",
+              aspectRatio: "614/790",
+              maxWidth: "calc(100vw - 40vw - 16vw)",
             }}
           ></div>
+          <div
+            style={{
+              top: "18vh",
+            }}
+            className="wave-pattern-orange"
+          >
+            <Image
+              alt="wave pattern"
+              src="/wave-in-landing.svg"
+              fill
+              style={{ 
+                objectFit: "cover",
+                zIndex: -1,
+              }}
+            />
+          </div>
         </div>
-        <div
-          style={{
-            top: "50vh",
-          }}
-          className="wave-pattern-orange"
-        >
+        {/* <div className="blue-pixels">
           <Image
-            alt="wave pattern"
-            src="/wave-pattern.svg"
-            fill
-            style={{ objectFit: "cover" }}
+            alt="blue pixels"
+            src="/pixels/left.svg"
+            width={515}
+            height={360}
           />
-        </div>
-        <div className="tag-line-container">
-          <div className="photoshoot-images">
-            <Image
-              src={"/photoshoot-photos/sidelook.png"}
-              alt="sidelook-photo"
-              width={335}
-              height={492}
-              style={{
-                position: "absolute",
-                left: 0,
-              }}
-            />
+          <Image
+            alt="blue pixels"
+            src="/pixels/middle.svg"
+            width={254}
+            height={304}
+          />
+          <Image
+            alt="blue pixels"
+            src="/pixels/right.svg"
+            width={515}
+            height={360}
+          />
+        </div> */}
 
-            <Image
-              src={"/photoshoot-photos/faceshot.png"}
-              alt="faceshot-photo"
-              width={223}
-              height={335}
-              style={{
-                position: "absolute",
-                right: 100,
-                zIndex: 1,
-              }}
-            />
-            <Image
-              src={"/photoshoot-photos/faceshot.png"}
-              alt="faceshot-photo"
-              width={345}
-              height={520}
-              style={{
-                position: "absolute",
-                right: -70,
-                bottom: -50,
-              }}
-            />
-          </div>
-          <div className="tag-line">
-            <h1 className="tag-line-text">
-              TRANSFORMING THE WAY MUSIC IS EXPERIENCED.
-            </h1>
-            <p className="tag-line-description">
-              We’re providing a new medium that allows deaf and hard-of-hearing
-              individuals to truly enjoy music and connect with one another
-              through shared musical experiences.
-            </p>
-          </div>
-          <div className="features">
-            <div className="features-list">
-              {[
-                "This is a feature",
-                "This is a feature2",
-                "This is a feature3",
-              ].map((feature) => (
-                <div key={feature} className="feature-item">
-                  <Image src={"Star.svg"} alt="star" width={35} height={33} />
-                  <p className="feature-text">{feature}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-          <button className="learn-more-button orange">LEARN MORE</button>
-        </div>
         <div className="community-section">
           <div className="community-content">
             <div className="community-text">
               <h1 className="community-header">
-                IMPRESSIONS FROM THE COMMUNITY
+                TRANSFORMING THE WAY MUSIC IS EXPERIENCED.
               </h1>
               <h2 className="community-quote">
                 “I feel like my soul is moving.”
@@ -200,26 +169,26 @@ export default function Home() {
         </div>
         <div
           style={{
-            top: "190vh",
+            top: "130vh",
           }}
           className="wave-pattern-blue"
         >
           <Image
             alt="wave pattern"
-            src="/blue-waves.svg"
+            src="/wave-in-community.svg"
             fill
             style={{ objectFit: "cover" }}
           />
         </div>
         <div
           style={{
-            top: "260vh",
+            top: "160vh",
           }}
-          className="wave-pattern-orange"
+          className="wave-pattern-blue"
         >
           <Image
             alt="wave pattern"
-            src="/wave-pattern.svg"
+            src="/wave-2-in-community.svg"
             fill
             style={{ objectFit: "cover" }}
           />
@@ -235,12 +204,12 @@ export default function Home() {
           <div className="products-list">
             {[
               {
-                name: "TACTUS CODEC VEST",
+                name: "CODEC VEST",
                 price: "$99",
                 image: "/product-image.png",
               },
               {
-                name: "TACTUS CODEC VEST",
+                name: "CODEC VEST",
                 price: "$199",
                 image: "/product-image.png",
               },
@@ -285,14 +254,15 @@ export default function Home() {
             <div className="contact-form-info">
               <div className="contact-form-text">
                 <h1 className="contact-form-info-text">
-                  DON&#39;T MISS A BEAT
+                  DON&apos;T MISS A BEAT
                 </h1>
                 <p className="contact-form-description-text">
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
                   do eiusmod tempor incididunt ut labore et dolore magna aliqua.
                 </p>
                 <div className="contact-form-input">
-                  <input
+                  <button className="learn-more-button">STAY IN TOUCH</button>
+                  {/* <input
                     type="text"
                     placeholder="example@provider.com"
                     className="contact-form-text-input"
@@ -304,7 +274,7 @@ export default function Home() {
                       width={20}
                       height={20}
                     />
-                  </button>
+                  </button> */}
                 </div>
               </div>
             </div>
@@ -321,19 +291,17 @@ export default function Home() {
         </div>
         <div
           style={{
-            top: "405vh",
+            top: "310vh",
           }}
           className="wave-pattern-orange"
         >
           <Image
             alt="wave pattern"
-            src="/orange-waves.svg"
+            src="/wave-in-contact.svg"
             fill
             style={{ objectFit: "cover" }}
           />
         </div>
-
-        <div className="bottom-padding"></div>
       </div>
     </div>
   );
