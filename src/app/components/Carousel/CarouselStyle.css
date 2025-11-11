@@ -2,10 +2,20 @@
   display: flex;
   overflow-x: auto;
   margin-top: 30px;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+}
+
+.carousel::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
 }
 
 .carousel-item {
   flex-shrink: 0;
+  scroll-snap-align: center;
 }

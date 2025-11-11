@@ -26,28 +26,15 @@ export default function Home() {
             </div>
           </div>
           <div
-            className="product-image-container"
+            className="product-image-container vest"
             style={{
-              backgroundImage: 'url("/product-home-photo.png")',
-              backgroundSize: "contain",
-              backgroundRepeat: "no-repeat",
-              backgroundPosition: "center",
-              position: "absolute",
-              right: "6vw",
-              top: "50%",
-              transform: "translateY(-50%)",
-              zIndex: 2,
-              width: "min(80vw, 800px)",
-              height: "min(110vh, 1000px)",
-              aspectRatio: "614/790",
-              maxWidth: "calc(100vw - 40vw - 16vw)",
             }}
           ></div>
           <div
             style={{
               top: "18vh",
             }}
-            className="wave-pattern-orange"
+            className="wave-pattern-orange first"
           >
             <Image
               alt="wave pattern"
