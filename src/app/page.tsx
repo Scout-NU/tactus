@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/image";
 import Carousel from "./components/Carousel/Carousel";
 import "./HomePage.css";
@@ -28,10 +30,6 @@ export default function Home() {
           <div
             className="product-image-container"
             style={{
-              backgroundImage: 'url("/product-home-photo.png")',
-              backgroundSize: "contain",
-              backgroundRepeat: "no-repeat",
-              backgroundPosition: "center",
               position: "absolute",
               right: "6vw",
               top: "50%",
@@ -42,7 +40,16 @@ export default function Home() {
               aspectRatio: "614/790",
               maxWidth: "calc(100vw - 40vw - 16vw)",
             }}
-          ></div>
+          >
+            <Image
+              src="/product-home-photo.png"
+              alt="Tactus Product"
+              fill
+              priority
+              sizes="(max-width: 768px) 80vw, 50vw"
+              style={{ objectFit: "contain", objectPosition: "center" }}
+            />
+          </div>
           <div
             style={{
               top: "18vh",
@@ -103,6 +110,8 @@ export default function Home() {
                       muted
                       loop
                       playsInline
+                      preload="metadata"
+                      poster="/Alleyna_Tactus-poster.jpg"
                       style={{ objectFit: "cover" }}
                     >
                       <source src="/Alleyna_Tactus.mp4" type="video/mp4" />
@@ -115,6 +124,8 @@ export default function Home() {
                       muted
                       loop
                       playsInline
+                      preload="metadata"
+                      poster="/Ashwin_Tactus-poster.jpg"
                       style={{ objectFit: "cover" }}
                     >
                       <source src="/Ashwin_Tactus.mp4" type="video/mp4" />
@@ -127,6 +138,8 @@ export default function Home() {
                       muted
                       loop
                       playsInline
+                      preload="metadata"
+                      poster="/Dancing_Testing-poster.jpg"
                       style={{ objectFit: "cover" }}
                     >
                       <source src="/Dancing_Testing.mp4" type="video/mp4" />
@@ -139,6 +152,8 @@ export default function Home() {
                       muted
                       loop
                       playsInline
+                      preload="metadata"
+                      poster="/Sign_Tactus-poster.jpg"
                       style={{ objectFit: "cover" }}
                     >
                       <source src="/Sign_Tactus.mp4" type="video/mp4" />
