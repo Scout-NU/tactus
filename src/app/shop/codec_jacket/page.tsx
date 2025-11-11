@@ -6,7 +6,7 @@ import { SHOP_PRODUCTS, SHOP_SIZES } from "../shopData";
 export default function () {
     return (
         
-        <div className="p-16 font-[Stratos]">
+        <div className="p-16 font-[Stratos] font-light">
       <div className="shop-card flex px-24">
         <div className="product-carousel mr-10 w-1/2">
           <div className="big-caruousel mb-5">
@@ -45,10 +45,9 @@ export default function () {
             TACTUS CODEC JACKET{" "}
           </h1>
           <p className="text-[15px] pb-10">
-            This premium trainer’s jacket fuses style, comfort, and innovation.
-            Crafted from performance materials and embedded with advanced haptic
-            technology, it lets you feel music in motion — each beat translated
-            into a tactile rhythm that moves with your body.
+          This premium trainer’s jacket fuses style, comfort, and innovation. Crafted from performance materials and embedded with advanced haptic technology, it lets you feel music in motion — each beat translated into a tactile rhythm that moves with your body.
+          <br />
+          The Tactus Codec Jacket was designed to move with you, it’s lightweight, breathable, and made from premium materials that keep you comfortable in every moment. Its haptic technology lets you experience your favorite songs in a whole new way.
           </p>
           <h3 className="text-xl pb-3">
             <span className="line-through">$500.00</span>
@@ -100,25 +99,23 @@ export default function () {
           <br />
           <br />
           <p className="text-[15px] font-light">
-            The Tactus Codec Jacket was designed to move with you, it’s
-            lightweight, breathable, and made from premium materials that keep
-            you comfortable in every moment. Its haptic technology lets you
-            experience your favorite songs in a whole new way.
+          Each piece is meticulously handcrafted with premium, breathable materials for lasting comfort and style. Designed around the human body, it delivers a natural, responsive vibration experience powered by advanced haptic technology. With seamless Bluetooth connectivity, the wearable syncs effortlessly to your music or instrument — combining craftsmanship, innovation, and emotion in one refined design.
+ <br /> Each piece is designed with intention  from the premium, breathable materials to the lightweight, stretchable fit that moves naturally with you. The Tactus Codec line combines handcrafted design with advanced haptic technology to create a responsive, wearable experience that lets you feel every beat. With seamless Bluetooth connectivity, it syncs effortlessly with your music. Innovation in one refined design.
           </p>
         </div>
         <br />
         <div className="font-semibold text-sm flex justify-self-center">
           <div className="px-3 justify-items-center">
             <img src="/jacket_details/happy.png" alt="" width={30} />
-            Key Feature
+             Handcrafted
           </div>
           <div className="px-3 justify-items-center">
             <img src="/jacket_details/soundcloud.png" alt="" width={30} />
-            Key Feature
+            Bluetooth connectivity
           </div>
           <div className="px-3 justify-items-center">
             <img src="/jacket_details/pulse_icon.png" alt="" width={30} />
-            Key Feature
+            Premium materials
           </div>
         </div>
       </div>
@@ -133,7 +130,7 @@ export default function () {
               className="object-cover"
             />
             <div className="absolute bottom-0 left-0 w-full bg-gradient-to-t from-black/90 to-transparent text-white p-10">
-              <p className="text-sm sm:text-base font-medium">
+              <p>
                 Built for movement to match your lifestyle
               </p>
             </div>
@@ -168,17 +165,11 @@ export default function () {
               className="object-cover"
             />
             <div className="absolute bottom-0 left-0 w-full bg-gradient-to-t from-black/60 to-transparent text-white p-10">
-              <p className="text-sm sm:text-base font-medium">
-              Text highlighting another feature
+              <p>
+              Lightweight performance fit, <br />made with premium materials
               </p>
             </div>
           </div>
-
-{/* 
-          <div className="w-1/4 m-2 bg-gray-100 rounded text-white">
-            <img src="/jacket_details/batter.png" alt="" />
-            Rechargeable battery
-          </div> */}
 
           <div className="relative w-1/4 rounded overflow-hidden border h-96">
             <img
