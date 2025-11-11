@@ -87,41 +87,61 @@ export default function Home() {
               </h2>
             </div>
             <div className="carousel-content">
-              <div className="people-carousel">
-                <Carousel
-                  items={[
-                    <Image
-                      src={"/community-images/Person1.png"}
-                      alt="afya"
-                      key={1}
-                      width={303}
-                      height={540}
-                    />,
-                    <Image
-                      src={"/community-images/Person2.png"}
-                      alt="idea venture accelerator"
-                      key={2}
-                      width={283}
-                      height={540}
-                    />,
-                    <Image
-                      src={"/community-images/Person3.png"}
-                      alt="mass challenge"
-                      key={3}
-                      width={294}
-                      height={540}
-                    />,
-                    <Image
-                      src={"/community-images/Person4.png"}
-                      alt="sherman center"
-                      key={4}
-                      width={282}
-                      height={540}
-                    />,
-                  ]}
-                  gap={25}
-                />
-              </div>
+            <div className="people-carousel">
+              <Carousel
+                items={[
+                  <video
+                    key={1}
+                    width={303}
+                    height={540}
+                    autoPlay
+                    muted
+                    loop
+                    playsInline
+                    style={{ objectFit: "cover" }}
+                  >
+                    <source src="/Alleyna_Tactus.mp4" type="video/mp4" />
+                  </video>,
+                  <video
+                    key={2}
+                    width={303}
+                    height={540}
+                    autoPlay
+                    muted
+                    loop
+                    playsInline
+                    style={{ objectFit: "cover" }}
+                  >
+                    <source src="/Ashwin_Tactus.mp4" type="video/mp4" />
+                  </video>,
+                  <video
+                    key={3}
+                    width={303}
+                    height={540}
+                    autoPlay
+                    muted
+                    loop
+                    playsInline
+                    style={{ objectFit: "cover" }}
+                  >
+                    <source src="/Dancing_Testing.mp4" type="video/mp4" />
+                  </video>,
+                  <video
+                    key={4}
+                    width={303}
+                    height={540}
+                    autoPlay
+                    muted
+                    loop
+                    playsInline
+                    style={{ objectFit: "cover" }}
+                  >
+                    <source src="/Sign_Tactus.mp4" type="video/mp4" />
+                  </video>,
+                ]}
+                gap={25}
+              />
+            </div>
               <div className="sponsor-carousel">
                 <Carousel
                   items={[
