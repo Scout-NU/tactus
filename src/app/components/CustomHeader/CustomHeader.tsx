@@ -14,7 +14,7 @@ export default function CustomHeader() {
   const [isCheckoutLoading, setIsCheckoutLoading] = useState(false);
   const [checkoutError, setCheckoutError] = useState<string | null>(null);
   const cartRef = useRef<HTMLDivElement>(null);
-  
+
   const lightBackgroundPages = ["/about"];
   const isDarkText = lightBackgroundPages.includes(pathname);
   const textColor = isDarkText ? "#05365f" : "#FFF";
@@ -39,7 +39,7 @@ export default function CustomHeader() {
   const handleCheckout = async () => {
     setIsCheckoutLoading(true);
     setCheckoutError(null);
-    
+
     try {
       const response = await fetch("/api/create-checkout-session", {
         method: "POST",
@@ -50,7 +50,9 @@ export default function CustomHeader() {
       });
 
       if (!response.ok) {
-        throw new Error(`Failed to create checkout session: ${response.status}`);
+        throw new Error(
+          `Failed to create checkout session: ${response.status}`
+        );
       }
 
       const data = await response.json();
@@ -74,40 +76,46 @@ export default function CustomHeader() {
   return (
     <header className="custom-header" style={{ color: textColor }}>
       <div className="company-name">
-        <Link href="/" style={{ 
-          fontWeight: pathname === "/" ? "bold" : "normal",  
-          color: textColor 
-        }}>
+        <Link
+          href="/"
+          style={{
+            fontWeight: pathname === "/" ? "bold" : "normal",
+            color: textColor,
+          }}
+        >
           <h1 style={{ color: textColor }}>Tactus</h1>
         </Link>
       </div>
       <div className="navigation-buttons">
         <nav className="navbar">
-          <Link href="/product" style={{ 
-            fontWeight: pathname === "/product" ? "bold" : "normal",  
-            color: textColor 
-          }}>
+          <Link
+            href="/product"
+            style={{
+              fontWeight: pathname === "/product" ? "bold" : "normal",
+              color: textColor,
+            }}
+          >
             Product
           </Link>
           <Link
             href="/shop"
-            style={{ 
-              fontWeight: pathname === "/shop" ? "bold" : "normal", 
-              color: textColor 
+            style={{
+              fontWeight: pathname === "/shop" ? "bold" : "normal",
+              color: textColor,
             }}
           >
             Shop
           </Link>
           <Link
             href="/community"
-            style={{ 
-              fontWeight: pathname === "/community" ? "bold" : "normal",  
-              color: textColor 
+            style={{
+              fontWeight: pathname === "/community" ? "bold" : "normal",
+              color: textColor,
             }}
           >
             Community
           </Link>
-          
+
           {/* Cart Icon with Badge */}
           <div className="cart-container" ref={cartRef}>
             <button
@@ -117,9 +125,7 @@ export default function CustomHeader() {
               style={{ color: textColor }}
             >
               <ShoppingCart size={24} />
-              {itemCount > 0 && (
-                <span className="cart-badge">{itemCount}</span>
-              )}
+              {itemCount > 0 && <span className="cart-badge">{itemCount}</span>}
             </button>
 
             {/* Cart Dropdown */}
@@ -137,10 +143,18 @@ export default function CustomHeader() {
                   <>
                     <div className="cart-items">
                       {items.map((item) => (
-                        <div key={`${item.productId}-${item.size}`} className="cart-item">
+                        <div
+                          key={`${item.productId}-${item.size}`}
+                          className="cart-item"
+                        >
                           <div className="cart-item-image">
                             {item.image ? (
-                              <Image src={item.image} alt={item.title} width={60} height={60} />
+                              <Image
+                                src={item.image}
+                                alt={item.title}
+                                width={60}
+                                height={60}
+                              />
                             ) : (
                               <div className="cart-item-placeholder" />
                             )}
@@ -154,7 +168,9 @@ export default function CustomHeader() {
                           </div>
                           <button
                             className="cart-item-remove"
-                            onClick={() => removeFromCart(item.productId, item.size)}
+                            onClick={() =>
+                              removeFromCart(item.productId, item.size)
+                            }
                             aria-label="Remove item"
                           >
                             ×
@@ -171,9 +187,7 @@ export default function CustomHeader() {
                         </span>
                       </div>
                       {checkoutError && (
-                        <div className="cart-error">
-                          {checkoutError}
-                        </div>
+                        <div className="cart-error">{checkoutError}</div>
                       )}
                       <button
                         className="cart-checkout-button"

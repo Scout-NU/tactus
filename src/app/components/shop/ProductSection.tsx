@@ -5,10 +5,7 @@ import { useCart } from "@/context/CartContext";
 import Link from "next/link";
 import { useState } from "react";
 
-import {
-  ProductGallery,
-  type ProductGalleryVariant,
-} from "./ProductGallery";
+import { ProductGallery, type ProductGalleryVariant } from "./ProductGallery";
 import { type GalleryImage } from "./GalleryPlaceholder";
 
 export type ProductSectionProps<Size extends string = string> = {
@@ -50,14 +47,14 @@ export function ProductSection<Size extends string = string>({
 }: ProductSectionProps<Size>) {
   const { addToCart } = useCart();
   const [showAddedFeedback, setShowAddedFeedback] = useState(false);
-  
+
   // Safer default size selection - use middle size or first available
   const getDefaultSize = (): Size => {
     if (sizes.length === 0) return "" as Size;
     const middleIndex = Math.floor(sizes.length / 2);
     return sizes[middleIndex];
   };
-  
+
   const selectedSize = propSelectedSize || getDefaultSize();
 
   const handleQuickAdd = () => {
@@ -79,7 +76,8 @@ export function ProductSection<Size extends string = string>({
   };
 
   // Fallback to hard-coded paths if not provided, but prefer prop
-  const resolvedDetailsPath = detailsPath || 
+  const resolvedDetailsPath =
+    detailsPath ||
     (productId === "codec-jacket" ? "/shop/jacket" : "/shop/vest");
 
   return (

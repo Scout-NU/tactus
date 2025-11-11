@@ -6,17 +6,17 @@
   justify-content: space-between;
   align-items: center;
   padding: 25px 1.75rem 25px 1.61rem;
-    position: fixed;
-    /* Change from sticky to fixed */
-    top: 0;
-    left: 0;
-    /* Add this to ensure it spans from the left edge */
-    z-index: 1000;
-    background: transparent;
+  position: fixed;
+  /* Change from sticky to fixed */
+  top: 0;
+  left: 0;
+  /* Add this to ensure it spans from the left edge */
+  z-index: 1000;
+  background: transparent;
 }
 
 .company-name h1 {
-  color: #FFF;
+  color: #fff;
   font-family: "Stratos", sans-serif;
   font-size: 1.45381rem;
   font-style: normal;
@@ -258,7 +258,9 @@ h1 {
   font-size: 1rem;
   font-weight: 600;
   cursor: pointer;
-  transition: background-color 0.2s, opacity 0.2s;
+  transition:
+    background-color 0.2s,
+    opacity 0.2s;
 }
 
 .cart-checkout-button:hover:not(:disabled) {

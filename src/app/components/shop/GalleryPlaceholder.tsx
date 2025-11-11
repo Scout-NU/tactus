@@ -38,7 +38,7 @@ export function GalleryPlaceholder({
             "absolute inset-0 bg-gradient-to-br",
             tone === "default"
               ? "from-white/60 via-white/40 to-[#efefef]"
-              : "from-white/40 via-white/20 to-[#e5e7eb]",
+              : "from-white/40 via-white/20 to-[#e5e7eb]"
           )}
         />
       )}
@@ -52,7 +52,7 @@ export function GalleryPlaceholder({
           className={cn(
             "object-cover",
             image.objectFit === "contain" && "object-contain",
-            image.className,
+            image.className
           )}
           style={{ objectPosition: image.objectPosition ?? "center" }}
         />
@@ -60,4 +60,3 @@ export function GalleryPlaceholder({
     </div>
   );
 }
-

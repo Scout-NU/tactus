@@ -91,16 +91,19 @@ shipping_address_collection: {
 ## Troubleshooting
 
 ### "No such price" error:
+
 - Make sure you've created the products in Stripe
 - Verify the Price IDs in your `.env.local` are correct
 - Ensure you're using the correct mode (test vs live)
 
 ### Checkout not redirecting:
+
 - Check your browser console for errors
 - Verify your API keys are set correctly
 - Make sure the API route is accessible
 
 ### Cart not persisting:
+
 - Clear your browser's localStorage
 - Check browser console for errors
 - Make sure you're not in incognito/private mode
@@ -110,4 +113,3 @@ shipping_address_collection: {
 - [Stripe Checkout Documentation](https://stripe.com/docs/payments/checkout)
 - [Stripe Testing Guide](https://stripe.com/docs/testing)
 - [Stripe API Reference](https://stripe.com/docs/api)
-

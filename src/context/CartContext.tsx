@@ -1,6 +1,13 @@
 "use client";
 
-import React, { createContext, useContext, useState, useEffect, ReactNode, useCallback } from "react";
+import React, {
+  createContext,
+  useContext,
+  useState,
+  useEffect,
+  ReactNode,
+  useCallback,
+} from "react";
 
 export type CartItem = {
   productId: string;
@@ -53,7 +60,8 @@ export function CartProvider({ children }: { children: ReactNode }) {
   const addToCart = (newItem: Omit<CartItem, "quantity">) => {
     setItems((prevItems) => {
       const existingItemIndex = prevItems.findIndex(
-        (item) => item.productId === newItem.productId && item.size === newItem.size
+        (item) =>
+          item.productId === newItem.productId && item.size === newItem.size
       );
 
       if (existingItemIndex > -1) {
@@ -73,11 +81,17 @@ export function CartProvider({ children }: { children: ReactNode }) {
 
   const removeFromCart = (productId: string, size: string) => {
     setItems((prevItems) =>
-      prevItems.filter((item) => !(item.productId === productId && item.size === size))
+      prevItems.filter(
+        (item) => !(item.productId === productId && item.size === size)
+      )
     );
   };
 
-  const updateQuantity = (productId: string, size: string, quantity: number) => {
+  const updateQuantity = (
+    productId: string,
+    size: string,
+    quantity: number
+  ) => {
     if (quantity <= 0) {
       removeFromCart(productId, size);
       return;
@@ -128,4 +142,3 @@ export function useCart() {
   }
   return context;
 }
-

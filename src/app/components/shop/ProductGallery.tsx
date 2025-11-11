@@ -1,9 +1,6 @@
 import { cn } from "@/lib/utils";
 
-import {
-  GalleryPlaceholder,
-  type GalleryImage,
-} from "./GalleryPlaceholder";
+import { GalleryPlaceholder, type GalleryImage } from "./GalleryPlaceholder";
 
 export type ProductGalleryVariant = "feature" | "simple";
 
@@ -13,16 +10,21 @@ type ProductGalleryProps = {
   className?: string;
 };
 
-export function ProductGallery({ variant, images, className }: ProductGalleryProps) {
+export function ProductGallery({
+  variant,
+  images,
+  className,
+}: ProductGalleryProps) {
   const baseHeight = "lg:h-[522px]";
 
   const sharedWrapperClasses = cn(
     "grid gap-4 lg:grid-cols-[minmax(0,_1.6fr)_minmax(0,_1fr)] lg:items-stretch",
     baseHeight,
-    className,
+    className
   );
 
-  const getImage = (index: number): GalleryImage | null => images?.[index] ?? null;
+  const getImage = (index: number): GalleryImage | null =>
+    images?.[index] ?? null;
 
   if (variant === "feature") {
     return (
@@ -88,4 +90,3 @@ export function ProductGallery({ variant, images, className }: ProductGalleryPro
     </div>
   );
 }
-

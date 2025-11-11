@@ -30,7 +30,7 @@ export function SizeSelector<Size extends string>({
             className={cn(
               "font-body flex h-14 w-20 items-center justify-center rounded-md border border-[#cdcdcd] bg-white text-lg font-light text-[#111827] transition",
               "hover:border-[#05365f] hover:text-[#05365f] focus-visible:outline-none focus-visible:ring focus-visible:ring-[#05365f]/30",
-              isSelected && "border-[#05365f] text-[#05365f] shadow-sm",
+              isSelected && "border-[#05365f] text-[#05365f] shadow-sm"
             )}
           >
             {size}
@@ -40,4 +40,3 @@ export function SizeSelector<Size extends string>({
     </div>
   );
 }
-

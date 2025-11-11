@@ -17,9 +17,13 @@ export default function SuccessPage() {
   }, [hasCleared, clearCart]);
 
   return (
-    <main className="relative min-h-screen overflow-hidden" style={{ 
-      background: 'radial-gradient(ellipse 1145px 1606.4px at 605.5px 720.26px, rgba(5,54,95,1) 19.712%, rgba(4,28,57,1) 59.856%, rgba(4,15,38,1) 79.928%, rgba(3,2,19,1) 100%)'
-    }}>
+    <main
+      className="relative min-h-screen overflow-hidden"
+      style={{
+        background:
+          "radial-gradient(ellipse 1145px 1606.4px at 605.5px 720.26px, rgba(5,54,95,1) 19.712%, rgba(4,28,57,1) 59.856%, rgba(4,15,38,1) 79.928%, rgba(3,2,19,1) 100%)",
+      }}
+    >
       <div className="relative mx-auto flex min-h-screen max-w-3xl flex-col items-center justify-center px-4 py-24 text-center">
         <div className="space-y-8">
           {/* Success Icon */}
@@ -45,13 +49,15 @@ export default function SuccessPage() {
               Order Successful!
             </h1>
             <p className="font-body text-lg text-white/80">
-              Thank you for your purchase. Your order has been confirmed and will be shipped soon.
+              Thank you for your purchase. Your order has been confirmed and
+              will be shipped soon.
             </p>
             <p className="font-body text-base text-white/60">
-              You will receive an email confirmation with your order details and tracking information.
+              You will receive an email confirmation with your order details and
+              tracking information.
             </p>
             {/* Debug: Show if cart cleared (only in development) */}
-            {process.env.NODE_ENV === 'development' && (
+            {process.env.NODE_ENV === "development" && (
               <p className="text-xs text-white/40">Cart items: {itemCount}</p>
             )}
           </div>

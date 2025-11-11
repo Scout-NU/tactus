@@ -5,7 +5,9 @@ import type { GalleryImage } from "@/app/components/shop/GalleryPlaceholder";
 function getStripeEnvVar(key: string, productName: string): string | undefined {
   const value = process.env[key];
   if (!value) {
-    console.warn(`Warning: ${key} is not set. Stripe checkout for ${productName} may not work.`);
+    console.warn(
+      `Warning: ${key} is not set. Stripe checkout for ${productName} may not work.`
+    );
   }
   return value;
 }
@@ -37,13 +39,17 @@ export const SHOP_PRODUCTS: readonly ShopProduct[] = [
     price: "$459",
     originalPrice: "$500",
     priceInCents: 45900,
-    stripePriceId: getStripeEnvVar("NEXT_PUBLIC_STRIPE_PRICE_JACKET", "Codec Jacket"),
+    stripePriceId: getStripeEnvVar(
+      "NEXT_PUBLIC_STRIPE_PRICE_JACKET",
+      "Codec Jacket"
+    ),
     sizes: SHOP_SIZES,
     galleryImages: [
       {
         src: "/assets/shop/Jeremy-Standing-Jacket.png",
         alt: "Jeremy wearing the Tactus jacket facing forward",
-        className: "object-cover lg:object-contain lg:scale-[1.50] lg:origin-top lg:-translate-y-[13%]",
+        className:
+          "object-cover lg:object-contain lg:scale-[1.50] lg:origin-top lg:-translate-y-[13%]",
         priority: true,
       },
       {
@@ -72,13 +78,17 @@ export const SHOP_PRODUCTS: readonly ShopProduct[] = [
     price: "$459",
     originalPrice: "$500",
     priceInCents: 45900,
-    stripePriceId: getStripeEnvVar("NEXT_PUBLIC_STRIPE_PRICE_VEST", "Codec Vest"),
+    stripePriceId: getStripeEnvVar(
+      "NEXT_PUBLIC_STRIPE_PRICE_VEST",
+      "Codec Vest"
+    ),
     sizes: SHOP_SIZES,
     galleryImages: [
       {
         src: "/assets/shop/Jeremy-Standing-Jacket.png",
         alt: "Jeremy wearing the Tactus jacket facing forward",
-        className: "object-cover lg:object-contain lg:scale-[1.50] lg:origin-top lg:-translate-y-[13%]",
+        className:
+          "object-cover lg:object-contain lg:scale-[1.50] lg:origin-top lg:-translate-y-[13%]",
         priority: true,
       },
       {
@@ -99,4 +109,3 @@ export const SHOP_PRODUCTS: readonly ShopProduct[] = [
     ],
   },
 ];
-
