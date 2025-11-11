@@ -669,3 +669,14 @@ body {
     font-size: 16px;
   }
 }
+
+@media (max-width: 524px) {
+  .product-image-container.record {
+    width: 100vw;
+    max-height: 100vw;
+    position: relative;
+    left: 0;
+    right: 0;
+    margin-left: calc(-50vw + 50%);
+  }
+}
