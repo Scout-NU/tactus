@@ -1,6 +1,9 @@
+"use client";
+
 import Image from "next/image";
 import Carousel from "./components/Carousel/Carousel";
 import "./HomePage.css";
+import { useEffect, useRef } from "react";
 
 export default function Home() {
   return (
@@ -28,10 +31,6 @@ export default function Home() {
           <div
             className="product-image-container"
             style={{
-              backgroundImage: 'url("/product-home-photo.png")',
-              backgroundSize: "contain",
-              backgroundRepeat: "no-repeat",
-              backgroundPosition: "center",
               position: "absolute",
               right: "6vw",
               top: "50%",
@@ -42,7 +41,16 @@ export default function Home() {
               aspectRatio: "614/790",
               maxWidth: "calc(100vw - 40vw - 16vw)",
             }}
-          ></div>
+          >
+            <Image
+              src="/product-home-photo.png"
+              alt="Tactus Product"
+              fill
+              priority
+              sizes="(max-width: 768px) 80vw, 50vw"
+              style={{ objectFit: "contain", objectPosition: "center" }}
+            />
+          </div>
           <div
             style={{
               top: "18vh",
@@ -95,54 +103,26 @@ export default function Home() {
               <div className="people-carousel">
                 <Carousel
                   items={[
-                    <video
+                    <LazyVideo
                       key={1}
-                      width={303}
-                      height={540}
-                      autoPlay
-                      muted
-                      loop
-                      playsInline
-                      style={{ objectFit: "cover" }}
-                    >
-                      <source src="/Alleyna_Tactus.mp4" type="video/mp4" />
-                    </video>,
-                    <video
+                      src="/Alleyna_Tactus.mp4"
+                      poster="/Alleyna_Tactus-poster.jpg"
+                    />,
+                    <LazyVideo
                       key={2}
-                      width={303}
-                      height={540}
-                      autoPlay
-                      muted
-                      loop
-                      playsInline
-                      style={{ objectFit: "cover" }}
-                    >
-                      <source src="/Ashwin_Tactus.mp4" type="video/mp4" />
-                    </video>,
-                    <video
+                      src="/Ashwin_Tactus.mp4"
+                      poster="/Ashwin_Tactus-poster.jpg"
+                    />,
+                    <LazyVideo
                       key={3}
-                      width={303}
-                      height={540}
-                      autoPlay
-                      muted
-                      loop
-                      playsInline
-                      style={{ objectFit: "cover" }}
-                    >
-                      <source src="/Dancing_Testing.mp4" type="video/mp4" />
-                    </video>,
-                    <video
+                      src="/Dancing_Testing.mp4"
+                      poster="/Dancing_Testing-poster.jpg"
+                    />,
+                    <LazyVideo
                       key={4}
-                      width={303}
-                      height={540}
-                      autoPlay
-                      muted
-                      loop
-                      playsInline
-                      style={{ objectFit: "cover" }}
-                    >
-                      <source src="/Sign_Tactus.mp4" type="video/mp4" />
-                    </video>,
+                      src="/Sign_Tactus.mp4"
+                      poster="/Sign_Tactus-poster.jpg"
+                    />,
                   ]}
                   gap={25}
                 />
@@ -329,5 +309,56 @@ export default function Home() {
         </div>
       </div>
     </div>
+  );
+}
+
+// LazyVideo component - only loads videos when they're visible in viewport
+function LazyVideo({ src, poster }: { src: string; poster: string }) {
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const hasLoadedRef = useRef(false);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            // Video is visible
+            if (!hasLoadedRef.current) {
+              // Load video only once
+              video.load();
+              hasLoadedRef.current = true;
+            }
+            video.play().catch(() => {});
+          } else {
+            // Video is not visible, pause it but don't reload
+            video.pause();
+          }
+        });
+      },
+      { threshold: 0.25 } // Load when 25% visible
+    );
+
+    observer.observe(video);
+
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <video
+      ref={videoRef}
+      width={303}
+      height={540}
+      muted
+      loop
+      playsInline
+      preload="none"
+      poster={poster}
+      style={{ objectFit: "cover" }}
+    >
+      <source src={src} type="video/mp4" />
+    </video>
   );
 }
