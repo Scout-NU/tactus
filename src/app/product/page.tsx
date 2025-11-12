@@ -42,17 +42,18 @@ export default function ProductPage() {
 
           {/* Product Image Container with Feature Dots */}
           <div className="relative mx-auto mb-5 w-full max-w-[1440px] md:min-h-[1000px] min-h-[500px] pb-5 md:mb-0 md:min-h-[850px] md:pb-0">
-            <div className="absolute left-1/2 top-0 z-[5] mb-5 flex w-full -translate-x-1/2 justify-center md:mb-0 md:w-auto md:transform-none md:relative md:left-auto">
-            {/* <div className="absolute left-1/2 top-0 z-[5] mb-5 flex w-full -translate-x-1/2 justify-center md:mb-0 md:w-auto md:relative md:left-auto md:translate-x-0"> */}
+            {/* <div className="absolute left-1/2 top-0 z-[5] mb-5 flex w-full -translate-x-1/2 justify-center md:mb-0 md:w-auto md:transform-none md:relative md:left-auto"> */}
+            <div className="absolute left-1/2 top-0 z-[5] mb-5 -translate-x-1/2 md:mb-0 md:relative md:left-0 md:translate-x-0 md:flex md:justify-center">
 
-            <div className="relative w-[90%] md:w-[537px]">
+            {/* <div className="relative w-[90%] md:w-[537px]"> */}
+            <div className="relative w-[90vw] max-w-[483px] md:w-[537px]">
               <Image
                 src="/product-home-photo.png"
                 alt="Tactus Jacket"
                 width={537}
                 height={630}
                 priority
-                className="!w-full !h-auto"
+                className="!w-full !h-auto !max-w-full !max-h-full"
                 style={{ objectFit: "contain" }}
               />
             </div>
@@ -64,7 +65,7 @@ export default function ProductPage() {
                 isOpen={isLiveSignalOpen}
                 onToggle={() => setIsLiveSignalOpen(!isLiveSignalOpen)}
                 position="top-left"
-                dotPosition={{ top: "178px", left: "calc(50% - 135px)" }}
+                dotPosition={{ top: "158px", left: "calc(50% - 125px)" }}
               />
 
               <FeaturePopup
@@ -73,7 +74,7 @@ export default function ProductPage() {
                 isOpen={isSeamlessOpen}
                 onToggle={() => setIsSeamlessOpen(!isSeamlessOpen)}
                 position="top-right"
-                dotPosition={{ top: "178px", left: "calc(50% + 28px)" }}
+                dotPosition={{ top: "158px", left: "calc(50% + 18px)" }}
               />
 
               <FeaturePopup
@@ -82,7 +83,7 @@ export default function ProductPage() {
                 isOpen={isPremiumFabricOpen}
                 onToggle={() => setIsPremiumFabricOpen(!isPremiumFabricOpen)}
                 position="left"
-                dotPosition={{ top: "401px", left: "calc(50% - 190px)" }}
+                dotPosition={{ top: "360px", left: "calc(50% - 178px)" }}
               />
 
               <FeaturePopup
@@ -91,7 +92,7 @@ export default function ProductPage() {
                 isOpen={isWirelessOpen}
                 onToggle={() => setIsWirelessOpen(!isWirelessOpen)}
                 position="right"
-                dotPosition={{ top: "400px", left: "calc(50% + 175px)" }}
+                dotPosition={{ top: "360px", left: "calc(50% + 155px)" }}
               />
 
               <FeaturePopup
@@ -100,7 +101,7 @@ export default function ProductPage() {
                   isOpen={isBatteryOpen}
                   onToggle={() => setIsBatteryOpen(!isBatteryOpen)}
                   position="bottom"
-                  dotPosition={{ top: "572px", left: "calc(50% - 9px)" }}
+                  dotPosition={{ top: "512px", left: "calc(50% + 1px)" }}
               />
             </div>
 
@@ -111,7 +112,7 @@ export default function ProductPage() {
                 isOpen={isLiveSignalOpen}
                 onToggle={() => setIsLiveSignalOpen(!isLiveSignalOpen)}
                 position="top-left"
-                dotPosition={{ top: "24%", left: "28%" }}
+                dotPosition={{ top: "24%", left: "24%" }}
               />
 
               <FeaturePopup
@@ -129,7 +130,7 @@ export default function ProductPage() {
                 isOpen={isPremiumFabricOpen}
                 onToggle={() => setIsPremiumFabricOpen(!isPremiumFabricOpen)}
                 position="left"
-                dotPosition={{ top: "54%", left: "18%" }}
+                dotPosition={{ top: "54%", left: "13%" }}
               />
 
               <FeaturePopup
@@ -138,7 +139,7 @@ export default function ProductPage() {
                 isOpen={isWirelessOpen}
                 onToggle={() => setIsWirelessOpen(!isWirelessOpen)}
                 position="right"
-                dotPosition={{ top: "54%", left: "80%" }}
+                dotPosition={{ top: "54%", left: "83%" }}
               />
 
               <FeaturePopup
