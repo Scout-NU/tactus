@@ -22,7 +22,7 @@ export type CartItem = {
 type CartContextType = {
   items: CartItem[];
   itemCount: number;
-  addToCart: (item: Omit<CartItem, "quantity">) => void;
+  addToCart: (item: Omit<CartItem, "quantity"> & { quantity?: number }) => void;
   removeFromCart: (productId: string, size: string) => void;
   updateQuantity: (productId: string, size: string, quantity: number) => void;
   clearCart: () => void;
@@ -57,8 +57,9 @@ export function CartProvider({ children }: { children: ReactNode }) {
     }
   }, [items, isHydrated]);
 
-  const addToCart = (newItem: Omit<CartItem, "quantity">) => {
+  const addToCart = (newItem: Omit<CartItem, "quantity"> & { quantity?: number }) => {
     setItems((prevItems) => {
+      const quantityToAdd = newItem.quantity || 1;
       const existingItemIndex = prevItems.findIndex(
         (item) =>
           item.productId === newItem.productId && item.size === newItem.size
@@ -69,12 +70,13 @@ export function CartProvider({ children }: { children: ReactNode }) {
         const updatedItems = [...prevItems];
         updatedItems[existingItemIndex] = {
           ...updatedItems[existingItemIndex],
-          quantity: updatedItems[existingItemIndex].quantity + 1,
+          quantity: updatedItems[existingItemIndex].quantity + quantityToAdd,
         };
         return updatedItems;
       } else {
         // New item, add to cart
-        return [...prevItems, { ...newItem, quantity: 1 }];
+        const { quantity, ...itemWithoutQuantity } = newItem;
+        return [...prevItems, { ...itemWithoutQuantity, quantity: quantityToAdd }];
       }
     });
   };
