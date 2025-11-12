@@ -243,7 +243,7 @@ export default function Home() {
                   <div className="product-description">
                     <div className="product-properties">
                       <h2 className="product-name">{product.name}</h2>
-                      <p>{product.price}</p>
+                      <div>{product.price}</div>
                     </div>
                     <button className="learn-more-button small">
                       View Details
