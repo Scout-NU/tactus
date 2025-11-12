@@ -41,63 +41,116 @@ export default function ProductPage() {
           </p>
 
           {/* Product Image Container with Feature Dots */}
-          <div className="relative mx-auto mb-5 w-full max-w-[1440px] min-h-[1000px] pb-5 md:mb-0 md:min-h-[850px] md:pb-0">
+          <div className="relative mx-auto mb-5 w-full max-w-[1440px] md:min-h-[1000px] min-h-[500px] pb-5 md:mb-0 md:min-h-[850px] md:pb-0">
             <div className="absolute left-1/2 top-0 z-[5] mb-5 flex w-full -translate-x-1/2 justify-center md:mb-0 md:w-auto md:transform-none md:relative md:left-auto">
+            {/* <div className="absolute left-1/2 top-0 z-[5] mb-5 flex w-full -translate-x-1/2 justify-center md:mb-0 md:w-auto md:relative md:left-auto md:translate-x-0"> */}
+
+            <div className="relative w-[90%] md:w-[537px]">
               <Image
                 src="/product-home-photo.png"
                 alt="Tactus Jacket"
                 width={537}
                 height={630}
                 priority
-                className="!w-[90%] !h-auto md:!w-[537px]"
+                className="!w-full !h-auto"
                 style={{ objectFit: "contain" }}
               />
             </div>
 
-            <FeaturePopup
-              title="Live Signal Processing"
-              description="Music is translated into vibrations which are sent to different parts of the body with low latency so you can flow in sync with the music."
-              isOpen={isLiveSignalOpen}
-              onToggle={() => setIsLiveSignalOpen(!isLiveSignalOpen)}
-              position="top-left"
-              dotPosition={{ top: "178px", left: "calc(33.333% + 106px)" }}
-            />
+            <div className="hidden md:block">
+              <FeaturePopup
+                title="Live Signal Processing"
+                description="Music is translated into vibrations which are sent to different parts of the body with low latency so you can flow in sync with the music."
+                isOpen={isLiveSignalOpen}
+                onToggle={() => setIsLiveSignalOpen(!isLiveSignalOpen)}
+                position="top-left"
+                dotPosition={{ top: "178px", left: "calc(50% - 135px)" }}
+              />
 
-            <FeaturePopup
-              title="Seamless technology integration"
-              description="Proprietary conductive threads are used to seamlessly integrate the technology into the garment."
-              isOpen={isSeamlessOpen}
-              onToggle={() => setIsSeamlessOpen(!isSeamlessOpen)}
-              position="top-right"
-              dotPosition={{ top: "178px", left: "calc(50% + 28px)" }}
-            />
+              <FeaturePopup
+                title="Seamless technology integration"
+                description="Proprietary conductive threads are used to seamlessly integrate the technology into the garment."
+                isOpen={isSeamlessOpen}
+                onToggle={() => setIsSeamlessOpen(!isSeamlessOpen)}
+                position="top-right"
+                dotPosition={{ top: "178px", left: "calc(50% + 28px)" }}
+              />
 
-            <FeaturePopup
-              title="Premium fabric material"
-              description="The garment is made with stretchable, breathable, lightweight fabric to keep you comfortable without inhibiting your dance moves."
-              isOpen={isPremiumFabricOpen}
-              onToggle={() => setIsPremiumFabricOpen(!isPremiumFabricOpen)}
-              position="left"
-              dotPosition={{ top: "401px", left: "calc(33.333% + 48px)" }}
-            />
+              <FeaturePopup
+                title="Premium fabric material"
+                description="The garment is made with stretchable, breathable, lightweight fabric to keep you comfortable without inhibiting your dance moves."
+                isOpen={isPremiumFabricOpen}
+                onToggle={() => setIsPremiumFabricOpen(!isPremiumFabricOpen)}
+                position="left"
+                dotPosition={{ top: "401px", left: "calc(50% - 190px)" }}
+              />
 
-            <FeaturePopup
-              title="Completely Wireless"
-              description="Simply connect to your phone or any Bluetooth device. Press play on your preferred music player or streaming service. Dance without constraints."
-              isOpen={isWirelessOpen}
-              onToggle={() => setIsWirelessOpen(!isWirelessOpen)}
-              position="right"
-              dotPosition={{ top: "400px", left: "calc(58.333% + 63px)" }}
-            />
+              <FeaturePopup
+                title="Completely Wireless"
+                description="Simply connect to your phone or any Bluetooth device. Press play on your preferred music player or streaming service. Dance without constraints."
+                isOpen={isWirelessOpen}
+                onToggle={() => setIsWirelessOpen(!isWirelessOpen)}
+                position="right"
+                dotPosition={{ top: "400px", left: "calc(50% + 175px)" }}
+              />
 
-            <FeaturePopup
-                title="Rechargeable battery"
-                description="A removable rechargeable battery will keep you vibing for hours."
-                isOpen={isBatteryOpen}
-                onToggle={() => setIsBatteryOpen(!isBatteryOpen)}
-                position="bottom"
-                dotPosition={{ top: "572px", left: "calc(50% - 9px)" }}
-            />
+              <FeaturePopup
+                  title="Rechargeable battery"
+                  description="A removable rechargeable battery will keep you vibing for hours."
+                  isOpen={isBatteryOpen}
+                  onToggle={() => setIsBatteryOpen(!isBatteryOpen)}
+                  position="bottom"
+                  dotPosition={{ top: "572px", left: "calc(50% - 9px)" }}
+              />
+            </div>
+
+            <div className="md:hidden">
+              <FeaturePopup
+                title="Live Signal Processing"
+                description="Music is translated into vibrations which are sent to different parts of the body with low latency so you can flow in sync with the music."
+                isOpen={isLiveSignalOpen}
+                onToggle={() => setIsLiveSignalOpen(!isLiveSignalOpen)}
+                position="top-left"
+                dotPosition={{ top: "24%", left: "28%" }}
+              />
+
+              <FeaturePopup
+                title="Seamless technology integration"
+                description="Proprietary conductive threads are used to seamlessly integrate the technology into the garment."
+                isOpen={isSeamlessOpen}
+                onToggle={() => setIsSeamlessOpen(!isSeamlessOpen)}
+                position="top-right"
+                dotPosition={{ top: "24%", left: "55%" }}
+              />
+
+              <FeaturePopup
+                title="Premium fabric material"
+                description="The garment is made with stretchable, breathable, lightweight fabric to keep you comfortable without inhibiting your dance moves."
+                isOpen={isPremiumFabricOpen}
+                onToggle={() => setIsPremiumFabricOpen(!isPremiumFabricOpen)}
+                position="left"
+                dotPosition={{ top: "54%", left: "18%" }}
+              />
+
+              <FeaturePopup
+                title="Completely Wireless"
+                description="Simply connect to your phone or any Bluetooth device. Press play on your preferred music player or streaming service. Dance without constraints."
+                isOpen={isWirelessOpen}
+                onToggle={() => setIsWirelessOpen(!isWirelessOpen)}
+                position="right"
+                dotPosition={{ top: "54%", left: "80%" }}
+              />
+
+              <FeaturePopup
+                  title="Rechargeable battery"
+                  description="A removable rechargeable battery will keep you vibing for hours."
+                  isOpen={isBatteryOpen}
+                  onToggle={() => setIsBatteryOpen(!isBatteryOpen)}
+                  position="bottom"
+                  dotPosition={{ top: "75%", left: "50%" }}
+              />
+            </div>
+            </div>
           </div>
         </section>
 
