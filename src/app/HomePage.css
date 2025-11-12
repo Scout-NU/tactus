@@ -282,6 +282,12 @@ body {
   line-height: normal;
 }
 
+.products-section-wrapper {
+  background-color: white;
+  padding: 40px 0;
+  width: 100%;
+}
+
 .products-section {
   height: 75vh;
   border-radius: 20px;
@@ -292,8 +298,6 @@ body {
     #030213 100%
   );
   margin-top: 20px;
-  box-shadow: 0 0 0 100vw white;
-  clip-path: inset(-20px -100vw 0 -100vw);
 
   display: flex;
   flex-direction: column;
@@ -396,6 +400,22 @@ body {
   height: 100%;
 }
 
+.product-properties {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.product-properties p {
+  color: #000;
+  font-family: "DM Sans", sans-serif;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  margin: 0;
+}
+
 .product-name {
   color: #000;
   font-family: "Stratos", sans-serif;
@@ -403,6 +423,7 @@ body {
   font-style: normal;
   font-weight: 600;
   line-height: normal;
+  margin: 0;
 }
 
 .contact-form-section {

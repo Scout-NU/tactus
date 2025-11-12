@@ -4,8 +4,11 @@ import Image from "next/image";
 import Carousel from "./components/Carousel/Carousel";
 import "./HomePage.css";
 import { useEffect, useRef } from "react";
+import { useRouter } from "next/navigation";
 
 export default function Home() {
+  const router = useRouter();
+
   return (
     <div className="home-page">
       <div className="home-page-content">
@@ -23,6 +26,9 @@ export default function Home() {
               <button
                 className="learn-more-button orange"
                 style={{ zIndex: 2 }}
+                onClick={() => {
+                  router.push("/product");
+                }}
               >
                 LEARN MORE
               </button>
@@ -176,24 +182,47 @@ export default function Home() {
             style={{ objectFit: "cover" }}
           />
         </div>
-        <div className="products-section">
-          <div className="products-section-text">
-            <h1 className="products-header">OUR PRODUCTS</h1>
-            <p className="products-description">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua.
-            </p>
-          </div>
+        <div className="products-section-wrapper">
+          <div className="products-section">
+            <div className="products-section-text">
+              <h1 className="products-header">OUR PRODUCTS</h1>
+              <p className="products-description">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                eiusmod tempor incididunt ut labore et dolore magna aliqua.
+              </p>
+            </div>
           <div className="products-list">
             {[
               {
                 name: "CODEC JACKET",
-                price: "$459",
+                price: (
+                  <>
+                    <p
+                      style={{
+                        textDecoration: "line-through",
+                      }}
+                    >
+                      $500
+                    </p>
+                    <p>$469</p>
+                  </>
+                ),
                 image: "/product-image.png",
               },
               {
                 name: "CODEC VEST",
-                price: "$459",
+                price: (
+                  <>
+                    <p
+                      style={{
+                        textDecoration: "line-through",
+                      }}
+                    >
+                      $500
+                    </p>
+                    <p>$469</p>
+                  </>
+                ),
                 image: "/product-image.png",
               },
             ].map((product) => (
@@ -224,6 +253,7 @@ export default function Home() {
               </div>
             ))}
           </div>
+        </div>
         </div>
 
         <div className="contact-form-section">
