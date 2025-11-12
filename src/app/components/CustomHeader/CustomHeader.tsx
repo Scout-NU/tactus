@@ -236,6 +236,15 @@ export default function CustomHeader() {
         <div className="mobile-menu-overlay">
           <nav className="mobile-nav">
             <Link
+              href="/"
+              onClick={() => setIsMobileMenuOpen(false)}
+              style={{
+                fontWeight: pathname === "/" ? "bold" : "normal",
+              }}
+            >
+              Home
+            </Link>
+            <Link
               href="/product"
               onClick={() => setIsMobileMenuOpen(false)}
               style={{
