@@ -570,14 +570,14 @@ body {
     overflow: hidden;
     z-index: 1;
   }
-  .contact-form-text{
+  .contact-form-text {
     width: 80%;
   }
   .contact-form-info-text {
     text-align: center;
     font-size: 3em;
   }
-  .contact-form-description-text{
+  .contact-form-description-text {
     text-align: center;
   }
 
@@ -588,7 +588,15 @@ body {
     margin-bottom: 0px;
   }
   .product-item {
+    gap: 0px;
     padding-left: 0px;
+    padding-right: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    width: 100%;
   }
 
   .community-header {
@@ -604,7 +612,7 @@ body {
     margin-left: calc(-50vw + 50%);
     top: 50vh;
   }
-  
+
   .wave-pattern-orange.second {
     display: none;
   }
@@ -629,7 +637,11 @@ body {
   }
 
   .product-item-container {
-    width: 85%;
+    padding-left: 0px;
+    width: 100%;
+  }
+  .product-description {
+    padding-left: 0px;
   }
 }
 
