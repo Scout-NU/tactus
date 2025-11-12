@@ -3,7 +3,7 @@ import React, { useState, useRef, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { ShoppingCart } from "lucide-react";
+import { ShoppingCart, Menu, X } from "lucide-react";
 import { useCart } from "@/context/CartContext";
 import "./HeaderStyle.css";
 
@@ -11,6 +11,7 @@ export default function CustomHeader() {
   const pathname = usePathname();
   const { items, itemCount, removeFromCart, getCartTotal } = useCart();
   const [isCartOpen, setIsCartOpen] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isCheckoutLoading, setIsCheckoutLoading] = useState(false);
   const [checkoutError, setCheckoutError] = useState<string | null>(null);
   const cartRef = useRef<HTMLDivElement>(null);
@@ -35,6 +36,19 @@ export default function CustomHeader() {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, [isCartOpen]);
+
+  // Prevent body scroll when mobile menu is open
+  useEffect(() => {
+    if (isMobileMenuOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "unset";
+    }
+
+    return () => {
+      document.body.style.overflow = "unset";
+    };
+  }, [isMobileMenuOpen]);
 
   const handleCheckout = async () => {
     setIsCheckoutLoading(true);
@@ -86,8 +100,20 @@ export default function CustomHeader() {
           <h1 style={{ color: textColor }}>Tactus</h1>
         </Link>
       </div>
+
+      {/* Hamburger Menu Button - Mobile Only */}
+      <button
+        className="hamburger-button"
+        onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+        aria-label="Toggle menu"
+        style={{ color: textColor }}
+      >
+        {isMobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
+      </button>
+
+      {/* Desktop Navigation */}
       <div className="navigation-buttons">
-        <nav className="navbar">
+        <nav className="navbar desktop-nav">
           <Link
             href="/product"
             style={{
@@ -107,13 +133,13 @@ export default function CustomHeader() {
             Shop
           </Link>
           <Link
-            href="/community"
+            href="/about"
             style={{
               fontWeight: pathname === "/community" ? "bold" : "normal",
               color: textColor,
             }}
           >
-            Community
+            About Us
           </Link>
 
           {/* Cart Icon with Badge */}
@@ -204,6 +230,130 @@ export default function CustomHeader() {
           </div>
         </nav>
       </div>
+
+      {/* Mobile Menu Overlay */}
+      {isMobileMenuOpen && (
+        <div className="mobile-menu-overlay">
+          <nav className="mobile-nav">
+            <Link
+              href="/product"
+              onClick={() => setIsMobileMenuOpen(false)}
+              style={{
+                fontWeight: pathname === "/product" ? "bold" : "normal",
+              }}
+            >
+              Product
+            </Link>
+            <Link
+              href="/shop"
+              onClick={() => setIsMobileMenuOpen(false)}
+              style={{
+                fontWeight: pathname === "/shop" ? "bold" : "normal",
+              }}
+            >
+              Shop
+            </Link>
+            <Link
+              href="/about"
+              onClick={() => setIsMobileMenuOpen(false)}
+              style={{
+                fontWeight: pathname === "/about" ? "bold" : "normal",
+              }}
+            >
+              About Us
+            </Link>
+
+            {/* Cart Section in Mobile Menu */}
+            <div className="mobile-cart-section">
+              <div className="cart-container" ref={cartRef}>
+                <button
+                  className="cart-button mobile-cart-button"
+                  onClick={() => setIsCartOpen(!isCartOpen)}
+                  aria-label="Shopping cart"
+                >
+                  <ShoppingCart size={24} />
+                  <span className="mobile-cart-text">Cart</span>
+                  {itemCount > 0 && <span className="cart-badge">{itemCount}</span>}
+                </button>
+
+                {/* Cart Dropdown in Mobile */}
+                {isCartOpen && (
+                  <div className="cart-dropdown mobile-cart-dropdown">
+                    <div className="cart-dropdown-header">
+                      <h3>Your Cart</h3>
+                    </div>
+
+                    {items.length === 0 ? (
+                      <div className="cart-empty">
+                        <p>Your cart is empty</p>
+                      </div>
+                    ) : (
+                      <>
+                        <div className="cart-items">
+                          {items.map((item) => (
+                            <div
+                              key={`${item.productId}-${item.size}`}
+                              className="cart-item"
+                            >
+                              <div className="cart-item-image">
+                                {item.image ? (
+                                  <Image
+                                    src={item.image}
+                                    alt={item.title}
+                                    width={60}
+                                    height={60}
+                                  />
+                                ) : (
+                                  <div className="cart-item-placeholder" />
+                                )}
+                              </div>
+                              <div className="cart-item-details">
+                                <h4>{item.title}</h4>
+                                <p className="cart-item-size">Size: {item.size}</p>
+                                <p className="cart-item-price">
+                                  {formatPrice(item.price)} × {item.quantity}
+                                </p>
+                              </div>
+                              <button
+                                className="cart-item-remove"
+                                onClick={() =>
+                                  removeFromCart(item.productId, item.size)
+                                }
+                                aria-label="Remove item"
+                              >
+                                ×
+                              </button>
+                            </div>
+                          ))}
+                        </div>
+
+                        <div className="cart-footer">
+                          <div className="cart-total">
+                            <span>Subtotal:</span>
+                            <span className="cart-total-amount">
+                              {formatPrice(getCartTotal())}
+                            </span>
+                          </div>
+                          {checkoutError && (
+                            <div className="cart-error">{checkoutError}</div>
+                          )}
+                          <button
+                            className="cart-checkout-button"
+                            onClick={handleCheckout}
+                            disabled={isCheckoutLoading}
+                          >
+                            {isCheckoutLoading ? "Processing..." : "Checkout"}
+                          </button>
+                        </div>
+                      </>
+                    )}
+                  </div>
+                )}
+              </div>
+            </div>
+          </nav>
+        </div>
+      )}
     </header>
   );
 }
