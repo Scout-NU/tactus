@@ -28,16 +28,7 @@ export default function Home() {
               </button>
             </div>
           </div>
-          <div className="product-image-container vest">
-            <Image
-              src="/product-home-photo.png"
-              alt="Tactus Product"
-              fill
-              priority
-              sizes="(max-width: 768px) 80vw, 50vw"
-              style={{ objectFit: "contain", objectPosition: "center" }}
-            />
-          </div>
+          <div className="product-image-container vest" />
           <div
             style={{
               top: "18vh",
