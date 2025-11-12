@@ -200,6 +200,7 @@ export default function Home() {
                       <p
                         style={{
                           textDecoration: "line-through",
+                          color: "#f06532",
                         }}
                       >
                         $500
@@ -217,6 +218,7 @@ export default function Home() {
                       <p
                         style={{
                           textDecoration: "line-through",
+                          color: "#f06532",
                         }}
                       >
                         $500
