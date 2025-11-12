@@ -4,8 +4,11 @@ import Image from "next/image";
 import Carousel from "./components/Carousel/Carousel";
 import "./HomePage.css";
 import { useEffect, useRef } from "react";
+import { useRouter } from "next/navigation";
 
 export default function Home() {
+  const router = useRouter();
+
   return (
     <div className="home-page">
       <div className="home-page-content">
@@ -23,39 +26,20 @@ export default function Home() {
               <button
                 className="learn-more-button orange"
                 style={{ zIndex: 2 }}
+                onClick={() => {
+                  router.push("/product");
+                }}
               >
                 LEARN MORE
               </button>
             </div>
           </div>
-          <div
-            className="product-image-container"
-            style={{
-              position: "absolute",
-              right: "6vw",
-              top: "50%",
-              transform: "translateY(-50%)",
-              zIndex: 2,
-              width: "min(80vw, 800px)",
-              height: "min(110vh, 1000px)",
-              aspectRatio: "614/790",
-              maxWidth: "calc(100vw - 40vw - 16vw)",
-            }}
-          >
-            <Image
-              src="/product-home-photo.png"
-              alt="Tactus Product"
-              fill
-              priority
-              sizes="(max-width: 768px) 80vw, 50vw"
-              style={{ objectFit: "contain", objectPosition: "center" }}
-            />
-          </div>
+          <div className="product-image-container vest" />
           <div
             style={{
               top: "18vh",
             }}
-            className="wave-pattern-orange"
+            className="wave-pattern-orange first"
           >
             <Image
               alt="wave pattern"
@@ -176,7 +160,7 @@ export default function Home() {
           style={{
             top: "130vh",
           }}
-          className="wave-pattern-blue"
+          className="wave-pattern-blue first"
         >
           <Image
             alt="wave pattern"
@@ -189,7 +173,7 @@ export default function Home() {
           style={{
             top: "160vh",
           }}
-          className="wave-pattern-blue"
+          className="wave-pattern-blue second"
         >
           <Image
             alt="wave pattern"
@@ -198,53 +182,86 @@ export default function Home() {
             style={{ objectFit: "cover" }}
           />
         </div>
-        <div className="products-section">
-          <div className="products-section-text">
-            <h1 className="products-header">OUR PRODUCTS</h1>
-            <p className="products-description">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua.
-            </p>
-          </div>
-          <div className="products-list">
-            {[
-              {
-                name: "CODEC VEST",
-                price: "$99",
-                image: "/product-image.png",
-              },
-              {
-                name: "CODEC VEST",
-                price: "$199",
-                image: "/product-image.png",
-              },
-            ].map((product) => (
-              <div
-                key={product.name + product.price}
-                className="product-item-container"
-              >
-                <div className="product-item">
-                  <div className="product-display-container">
-                    <Image
-                      src={product.image}
-                      alt={product.name}
-                      width={224}
-                      height={224}
-                      className="product-image"
-                    />
-                  </div>
-                  <div className="product-description">
-                    <div className="product-properties">
-                      <h2 className="product-name">{product.name}</h2>
-                      <p>{product.price}</p>
+        <div className="products-section-wrapper">
+          <div className="products-section">
+            <div className="products-section-text">
+              <h1 className="products-header">OUR PRODUCTS</h1>
+              <p className="products-description">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                eiusmod tempor incididunt ut labore et dolore magna aliqua.
+              </p>
+            </div>
+            <div className="products-list">
+              {[
+                {
+                  name: "CODEC JACKET",
+                  price: (
+                    <>
+                      <p
+                        style={{
+                          textDecoration: "line-through",
+                          color: "#f06532",
+                        }}
+                      >
+                        $500
+                      </p>
+                      <p>$469</p>
+                    </>
+                  ),
+                  image: "/product-image.png",
+                  route: "/shop/jacket",
+                },
+                {
+                  name: "CODEC VEST",
+                  price: (
+                    <>
+                      <p
+                        style={{
+                          textDecoration: "line-through",
+                          color: "#f06532",
+                        }}
+                      >
+                        $500
+                      </p>
+                      <p>$469</p>
+                    </>
+                  ),
+                  image: "/product-image.png",
+                  route: "/shop/vest",
+                },
+              ].map((product) => (
+                <div
+                  key={product.name}
+                  className="product-item-container"
+                >
+                  <div className="product-item">
+                    <div className="product-display-container">
+                      <Image
+                        src={product.image}
+                        alt={product.name}
+                        width={224}
+                        height={224}
+                        className="product-image"
+                      />
                     </div>
-                    <button className="learn-more-button small">
-                      View Details
-                    </button>
+                    <div className="product-description">
+                      <div className="product-properties">
+                        <h2 className="product-name">{product.name}</h2>
+                        <div>{product.price}</div>
+                      </div>
+                      <button
+                        className="learn-more-button small"
+                        onClick={() => {
+                          router.push(product.route);
+                        }}
+                      >
+                        View Details
+                      </button>
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         </div>
 
@@ -298,7 +315,7 @@ export default function Home() {
           style={{
             top: "310vh",
           }}
-          className="wave-pattern-orange"
+          className="wave-pattern-orange second"
         >
           <Image
             alt="wave pattern"
