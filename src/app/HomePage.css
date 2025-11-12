@@ -337,15 +337,22 @@ body {
   gap: 48px;
   justify-content: center;
   flex-wrap: wrap;
+  width: 100%;
+  max-width: 1200px;
+  padding: 0 20px;
+  box-sizing: border-box;
 }
 
 .product-item-container {
   display: flex;
   flex-direction: row;
-  width: 525px;
+  width: 100%;
+  max-width: 525px;
+  min-width: 280px;
   height: 205px;
   background-color: white;
   border-radius: 4.007px;
+  flex: 1 1 calc(50% - 24px);
 }
 
 /* ...existing code... */
@@ -362,13 +369,14 @@ body {
 }
 
 .product-display-container {
-  flex: 0 0 224px; /* fixed box for the image on the left */
+  flex: 0 0 min(224px, 40%); /* responsive box for the image on the left */
   display: flex;
   justify-content: center;
   align-items: center;
   border-radius: 1.965px;
   background: #f1f1f1;
   overflow: hidden;
+  min-width: 120px;
 }
 
 .product-image {
