@@ -191,69 +191,76 @@ export default function Home() {
                 eiusmod tempor incididunt ut labore et dolore magna aliqua.
               </p>
             </div>
-          <div className="products-list">
-            {[
-              {
-                name: "CODEC JACKET",
-                price: (
-                  <>
-                    <p
-                      style={{
-                        textDecoration: "line-through",
-                      }}
-                    >
-                      $500
-                    </p>
-                    <p>$469</p>
-                  </>
-                ),
-                image: "/product-image.png",
-              },
-              {
-                name: "CODEC VEST",
-                price: (
-                  <>
-                    <p
-                      style={{
-                        textDecoration: "line-through",
-                      }}
-                    >
-                      $500
-                    </p>
-                    <p>$469</p>
-                  </>
-                ),
-                image: "/product-image.png",
-              },
-            ].map((product) => (
-              <div
-                key={product.name + product.price}
-                className="product-item-container"
-              >
-                <div className="product-item">
-                  <div className="product-display-container">
-                    <Image
-                      src={product.image}
-                      alt={product.name}
-                      width={224}
-                      height={224}
-                      className="product-image"
-                    />
-                  </div>
-                  <div className="product-description">
-                    <div className="product-properties">
-                      <h2 className="product-name">{product.name}</h2>
-                      <div>{product.price}</div>
+            <div className="products-list">
+              {[
+                {
+                  name: "CODEC JACKET",
+                  price: (
+                    <>
+                      <p
+                        style={{
+                          textDecoration: "line-through",
+                        }}
+                      >
+                        $500
+                      </p>
+                      <p>$469</p>
+                    </>
+                  ),
+                  image: "/product-image.png",
+                  route: "/shop/jacket",
+                },
+                {
+                  name: "CODEC VEST",
+                  price: (
+                    <>
+                      <p
+                        style={{
+                          textDecoration: "line-through",
+                        }}
+                      >
+                        $500
+                      </p>
+                      <p>$469</p>
+                    </>
+                  ),
+                  image: "/product-image.png",
+                  route: "/shop/vest",
+                },
+              ].map((product) => (
+                <div
+                  key={product.name}
+                  className="product-item-container"
+                >
+                  <div className="product-item">
+                    <div className="product-display-container">
+                      <Image
+                        src={product.image}
+                        alt={product.name}
+                        width={224}
+                        height={224}
+                        className="product-image"
+                      />
                     </div>
-                    <button className="learn-more-button small">
-                      View Details
-                    </button>
+                    <div className="product-description">
+                      <div className="product-properties">
+                        <h2 className="product-name">{product.name}</h2>
+                        <div>{product.price}</div>
+                      </div>
+                      <button
+                        className="learn-more-button small"
+                        onClick={() => {
+                          router.push(product.route);
+                        }}
+                      >
+                        View Details
+                      </button>
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
-        </div>
         </div>
 
         <div className="contact-form-section">

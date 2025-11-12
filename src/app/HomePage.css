@@ -356,6 +356,8 @@ body {
   background-color: white;
   border-radius: 4.007px;
   flex: 1 1 calc(50% - 24px);
+  position: relative;
+  z-index: 2;
 }
 
 /* ...existing code... */
