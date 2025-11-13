@@ -47,6 +47,7 @@ export default function Home() {
               alt="wave pattern"
               src="/wave-in-landing.svg"
               fill
+              priority
               style={{
                 objectFit: "cover",
                 zIndex: -1,
@@ -230,7 +231,7 @@ export default function Home() {
                   image: "/product-image.png",
                   route: "/shop/vest",
                 },
-              ].map((product) => (
+              ].map((product, index) => (
                 <div
                   key={product.name}
                   className="product-item-container"
@@ -242,6 +243,7 @@ export default function Home() {
                         alt={product.name}
                         width={224}
                         height={224}
+                        priority={index === 0}
                         className="product-image"
                       />
                     </div>

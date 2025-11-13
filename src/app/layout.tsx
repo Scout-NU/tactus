@@ -32,6 +32,11 @@ export default function RootLayout({
           rel="stylesheet"
           href="https://use.typekit.net/wjs8mfv.css"
         ></link>
+        {/* Preconnect to external services for faster loading */}
+        <link rel="preconnect" href="https://js.stripe.com" />
+        <link rel="preconnect" href="https://js.hsforms.net" />
+        <link rel="dns-prefetch" href="https://js.stripe.com" />
+        <link rel="dns-prefetch" href="https://js.hsforms.net" />
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
