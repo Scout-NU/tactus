@@ -42,6 +42,13 @@ export async function POST(req: NextRequest) {
         };
       }
 
+      // Convert relative image path to absolute URL for Stripe
+      const imageUrl = item.image?.startsWith('http') 
+        ? item.image 
+        : item.image 
+          ? `${req.headers.get("origin")}${item.image}`
+          : undefined;
+
       // Otherwise, create a price on the fly
       return {
         price_data: {
@@ -49,7 +56,7 @@ export async function POST(req: NextRequest) {
           product_data: {
             name: item.title,
             description: `Size: ${item.size}`,
-            images: item.image ? [item.image] : [],
+            images: imageUrl ? [imageUrl] : [],
           },
           unit_amount: item.price, // Price in cents
         },
