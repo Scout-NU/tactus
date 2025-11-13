@@ -271,3 +271,123 @@ h1 {
   opacity: 0.6;
   cursor: not-allowed;
 }
+
+
+/* Hamburger Button - Mobile Only */
+.hamburger-button {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  z-index: 1001;
+}
+
+/* Mobile Menu Overlay */
+.mobile-menu-overlay {
+  display: none;
+}
+
+/* Mobile Styles */
+@media (max-width: 640px) {
+  /* Show hamburger button on mobile */
+  .hamburger-button {
+    display: block;
+  }
+
+  /* Hide desktop navigation on mobile */
+  .navigation-buttons {
+    display: none;
+  }
+
+  /* Mobile Menu Overlay Styles */
+  .mobile-menu-overlay {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(5, 54, 95, 0.98);
+    z-index: 999;
+    animation: slideIn 0.3s ease-out;
+  }
+
+  @keyframes slideIn {
+    from {
+      opacity: 0;
+      transform: translateX(100%);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  .mobile-nav {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    gap: 40px;
+    padding: 20px;
+  }
+
+  .mobile-nav a {
+    color: white;
+    text-decoration: none;
+    font-family: "Stratos", sans-serif;
+    font-size: 1.5rem;
+    font-weight: 300;
+    transition: opacity 0.2s;
+  }
+
+  .mobile-nav a:hover {
+    opacity: 0.7;
+  }
+
+  /* Mobile Cart Section */
+  .mobile-cart-section {
+    margin-top: 40px;
+    width: 100%;
+    max-width: 300px;
+  }
+
+  .mobile-cart-button {
+    width: 100%;
+    background-color: white;
+    color: #05365f;
+    border-radius: 8px;
+    padding: 16px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    font-family: "Stratos", sans-serif;
+    font-size: 1.125rem;
+    font-weight: 500;
+  }
+
+  .mobile-cart-text {
+    font-family: "Stratos", sans-serif;
+  }
+
+  .mobile-cart-button .cart-badge {
+    position: relative;
+    top: auto;
+    right: auto;
+    background-color: #05365f;
+    color: white;
+  }
+
+  /* Mobile Cart Dropdown */
+  .mobile-cart-dropdown {
+    position: relative;
+    top: 16px;
+    right: auto;
+    width: 100%;
+    max-width: 100%;
+    margin: 0 auto;
+  }
+}
