@@ -16,7 +16,7 @@ export default function CustomHeader() {
   const [checkoutError, setCheckoutError] = useState<string | null>(null);
   const cartRef = useRef<HTMLDivElement>(null);
 
-  const lightBackgroundPages = ["/about"];
+  const lightBackgroundPages = ["/shop/jacket", "/shop/vest"];
   const isDarkText = lightBackgroundPages.includes(pathname);
   const textColor = isDarkText ? "#05365f" : "#FFF";
 
