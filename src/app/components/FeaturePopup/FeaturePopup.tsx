@@ -7,7 +7,7 @@ interface FeaturePopupProps {
   description: string;
   isOpen: boolean;
   onToggle: () => void;
-  position: "top-left" | "top-right" | "left" | "right" | "bottom";
+  position: "top-left" | "top-right" | "left" | "right" | "bottom" | "mobile";
   dotPosition: { top?: string; left?: string; right?: string; bottom?: string };
 }
 
@@ -19,49 +19,53 @@ export default function FeaturePopup({
   position,
   dotPosition,
 }: FeaturePopupProps) {
+  // Check if this is the mobile variant
+  const isMobile = position === "mobile";
+
   // Connection line configurations for each position
-    // Connection line configurations for each position
-    const getLineConfig = () => {
-      switch (position) {
-        case "top-left":
+  const getLineConfig = () => {
+    switch (position) {
+      case "top-left":
+        return {
+          x1: "calc(33.333% + 122px)",
+          y1: "194px",           // 544 - 350 = 194
+          x2: "calc(33.333% - 3px)",
+          y2: "194px",           // 477 - 350 = 127
+        };
+      case "top-right":
+        return {
+          x1: "calc(50% + 44px)",
+          y1: "194px",        // 543.97 - 350 = 193.97
+          x2: "calc(66.667% + 40px)",
+          y2: "194px",           // 486 - 350 = 136
+        };
+      case "left":
+        return {
+          x1: "calc(33.333% + 64px)",
+          y1: "418px",           // 768 - 350 = 418
+          x2: "calc(25% + 75px)",
+          y2: "418px",           // 768 - 350 = 418
+        };
+        case "right":
           return {
-            x1: "calc(33.333% + 122px)",
-            y1: "194px",           // 544 - 350 = 194
-            x2: "calc(33.333% - 3px)",
-            y2: "194px",           // 477 - 350 = 127
+            x1: "calc(58.333% + 79px)",    // From dot
+            y1: "417px",
+            x2: "calc(100% - 438px)",      // To LEFT edge of popup (right-106 is the right edge, popup is 332px wide)
+            y2: "417px",
           };
-        case "top-right":
-          return {
-            x1: "calc(50% + 44px)",
-            y1: "194px",        // 543.97 - 350 = 193.97
-            x2: "calc(66.667% + 40px)",
-            y2: "194px",           // 486 - 350 = 136
-          };
-        case "left":
-          return {
-            x1: "calc(33.333% + 64px)",
-            y1: "418px",           // 768 - 350 = 418
-            x2: "calc(25% + 75px)",
-            y2: "418px",           // 768 - 350 = 418
-          };
-          case "right":
-            return {
-              x1: "calc(58.333% + 79px)",    // From dot
-              y1: "417px",
-              x2: "calc(100% - 438px)",      // To LEFT edge of popup (right-106 is the right edge, popup is 332px wide)
-              y2: "417px",
-            };
-        case "bottom":
-          return {
-            x1: "calc(50% + 8px)",
-            y1: "604px",           // 954 - 350 = 604
-            x2: "calc(50% + 8px)",
-            y2: "693px",           // 1043 - 350 = 693
-          };
-        default:
-          return null;
-      }
-    };
+      case "bottom":
+        return {
+          x1: "calc(50% + 8px)",
+          y1: "604px",           // 954 - 350 = 604
+          x2: "calc(50% + 8px)",
+          y2: "693px",           // 1043 - 350 = 693
+        };
+      case "mobile":
+        return null;
+      default:
+        return null;
+    }
+  };
 
   const lineConfig = getLineConfig();
 
@@ -81,6 +85,8 @@ export default function FeaturePopup({
         return `${baseClasses} ${mobileClasses} top-[398px] right-[106px]`;
       case "bottom":
         return `${baseClasses} ${mobileClasses} top-[690px] left-[calc(50%+100px)] -translate-x-1/2`;
+      case "mobile":
+        return "";
       default:
         return baseClasses;
     }
@@ -101,7 +107,7 @@ export default function FeaturePopup({
       </button>
 
       {/* Connection Line - Only show on desktop when popup is open */}
-      {isOpen && lineConfig && (
+      {isOpen && lineConfig && !isMobile && (
         <svg
           className="absolute left-0 top-0 hidden h-full w-full pointer-events-none z-[8] md:block"
         >
@@ -118,7 +124,7 @@ export default function FeaturePopup({
       )}
 
       {/* Popup Content - Desktop positioned, Mobile below image */}
-      {isOpen && (
+      {isOpen && !isMobile && (
         <div className={`
           ${getPopupPositionClasses()}
           md:absolute md:bg-gradient-to-b md:from-[#4daab5] md:to-transparent
@@ -136,7 +142,24 @@ export default function FeaturePopup({
           </div>
         </div>
       )}
+
+      {/* Mobile Content — Popup below image */}
+      {isMobile && isOpen && (
+        <div className="absolute left-0 right-0 top-full mt-1 z-[100] pointer-events-none">
+          <div className="mx-4 pointer-events-auto">
+            <div className="relative w-full min-h-[123px] rounded-[11px] border border-[#88dde1] bg-gradient-to-b from-[#4daab5] to-transparent p-4 animate-in fade-in slide-in-from-top-2 duration-300">
+              <div className="flex flex-col gap-2 md:gap-2">
+                <h3 className="m-0 font-heading text-base font-bold leading-normal text-white">
+                  {title}
+                </h3>
+                <p className="m-0 font-heading text-sm font-normal leading-[1.5] text-white">
+                  {description}
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </>
   );
 }
-
