@@ -13,6 +13,51 @@ export default function ProductPage() {
   const [isWirelessOpen, setIsWirelessOpen] = useState(false);
   const [isBatteryOpen, setIsBatteryOpen] = useState(false);
 
+  // Helper function to close all popups except the one being opened
+  const closeAllExcept = (popupToKeepOpen: string) => {
+    if (popupToKeepOpen !== 'liveSignal') setIsLiveSignalOpen(false);
+    if (popupToKeepOpen !== 'seamless') setIsSeamlessOpen(false);
+    if (popupToKeepOpen !== 'premiumFabric') setIsPremiumFabricOpen(false);
+    if (popupToKeepOpen !== 'wireless') setIsWirelessOpen(false);
+    if (popupToKeepOpen !== 'battery') setIsBatteryOpen(false);
+  };
+
+  // Toggle functions that handle mobile-only single popup behavior
+  const handleToggleLiveSignal = () => {
+    if (!isLiveSignalOpen) {
+      closeAllExcept('liveSignal');
+    }
+    setIsLiveSignalOpen(!isLiveSignalOpen);
+  };
+
+  const handleToggleSeamless = () => {
+    if (!isSeamlessOpen) {
+      closeAllExcept('seamless');
+    }
+    setIsSeamlessOpen(!isSeamlessOpen);
+  };
+
+  const handleTogglePremiumFabric = () => {
+    if (!isPremiumFabricOpen) {
+      closeAllExcept('premiumFabric');
+    }
+    setIsPremiumFabricOpen(!isPremiumFabricOpen);
+  };
+
+  const handleToggleWireless = () => {
+    if (!isWirelessOpen) {
+      closeAllExcept('wireless');
+    }
+    setIsWirelessOpen(!isWirelessOpen);
+  };
+
+  const handleToggleBattery = () => {
+    if (!isBatteryOpen) {
+      closeAllExcept('battery');
+    }
+    setIsBatteryOpen(!isBatteryOpen);
+  };
+
   return (
     <div 
       className="relative min-h-screen overflow-x-hidden"
@@ -61,7 +106,7 @@ export default function ProductPage() {
                 title="Live Signal Processing"
                 description="Music is translated into vibrations which are sent to different parts of the body with low latency so you can flow in sync with the music."
                 isOpen={isLiveSignalOpen}
-                onToggle={() => setIsLiveSignalOpen(!isLiveSignalOpen)}
+                onToggle={handleToggleLiveSignal}
                 position="top-left"
                 dotPosition={{ top: "158px", left: "calc(50% - 125px)" }}
               />
@@ -70,7 +115,7 @@ export default function ProductPage() {
                 title="Seamless technology integration"
                 description="Proprietary conductive threads are used to seamlessly integrate the technology into the garment."
                 isOpen={isSeamlessOpen}
-                onToggle={() => setIsSeamlessOpen(!isSeamlessOpen)}
+                onToggle={handleToggleSeamless}
                 position="top-right"
                 dotPosition={{ top: "158px", left: "calc(50% + 18px)" }}
               />
@@ -79,7 +124,7 @@ export default function ProductPage() {
                 title="Premium fabric material"
                 description="The garment is made with stretchable, breathable, lightweight fabric to keep you comfortable without inhibiting your dance moves."
                 isOpen={isPremiumFabricOpen}
-                onToggle={() => setIsPremiumFabricOpen(!isPremiumFabricOpen)}
+                onToggle={handleTogglePremiumFabric}
                 position="left"
                 dotPosition={{ top: "360px", left: "calc(50% - 178px)" }}
               />
@@ -88,7 +133,7 @@ export default function ProductPage() {
                 title="Completely Wireless"
                 description="Simply connect to your phone or any Bluetooth device. Press play on your preferred music player or streaming service. Dance without constraints."
                 isOpen={isWirelessOpen}
-                onToggle={() => setIsWirelessOpen(!isWirelessOpen)}
+                onToggle={handleToggleWireless}
                 position="right"
                 dotPosition={{ top: "360px", left: "calc(50% + 155px)" }}
               />
@@ -97,7 +142,7 @@ export default function ProductPage() {
                   title="Rechargeable battery"
                   description="A removable rechargeable battery will keep you vibing for hours."
                   isOpen={isBatteryOpen}
-                  onToggle={() => setIsBatteryOpen(!isBatteryOpen)}
+                  onToggle={handleToggleBattery}
                   position="bottom"
                   dotPosition={{ top: "512px", left: "calc(50% + 1px)" }}
               />
@@ -108,7 +153,7 @@ export default function ProductPage() {
                 title="Live Signal Processing"
                 description="Music is translated into vibrations which are sent to different parts of the body with low latency so you can flow in sync with the music."
                 isOpen={isLiveSignalOpen}
-                onToggle={() => setIsLiveSignalOpen(!isLiveSignalOpen)}
+                onToggle={handleToggleLiveSignal}
                 position="mobile"
                 dotPosition={{ top: "24%", left: "24%" }}
               />
@@ -117,7 +162,7 @@ export default function ProductPage() {
                 title="Seamless technology integration"
                 description="Proprietary conductive threads are used to seamlessly integrate the technology into the garment."
                 isOpen={isSeamlessOpen}
-                onToggle={() => setIsSeamlessOpen(!isSeamlessOpen)}
+                onToggle={handleToggleSeamless}
                 position="mobile"
                 dotPosition={{ top: "24%", left: "55%" }}
               />
@@ -126,7 +171,7 @@ export default function ProductPage() {
                 title="Premium fabric material"
                 description="The garment is made with stretchable, breathable, lightweight fabric to keep you comfortable without inhibiting your dance moves."
                 isOpen={isPremiumFabricOpen}
-                onToggle={() => setIsPremiumFabricOpen(!isPremiumFabricOpen)}
+                onToggle={handleTogglePremiumFabric}
                 position="mobile"
                 dotPosition={{ top: "54%", left: "13%" }}
               />
@@ -135,7 +180,7 @@ export default function ProductPage() {
                 title="Completely Wireless"
                 description="Simply connect to your phone or any Bluetooth device. Press play on your preferred music player or streaming service. Dance without constraints."
                 isOpen={isWirelessOpen}
-                onToggle={() => setIsWirelessOpen(!isWirelessOpen)}
+                onToggle={handleToggleWireless}
                 position="mobile"
                 dotPosition={{ top: "54%", left: "83%" }}
               />
@@ -144,7 +189,7 @@ export default function ProductPage() {
                   title="Rechargeable battery"
                   description="A removable rechargeable battery will keep you vibing for hours."
                   isOpen={isBatteryOpen}
-                  onToggle={() => setIsBatteryOpen(!isBatteryOpen)}
+                  onToggle={handleToggleBattery}
                   position="mobile"
                   dotPosition={{ top: "75%", left: "50%" }}
               />
