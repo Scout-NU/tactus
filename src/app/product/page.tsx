@@ -71,6 +71,7 @@ export default function ProductPage() {
           src="/wave-in-landing.svg"
           alt=""
           fill
+          priority
           style={{ objectFit: "cover" }}
         />
       </div>
