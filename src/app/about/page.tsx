@@ -46,7 +46,7 @@ export default function AboutPage() {
 // Mission Hero Section
 function MissionSection() {
   return (
-    <section className="relative flex top-[100px] flex-col items-start px-5 pb-[200px] pt-[120px] text-left md:h-[56.5625rem] md:w-full md:max-w-[90rem] md:px-[110px] md:pb-[350px] md:pt-[140px] mx-auto">
+    <section className="relative flex  flex-col items-start px-5 pb-[225px] pt-[120px] text-left md:h-[56.5625rem] md:w-full md:max-w-[90rem] md:px-[110px] md:pb-[350px] md:pt-[140px] mx-auto md:top-[55px]">
       <h2 className="mb-3 font-heading text-[28px] font-semibold text-[#FA7A57] md:mb-4 md:text-[40px]">
         Our Mission
       </h2>
@@ -68,7 +68,7 @@ function PhotoGridSection() {
   ];
 
   return (
-    <div className="relative top-[100px] z-30 -mt-[250px] mb-[-50px] px-5 md:-mt-[300px] md:mb-[0px] md:px-0">
+    <div className="relative top-[50px] right-[20px] z-30 -mt-[250px] mb-[-50px] px-5 md:-mt-[300px] md:-mb-[30px] md:px-0">
       {/* Desktop: Staggered Layout */}
       <div className="hidden md:block">
         <div className="relative mx-auto h-[400px] max-w-[1440px] px-[110px]">
@@ -96,19 +96,26 @@ function PhotoGridSection() {
         </div>
       </div>
 
-      {/* Mobile: Simple Grid */}
-      <div className="grid grid-cols-2 gap-4 md:hidden">
+      {/* Mobile: Overlapping Layout (scaled down from desktop) */}
+      <div className="relative mx-auto h-[200px] max-w-[400px] md:hidden">
         {missionPhotos.map((photo, index) => (
           <div
             key={index}
-            className="relative aspect-square w-full overflow-hidden rounded-md border-4 border-[#97eff1]"
+            className="absolute overflow-hidden rounded-md border-2 border-[#97eff1]"
+            style={{
+              left: index === 0 ? "0px" : index === 1 ? "80px" : index === 2 ? "190px" : "290px",
+              top: index === 0 || index === 3 ? "50px" : index === 1 ? "70px" : "35px",
+              width: index === 0 ? "110px" : index === 1 ? "138px" : index === 2 ? "144px" : "143px",
+              height: index === 0 ? "82px" : index === 1 ? "104px" : index === 2 ? "99px" : "101px",
+              zIndex: photo.zIndex,
+            }}
           >
             <Image
               src={photo.src}
               alt={`Mission photo ${index + 1}`}
               fill
               className="object-cover"
-              sizes="(max-width: 768px) 50vw"
+              sizes="150px"
             />
           </div>
         ))}
@@ -137,7 +144,7 @@ function CorePrinciplesSection() {
   return (
     <section className="relative bg-white px-5 py-[80px] pt-[180px] md:px-[110px] md:py-[120px] md:pt-[220px]">
 
-      <h2 className="relative z-10 mb-12 font-heading text-[48px] font-bold uppercase text-[#05365f] md:mb-[180px] md:text-[64px]">
+      <h2 className="relative z-10 mb-[150px] font-heading text-[48px] font-bold uppercase text-[#05365f] md:mb-[180px] md:text-[64px]">
         THE CORE PRINCIPLES
       </h2>
 
@@ -148,12 +155,10 @@ function CorePrinciplesSection() {
         ))}
       </div>
 
-      {/* Mobile: Horizontal Scroll */}
-      <div className="relative z-10 flex gap-6 overflow-x-auto pb-4 md:hidden">
+      {/* Mobile: Vinyls stacked vertically with records always visible */}
+      <div className="relative z-10 flex flex-col items-center gap-[150px] md:hidden">
         {principles.map((principle, index) => (
-          <div key={index} className="flex-shrink-0">
-            <PrincipleCard {...principle} />
-          </div>
+          <PrincipleCard key={index} {...principle} isMobile={true} />
         ))}
       </div>
     </section>
@@ -164,20 +169,22 @@ function CorePrinciplesSection() {
 function PrincipleCard({
   title,
   vinylCover,
+  isMobile = false,
 }: {
   title: string;
   vinylCover: string;
+  isMobile?: boolean;
 }) {
   const [isHovered, setIsHovered] = useState(false);
 
   return (
     <div 
       className="relative flex-shrink-0 overflow-visible"
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
+      onMouseEnter={() => !isMobile && setIsHovered(true)}
+      onMouseLeave={() => !isMobile && setIsHovered(false)}
       style={{
-        width: "22.625rem",
-        height: "22.625rem",
+        width: isMobile ? "18rem" : "22.625rem",
+        height: isMobile ? "18rem" : "22.625rem",
       }}
     >
       {/* Background circular gradient container */}
@@ -187,13 +194,13 @@ function PrincipleCard({
           background: "radial-gradient(circle at 50% 45.3%, #05365F 0%, #042947 25%, #031B30 50%, #010E18 75%, #01070C 87.5%, #000000 100%)",
         }}
       >
-        {/* Vinyl Record - positioned at top, slides up on hover */}
+        {/* Vinyl Record - positioned at top, slides up on hover (static on mobile) */}
         <div
           className="absolute left-1/2 -translate-x-1/2 transition-all duration-500 ease-out"
           style={{
             width: "100%",
             height: "100%",
-            top: isHovered ? "-40%" : "0%",
+            top: isMobile ? "-40%" : isHovered ? "-40%" : "0%",
             zIndex: 0,
           }}
         >
@@ -203,7 +210,7 @@ function PrincipleCard({
               alt="Vinyl record"
               fill
               className="object-contain"
-              sizes="362px"
+              sizes={isMobile ? "224px" : "362px"}
             />
           </div>
         </div>
@@ -212,8 +219,8 @@ function PrincipleCard({
         <div 
           className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 overflow-hidden"
           style={{
-            width: "22.625rem",
-            height: "22.625rem",
+            width: isMobile ? "18rem" : "22.625rem",
+            height: isMobile ? "18rem" : "22.625rem",
             zIndex: 10,
           }}
         >
@@ -222,7 +229,7 @@ function PrincipleCard({
             alt={title}
             fill
             className="object-cover"
-            sizes="362px"
+            sizes={isMobile ? "224px" : "362px"}
           />
           <div 
             className="absolute inset-0"
@@ -264,39 +271,38 @@ function TeamSection() {
         MEET THE TEAM
       </h2>
       <div className="mx-auto flex max-w-[76rem] flex-col items-center gap-8">
-        <div className="flex flex-wrap justify-center gap-4 md:gap-[15px]">
+        <div className="grid grid-cols-3 justify-items-center gap-2 md:flex md:flex-wrap md:justify-center md:gap-[15px]">
           {teamMembers.map((member, index) => (
             <div
               key={index}
-              className="flex flex-col gap-3 rounded-md bg-[#05365f] p-0 shadow-lg md:gap-4"
+              className="flex w-[6.8325rem] flex-col gap-2 rounded-md bg-[#05365f] p-0 shadow-lg md:w-[11.42056rem] md:gap-4"
               style={{
-                width: "11.42056rem",
                 flexShrink: 0,
               }}
             >
-              <div className="relative w-full overflow-hidden rounded-t-md" style={{ height: "9.5rem" }}>
+              <div className="relative h-[6rem] w-full overflow-hidden rounded-t-md md:h-[9.5rem]">
                 <Image
                   src={member.image}
                   alt={member.name}
                   fill
                   className="object-cover"
-                  sizes="182px"
+                  sizes="(max-width: 768px) 109px, 182px"
                 />
               </div>
-              <div className="flex flex-col items-center gap-1 p-2 pb-3 md:gap-2 md:p-3 md:pb-4" style={{ height: "7.93906rem" }}>
-                <h3 className="text-center font-heading text-[14px] font-normal leading-tight text-white md:text-[18px] lg:text-[21px]">
+              <div className="flex h-[4.43313rem] flex-col items-center justify-center  px-1 py-1 pb-2 md:h-[7.93906rem] md:gap-2 md:p-3 md:pb-4">
+                <h3 className="text-center font-heading text-[0.78663rem] font-normal leading-normal text-white md:text-[18px] lg:text-[21px]">
                   {member.name}
                 </h3>
-                <p className="text-center font-heading text-[10px] font-normal leading-tight text-white md:text-[12px] lg:text-[14px]">
+                <p className="text-center font-heading text-[0.65rem] font-normal leading-normal pb-[2px] text-white md:text-[12px] lg:text-[14px]">
                   {member.role}
                 </p>
                 <a 
                   href={member.linkedinUrl} 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="mt-1 h-[18px] w-[18px] cursor-pointer transition-opacity hover:opacity-80 md:h-[21px] md:w-[21px]"
+                  className="mt-0.5 h-[12px] w-[12px] cursor-pointer transition-opacity hover:opacity-80 md:mt-1 md:h-[21px] md:w-[21px]"
                 >
-                  <svg width="21" height="21" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <svg className="h-full w-full" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M19.5 0H1.5C0.671573 0 0 0.671573 0 1.5V19.5C0 20.3284 0.671573 21 1.5 21H19.5C20.3284 21 21 20.3284 21 19.5V1.5C21 0.671573 20.3284 0 19.5 0Z" fill="white"/>
                     <path d="M3.15 7.875H6.3V17.85H3.15V7.875ZM4.725 3.15C5.76975 3.15 6.615 3.99525 6.615 5.04C6.615 6.08475 5.76975 6.93 4.725 6.93C3.68025 6.93 2.835 6.08475 2.835 5.04C2.835 3.99525 3.68025 3.15 4.725 3.15Z" fill="#05365f"/>
                     <path d="M9.45 7.875H12.39V9.24H12.4305C12.8355 8.4735 13.9185 7.665 15.5025 7.665C18.6105 7.665 19.215 9.72 19.215 12.39V17.85H16.065V13.104C16.065 11.9175 16.0455 10.3755 14.406 10.3755C12.7455 10.3755 12.4875 11.697 12.4875 13.0185V17.85H9.3375V7.875H9.45Z" fill="#05365f"/>
@@ -318,7 +324,7 @@ function SponsorsSection() {
       <h2 className="mb-12 font-heading text-[48px] font-bold uppercase text-[#05365f] md:mb-16 md:text-[64px]">
         OUR SUPPORTERS
       </h2>
-      <div className="mx-auto flex max-w-[1172px] flex-col gap-16 md:gap-20">
+      <div className="mx-auto flex max-w-[1172px] flex-col gap-16 scale-[0.65] md:scale-100 md:gap-20">
         {/* Row 1 - 4 sponsors evenly spaced */}
         <div className="flex items-center justify-center gap-8 md:justify-between md:gap-12">
           <div className="relative h-[60px] w-[140px] flex-shrink-0 md:h-[76px] md:w-[190px]">
