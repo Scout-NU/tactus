@@ -3,8 +3,11 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import { BackgroundWave } from "../components/shop/BackgroundWave";
+import HubSpotPopup from "../components/HubSpotPopup/HubSpotPopup";
 
 export default function AboutPage() {
+  const [isHubSpotPopupOpen, setIsHubSpotPopupOpen] = useState(false);
+
   return (
     <div
       className="relative min-h-screen overflow-x-hidden bg-white"
@@ -37,8 +40,14 @@ export default function AboutPage() {
         <SponsorsSection />
 
         {/* Don't Miss a Beat Section */}
-        <DontMissABeatSection />
+        <DontMissABeatSection onOpenPopup={() => setIsHubSpotPopupOpen(true)} />
       </div>
+
+      {/* HubSpot Form Popup */}
+      <HubSpotPopup
+        isOpen={isHubSpotPopupOpen}
+        onClose={() => setIsHubSpotPopupOpen(false)}
+      />
     </div>
   );
 }
@@ -430,7 +439,7 @@ function SponsorsSection() {
 }
 
 // Don't Miss a Beat Section
-function DontMissABeatSection() {
+function DontMissABeatSection({ onOpenPopup }: { onOpenPopup: () => void }) {
   return (
     <section className="relative overflow-hidden bg-white py-[80px] md:py-0 md:h-[55vh]">
       {/* Wave pattern background */}
@@ -452,7 +461,10 @@ function DontMissABeatSection() {
           <p className="font-body text-[16px] leading-normal text-[#05365f] md:text-[20px]">
             Stay connected for early access to news from the Tactus team.
           </p>
-          <button className="mt-2 flex h-[58px] w-[310px] items-center justify-center rounded-[5px] bg-[#05365f] font-heading text-[20px] text-white transition-opacity hover:opacity-90 md:text-[22px]">
+          <button
+            onClick={onOpenPopup}
+            className="relative z-10 mt-2 flex h-[58px] w-[310px] items-center justify-center rounded-[5px] bg-[#05365f] font-heading text-[20px] text-white transition-opacity hover:opacity-90 md:text-[22px]"
+          >
             STAY IN TOUCH
           </button>
         </div>

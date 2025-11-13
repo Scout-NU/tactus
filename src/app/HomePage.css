@@ -544,6 +544,16 @@ body {
     max-width: 333px;
   }
 
+    /* Show "STAY IN TOUCH" button on mobile */
+    .contact-form-input .learn-more-button {
+      display: flex;
+      position: relative;
+      bottom: auto;
+      width: 90%;
+      max-width: 333px;
+      margin: 10px auto 0;
+      z-index: 10;
+    }
   .product-display-container {
     scale: 70%;
   }
@@ -609,6 +619,8 @@ body {
   }
   .contact-form-text {
     width: 80%;
+    z-index: 10;
+      position: relative;
   }
   .contact-form-info-text {
     text-align: center;
@@ -617,6 +629,10 @@ body {
   .contact-form-description-text {
     text-align: center;
   }
+    .contact-form-info {
+      z-index: 10;
+      position: relative;
+    }
 
   .community-section {
     height: auto;
