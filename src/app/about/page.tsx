@@ -450,8 +450,7 @@ function DontMissABeatSection() {
             DON&apos;T MISS A BEAT
           </h2>
           <p className="font-body text-[16px] leading-normal text-[#05365f] md:text-[20px]">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            Stay connected for early access to news from the Tactus team.
           </p>
           <button className="mt-2 flex h-[58px] w-[310px] items-center justify-center rounded-[5px] bg-[#05365f] font-heading text-[20px] text-white transition-opacity hover:opacity-90 md:text-[22px]">
             STAY IN TOUCH

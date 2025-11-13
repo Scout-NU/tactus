@@ -265,7 +265,7 @@ export function QuickAddModal({
                     src={image.src}
                     alt={`Thumbnail ${index + 1}`}
                     fill
-                    className="object-cover"
+                    className="object-contain"
                   />
                 </button>
               ))}
