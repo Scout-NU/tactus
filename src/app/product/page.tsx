@@ -13,7 +13,7 @@ export default function ProductPage() {
   const [isWirelessOpen, setIsWirelessOpen] = useState(false);
   const [isBatteryOpen, setIsBatteryOpen] = useState(false);
 
-  // Helper function to close all popups except the one being opened
+  // Helper function to close all popups except the one being opened (for mobile only)
   const closeAllExcept = (popupToKeepOpen: string) => {
     if (popupToKeepOpen !== 'liveSignal') setIsLiveSignalOpen(false);
     if (popupToKeepOpen !== 'seamless') setIsSeamlessOpen(false);
@@ -22,36 +22,36 @@ export default function ProductPage() {
     if (popupToKeepOpen !== 'battery') setIsBatteryOpen(false);
   };
 
-  // Toggle functions that handle mobile-only single popup behavior
-  const handleToggleLiveSignal = () => {
+  // Toggle functions for mobile that ensure only one popup is open at a time
+  const handleToggleMobileLiveSignal = () => {
     if (!isLiveSignalOpen) {
       closeAllExcept('liveSignal');
     }
     setIsLiveSignalOpen(!isLiveSignalOpen);
   };
 
-  const handleToggleSeamless = () => {
+  const handleToggleMobileSeamless = () => {
     if (!isSeamlessOpen) {
       closeAllExcept('seamless');
     }
     setIsSeamlessOpen(!isSeamlessOpen);
   };
 
-  const handleTogglePremiumFabric = () => {
+  const handleToggleMobilePremiumFabric = () => {
     if (!isPremiumFabricOpen) {
       closeAllExcept('premiumFabric');
     }
     setIsPremiumFabricOpen(!isPremiumFabricOpen);
   };
 
-  const handleToggleWireless = () => {
+  const handleToggleMobileWireless = () => {
     if (!isWirelessOpen) {
       closeAllExcept('wireless');
     }
     setIsWirelessOpen(!isWirelessOpen);
   };
 
-  const handleToggleBattery = () => {
+  const handleToggleMobileBattery = () => {
     if (!isBatteryOpen) {
       closeAllExcept('battery');
     }
@@ -86,114 +86,113 @@ export default function ProductPage() {
           </p>
 
           {/* Product Image Container with Feature Dots */}
-          <div className="relative mx-auto mb-5 w-full max-w-[1440px] md:min-h-[1000px] min-h-[700px] pb-5 md:mb-0 md:min-h-[850px] md:pb-0">
-            <div className="absolute left-1/2 top-0 z-[5] mb-5 -translate-x-1/2 md:mb-0 md:relative md:left-0 md:translate-x-0 md:flex md:justify-center">
-
-            <div className="relative w-[90vw] max-w-[483px] md:w-[537px]">
+          <div className="relative mx-auto mb-5 w-full max-w-[1440px] min-h-[480px] md:min-h-[1000px] mb-[150px] pb-5 md:mb-0 md:min-h-[850px] md:pb-0">
+            <div className="absolute left-1/2 top-0 z-[5] mb-5 flex w-full -translate-x-1/2 justify-center md:mb-0 md:w-auto md:transform-none md:relative md:left-auto">
               <Image
                 src="/product-home-photo.png"
                 alt="Tactus Jacket"
                 width={537}
                 height={630}
                 priority
-                className="!w-full !h-auto !max-w-full !max-h-full"
+                className="!w-[90%] !h-auto md:!w-[537px]"
                 style={{ objectFit: "contain" }}
               />
             </div>
 
+            {/* Desktop Feature Popups - Hidden on Mobile */}
             <div className="hidden md:block">
               <FeaturePopup
                 title="Live Signal Processing"
                 description="Music is translated into vibrations which are sent to different parts of the body with low latency so you can flow in sync with the music."
                 isOpen={isLiveSignalOpen}
-                onToggle={handleToggleLiveSignal}
+                onToggle={() => setIsLiveSignalOpen(!isLiveSignalOpen)}
                 position="top-left"
-                dotPosition={{ top: "158px", left: "calc(50% - 125px)" }}
+                dotPosition={{ top: "178px", left: "calc(33.333% + 106px)" }}
               />
 
               <FeaturePopup
                 title="Seamless technology integration"
                 description="Proprietary conductive threads are used to seamlessly integrate the technology into the garment."
                 isOpen={isSeamlessOpen}
-                onToggle={handleToggleSeamless}
+                onToggle={() => setIsSeamlessOpen(!isSeamlessOpen)}
                 position="top-right"
-                dotPosition={{ top: "158px", left: "calc(50% + 18px)" }}
+                dotPosition={{ top: "178px", left: "calc(50% + 28px)" }}
               />
 
               <FeaturePopup
                 title="Premium fabric material"
                 description="The garment is made with stretchable, breathable, lightweight fabric to keep you comfortable without inhibiting your dance moves."
                 isOpen={isPremiumFabricOpen}
-                onToggle={handleTogglePremiumFabric}
+                onToggle={() => setIsPremiumFabricOpen(!isPremiumFabricOpen)}
                 position="left"
-                dotPosition={{ top: "360px", left: "calc(50% - 178px)" }}
+                dotPosition={{ top: "401px", left: "calc(33.333% + 48px)" }}
               />
 
               <FeaturePopup
                 title="Completely Wireless"
                 description="Simply connect to your phone or any Bluetooth device. Press play on your preferred music player or streaming service. Dance without constraints."
                 isOpen={isWirelessOpen}
-                onToggle={handleToggleWireless}
+                onToggle={() => setIsWirelessOpen(!isWirelessOpen)}
                 position="right"
-                dotPosition={{ top: "360px", left: "calc(50% + 155px)" }}
+                dotPosition={{ top: "400px", left: "calc(58.333% + 63px)" }}
               />
 
               <FeaturePopup
-                  title="Rechargeable battery"
-                  description="A removable rechargeable battery will keep you vibing for hours."
-                  isOpen={isBatteryOpen}
-                  onToggle={handleToggleBattery}
-                  position="bottom"
-                  dotPosition={{ top: "512px", left: "calc(50% + 1px)" }}
+                title="Rechargeable battery"
+                description="A removable rechargeable battery will keep you vibing for hours."
+                isOpen={isBatteryOpen}
+                onToggle={() => setIsBatteryOpen(!isBatteryOpen)}
+                position="bottom"
+                dotPosition={{ top: "572px", left: "calc(50% - 9px)" }}
               />
             </div>
 
+            {/* Mobile Feature Popups - Single popup at a time */}
             <div className="md:hidden">
               <FeaturePopup
                 title="Live Signal Processing"
                 description="Music is translated into vibrations which are sent to different parts of the body with low latency so you can flow in sync with the music."
                 isOpen={isLiveSignalOpen}
-                onToggle={handleToggleLiveSignal}
+                onToggle={handleToggleMobileLiveSignal}
                 position="mobile"
-                dotPosition={{ top: "24%", left: "24%" }}
+                dotPosition={{ top: "31%", left: "17%" }}
               />
 
               <FeaturePopup
                 title="Seamless technology integration"
                 description="Proprietary conductive threads are used to seamlessly integrate the technology into the garment."
                 isOpen={isSeamlessOpen}
-                onToggle={handleToggleSeamless}
+                onToggle={handleToggleMobileSeamless}
                 position="mobile"
-                dotPosition={{ top: "24%", left: "55%" }}
+                dotPosition={{ top: "30%", left: "68%" }}
               />
 
               <FeaturePopup
                 title="Premium fabric material"
                 description="The garment is made with stretchable, breathable, lightweight fabric to keep you comfortable without inhibiting your dance moves."
                 isOpen={isPremiumFabricOpen}
-                onToggle={handleTogglePremiumFabric}
+                onToggle={handleToggleMobilePremiumFabric}
                 position="mobile"
-                dotPosition={{ top: "54%", left: "13%" }}
+                dotPosition={{ top: "60%", left: "14%" }}
               />
 
               <FeaturePopup
                 title="Completely Wireless"
                 description="Simply connect to your phone or any Bluetooth device. Press play on your preferred music player or streaming service. Dance without constraints."
                 isOpen={isWirelessOpen}
-                onToggle={handleToggleWireless}
+                onToggle={handleToggleMobileWireless}
                 position="mobile"
-                dotPosition={{ top: "54%", left: "83%" }}
+                dotPosition={{ top: "55%", left: "85%" }}
               />
 
               <FeaturePopup
-                  title="Rechargeable battery"
-                  description="A removable rechargeable battery will keep you vibing for hours."
-                  isOpen={isBatteryOpen}
-                  onToggle={handleToggleBattery}
-                  position="mobile"
-                  dotPosition={{ top: "75%", left: "50%" }}
+                title="Rechargeable battery"
+                description="A removable rechargeable battery will keep you vibing for hours."
+                isOpen={isBatteryOpen}
+                onToggle={handleToggleMobileBattery}
+                position="mobile"
+                dotPosition={{ top: "80%", left: "50%" }}
               />
-            </div>
             </div>
           </div>
         </section>
@@ -234,4 +233,3 @@ export default function ProductPage() {
     </div>
   );
 }
-

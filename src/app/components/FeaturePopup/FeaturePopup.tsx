@@ -19,58 +19,53 @@ export default function FeaturePopup({
   position,
   dotPosition,
 }: FeaturePopupProps) {
-    // Checks if the popup is for mobile or not
-    const isMobile = position === "mobile";
+  // Check if this is the mobile variant
+  const isMobile = position === "mobile";
 
-    // Connection line configurations for each position
-    const getLineConfig = () => {
-      switch (position) {
-        case "top-left":
+  // Connection line configurations for each position
+  const getLineConfig = () => {
+    switch (position) {
+      case "top-left":
+        return {
+          x1: "calc(33.333% + 122px)",
+          y1: "194px",           // 544 - 350 = 194
+          x2: "calc(33.333% - 3px)",
+          y2: "194px",           // 477 - 350 = 127
+        };
+      case "top-right":
+        return {
+          x1: "calc(50% + 44px)",
+          y1: "194px",        // 543.97 - 350 = 193.97
+          x2: "calc(66.667% + 40px)",
+          y2: "194px",           // 486 - 350 = 136
+        };
+      case "left":
+        return {
+          x1: "calc(33.333% + 64px)",
+          y1: "418px",           // 768 - 350 = 418
+          x2: "calc(25% + 75px)",
+          y2: "418px",           // 768 - 350 = 418
+        };
+        case "right":
           return {
-            x1: "calc(33.333% + 122px)",
-            y1: "194px",           // 544 - 350 = 194
-            x2: "calc(33.333% - 3px)",
-            y2: "194px",           // 477 - 350 = 127
+            x1: "calc(58.333% + 79px)",    // From dot
+            y1: "417px",
+            x2: "calc(100% - 438px)",      // To LEFT edge of popup (right-106 is the right edge, popup is 332px wide)
+            y2: "417px",
           };
-        case "top-right":
-          return {
-            x1: "calc(50% + 44px)",
-            y1: "194px",        // 543.97 - 350 = 193.97
-            x2: "calc(66.667% + 40px)",
-            y2: "194px",           // 486 - 350 = 136
-          };
-        case "left":
-          return {
-            x1: "calc(33.333% + 64px)",
-            y1: "418px",           // 768 - 350 = 418
-            x2: "calc(25% + 75px)",
-            y2: "418px",           // 768 - 350 = 418
-          };
-          case "right":
-            return {
-              x1: "calc(58.333% + 79px)",    // From dot
-              y1: "417px",
-              x2: "calc(100% - 438px)",      // To LEFT edge of popup (right-106 is the right edge, popup is 332px wide)
-              y2: "417px",
-            };
-        case "bottom":
-          return {
-            x1: "calc(50% + 8px)",
-            y1: "604px",           // 954 - 350 = 604
-            x2: "calc(50% + 8px)",
-            y2: "693px",           // 1043 - 350 = 693
-          };
-        case "mobile":
-          return {
-            x1: "calc(50% + 8px)",
-            y1: "604px",           // 954 - 350 = 604
-            x2: "calc(50% + 8px)",
-            y2: "693px",           // 1043 - 350 = 693
-          };
-        default:
-          return null;
-      }
-    };
+      case "bottom":
+        return {
+          x1: "calc(50% + 8px)",
+          y1: "604px",           // 954 - 350 = 604
+          x2: "calc(50% + 8px)",
+          y2: "693px",           // 1043 - 350 = 693
+        };
+      case "mobile":
+        return null;
+      default:
+        return null;
+    }
+  };
 
   const lineConfig = getLineConfig();
 
@@ -128,7 +123,7 @@ export default function FeaturePopup({
         </svg>
       )}
 
-      {/* Popup Content - Desktop positioned, Mobile below image (mobile no longer supported) */}
+      {/* Popup Content - Desktop positioned, Mobile below image */}
       {isOpen && !isMobile && (
         <div className={`
           ${getPopupPositionClasses()}
@@ -148,7 +143,7 @@ export default function FeaturePopup({
         </div>
       )}
 
-      {/* Mobile Content — Popup below image */}
+      {/* Mobile Content — Popup below image */}
       {isMobile && isOpen && (
         <div className="absolute left-0 right-0 top-full mt-1 z-[100] pointer-events-none">
           <div className="mx-4 pointer-events-auto">
@@ -168,4 +163,3 @@ export default function FeaturePopup({
     </>
   );
 }
-
