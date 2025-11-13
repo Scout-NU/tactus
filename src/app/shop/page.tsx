@@ -5,11 +5,15 @@ import { SHOP_PRODUCTS, SHOP_SIZES } from "./shopData";
 
 export default function ShopPage() {
   return (
-    <main className="relative overflow-hidden" style={{ 
-      background: 'radial-gradient(ellipse 1145px 1606.4px at 605.5px 720.26px, rgba(5,54,95,1) 19.712%, rgba(4,28,57,1) 59.856%, rgba(4,15,38,1) 79.928%, rgba(3,2,19,1) 100%)',
-      paddingTop: '50px',
-      paddingBottom: '100px',
-    }}>
+    <main
+      className="relative overflow-hidden"
+      style={{
+        background:
+          "radial-gradient(ellipse 1145px 1606.4px at 605.5px 720.26px, rgba(5,54,95,1) 19.712%, rgba(4,28,57,1) 59.856%, rgba(4,15,38,1) 79.928%, rgba(3,2,19,1) 100%)",
+        paddingTop: "50px",
+        paddingBottom: "100px",
+      }}
+    >
       <div className="pointer-events-none" aria-hidden>
         <BackgroundWave
           src="/assets/shop/wave-top.svg"
@@ -32,10 +36,13 @@ export default function ShopPage() {
         {SHOP_PRODUCTS.map((product) => (
           <ProductSection
             key={product.id}
+            productId={product.id}
             title={product.title}
             description={product.description}
             price={product.price}
             originalPrice={product.originalPrice}
+            priceInCents={product.priceInCents}
+            stripePriceId={product.stripePriceId}
             galleryVariant={product.galleryVariant}
             sizes={product.sizes ?? SHOP_SIZES}
             galleryImages={product.galleryImages}
@@ -45,4 +52,3 @@ export default function ShopPage() {
     </main>
   );
 }
-

@@ -1,8 +1,14 @@
+"use client";
+
 import Image from "next/image";
 import Carousel from "./components/Carousel/Carousel";
 import "./HomePage.css";
+import { useEffect, useRef } from "react";
+import { useRouter } from "next/navigation";
 
 export default function Home() {
+  const router = useRouter();
+
   return (
     <div className="home-page">
       <div className="home-page-content">
@@ -17,38 +23,29 @@ export default function Home() {
               <p className="product-description-text">
                 Wearable tech developed with and for the Deaf community.{" "}
               </p>
-              <button className="learn-more-button orange" style={{zIndex:2}}>LEARN MORE</button>
+              <button
+                className="learn-more-button orange"
+                style={{ zIndex: 2 }}
+                onClick={() => {
+                  router.push("/product");
+                }}
+              >
+                LEARN MORE
+              </button>
             </div>
           </div>
-          <div
-            className="product-image-container"
-            style={{
-              backgroundImage: 'url("/product-home-photo.png")',
-              backgroundSize: "contain",
-              backgroundRepeat: "no-repeat",
-              backgroundPosition: "center",
-              position: "absolute",
-              right: "6vw",
-              top: "50%",
-              transform: "translateY(-50%)",
-              zIndex: 2,
-              width: "min(80vw, 800px)",
-              height: "min(110vh, 1000px)",
-              aspectRatio: "614/790",
-              maxWidth: "calc(100vw - 40vw - 16vw)",
-            }}
-          ></div>
+          <div className="product-image-container vest" />
           <div
             style={{
               top: "18vh",
             }}
-            className="wave-pattern-orange"
+            className="wave-pattern-orange first"
           >
             <Image
               alt="wave pattern"
               src="/wave-in-landing.svg"
               fill
-              style={{ 
+              style={{
                 objectFit: "cover",
                 zIndex: -1,
               }}
@@ -90,33 +87,25 @@ export default function Home() {
               <div className="people-carousel">
                 <Carousel
                   items={[
-                    <Image
-                      src={"/community-images/Person1.png"}
-                      alt="afya"
+                    <LazyVideo
                       key={1}
-                      width={303}
-                      height={540}
+                      src="/Alleyna_Tactus.mp4"
+                      poster="/Alleyna_Tactus-poster.jpg"
                     />,
-                    <Image
-                      src={"/community-images/Person2.png"}
-                      alt="idea venture accelerator"
+                    <LazyVideo
                       key={2}
-                      width={283}
-                      height={540}
+                      src="/Ashwin_Tactus.mp4"
+                      poster="/Ashwin_Tactus-poster.jpg"
                     />,
-                    <Image
-                      src={"/community-images/Person3.png"}
-                      alt="mass challenge"
+                    <LazyVideo
                       key={3}
-                      width={294}
-                      height={540}
+                      src="/Dancing_Testing.mp4"
+                      poster="/Dancing_Testing-poster.jpg"
                     />,
-                    <Image
-                      src={"/community-images/Person4.png"}
-                      alt="sherman center"
+                    <LazyVideo
                       key={4}
-                      width={282}
-                      height={540}
+                      src="/Sign_Tactus.mp4"
+                      poster="/Sign_Tactus-poster.jpg"
                     />,
                   ]}
                   gap={25}
@@ -171,7 +160,7 @@ export default function Home() {
           style={{
             top: "130vh",
           }}
-          className="wave-pattern-blue"
+          className="wave-pattern-blue first"
         >
           <Image
             alt="wave pattern"
@@ -184,7 +173,7 @@ export default function Home() {
           style={{
             top: "160vh",
           }}
-          className="wave-pattern-blue"
+          className="wave-pattern-blue second"
         >
           <Image
             alt="wave pattern"
@@ -193,53 +182,86 @@ export default function Home() {
             style={{ objectFit: "cover" }}
           />
         </div>
-        <div className="products-section">
-          <div className="products-section-text">
-            <h1 className="products-header">OUR PRODUCTS</h1>
-            <p className="products-description">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua.
-            </p>
-          </div>
-          <div className="products-list">
-            {[
-              {
-                name: "CODEC VEST",
-                price: "$99",
-                image: "/product-image.png",
-              },
-              {
-                name: "CODEC VEST",
-                price: "$199",
-                image: "/product-image.png",
-              },
-            ].map((product) => (
-              <div
-                key={product.name + product.price}
-                className="product-item-container"
-              >
-                <div className="product-item">
-                  <div className="product-display-container">
-                    <Image
-                      src={product.image}
-                      alt={product.name}
-                      width={224}
-                      height={224}
-                      className="product-image"
-                    />
-                  </div>
-                  <div className="product-description">
-                    <div className="product-properties">
-                      <h2 className="product-name">{product.name}</h2>
-                      <p>{product.price}</p>
+        <div className="products-section-wrapper">
+          <div className="products-section">
+            <div className="products-section-text">
+              <h1 className="products-header">OUR PRODUCTS</h1>
+              <p className="products-description">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                eiusmod tempor incididunt ut labore et dolore magna aliqua.
+              </p>
+            </div>
+            <div className="products-list">
+              {[
+                {
+                  name: "CODEC JACKET",
+                  price: (
+                    <>
+                      <p
+                        style={{
+                          textDecoration: "line-through",
+                          color: "#f06532",
+                        }}
+                      >
+                        $500
+                      </p>
+                      <p>$469</p>
+                    </>
+                  ),
+                  image: "/product-image.png",
+                  route: "/shop/jacket",
+                },
+                {
+                  name: "CODEC VEST",
+                  price: (
+                    <>
+                      <p
+                        style={{
+                          textDecoration: "line-through",
+                          color: "#f06532",
+                        }}
+                      >
+                        $500
+                      </p>
+                      <p>$469</p>
+                    </>
+                  ),
+                  image: "/product-image.png",
+                  route: "/shop/vest",
+                },
+              ].map((product) => (
+                <div
+                  key={product.name}
+                  className="product-item-container"
+                >
+                  <div className="product-item">
+                    <div className="product-display-container">
+                      <Image
+                        src={product.image}
+                        alt={product.name}
+                        width={224}
+                        height={224}
+                        className="product-image"
+                      />
                     </div>
-                    <button className="learn-more-button small">
-                      View Details
-                    </button>
+                    <div className="product-description">
+                      <div className="product-properties">
+                        <h2 className="product-name">{product.name}</h2>
+                        <div>{product.price}</div>
+                      </div>
+                      <button
+                        className="learn-more-button small"
+                        onClick={() => {
+                          router.push(product.route);
+                        }}
+                      >
+                        View Details
+                      </button>
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         </div>
 
@@ -293,7 +315,7 @@ export default function Home() {
           style={{
             top: "310vh",
           }}
-          className="wave-pattern-orange"
+          className="wave-pattern-orange second"
         >
           <Image
             alt="wave pattern"
@@ -304,5 +326,56 @@ export default function Home() {
         </div>
       </div>
     </div>
+  );
+}
+
+// LazyVideo component - only loads videos when they're visible in viewport
+function LazyVideo({ src, poster }: { src: string; poster: string }) {
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const hasLoadedRef = useRef(false);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            // Video is visible
+            if (!hasLoadedRef.current) {
+              // Load video only once
+              video.load();
+              hasLoadedRef.current = true;
+            }
+            video.play().catch(() => {});
+          } else {
+            // Video is not visible, pause it but don't reload
+            video.pause();
+          }
+        });
+      },
+      { threshold: 0.25 } // Load when 25% visible
+    );
+
+    observer.observe(video);
+
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <video
+      ref={videoRef}
+      width={303}
+      height={540}
+      muted
+      loop
+      playsInline
+      preload="none"
+      poster={poster}
+      style={{ objectFit: "cover" }}
+    >
+      <source src={src} type="video/mp4" />
+    </video>
   );
 }

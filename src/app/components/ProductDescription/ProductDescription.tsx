@@ -1,5 +1,5 @@
 import React from "react";
-import "./ProductDescriptionStyle.css"
+import "./ProductDescriptionStyle.css";
 
 export default function ProductDescription() {
   const textAndImage = [
