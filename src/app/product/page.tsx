@@ -41,7 +41,7 @@ export default function ProductPage() {
           </p>
 
           {/* Product Image Container with Feature Dots */}
-          <div className="relative mx-auto mb-5 w-full max-w-[1440px] md:min-h-[1000px] min-h-[500px] pb-5 md:mb-0 md:min-h-[850px] md:pb-0">
+          <div className="relative mx-auto mb-5 w-full max-w-[1440px] md:min-h-[1000px] min-h-[700px] pb-5 md:mb-0 md:min-h-[850px] md:pb-0">
             <div className="absolute left-1/2 top-0 z-[5] mb-5 -translate-x-1/2 md:mb-0 md:relative md:left-0 md:translate-x-0 md:flex md:justify-center">
 
             <div className="relative w-[90vw] max-w-[483px] md:w-[537px]">

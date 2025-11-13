@@ -19,7 +19,9 @@ export default function FeaturePopup({
   position,
   dotPosition,
 }: FeaturePopupProps) {
-  // Connection line configurations for each position
+    // Checks if the popup is for mobile or not
+    const isMobile = position === "mobile";
+
     // Connection line configurations for each position
     const getLineConfig = () => {
       switch (position) {
@@ -88,6 +90,8 @@ export default function FeaturePopup({
         return `${baseClasses} ${mobileClasses} top-[398px] right-[106px]`;
       case "bottom":
         return `${baseClasses} ${mobileClasses} top-[690px] left-[calc(50%+100px)] -translate-x-1/2`;
+      case "mobile":
+        return "";
       default:
         return baseClasses;
     }
@@ -108,7 +112,7 @@ export default function FeaturePopup({
       </button>
 
       {/* Connection Line - Only show on desktop when popup is open */}
-      {isOpen && lineConfig && (
+      {isOpen && lineConfig && !isMobile && (
         <svg
           className="absolute left-0 top-0 hidden h-full w-full pointer-events-none z-[8] md:block"
         >
@@ -124,8 +128,8 @@ export default function FeaturePopup({
         </svg>
       )}
 
-      {/* Popup Content - Desktop positioned, Mobile below image */}
-      {isOpen && (
+      {/* Popup Content - Desktop positioned, Mobile below image (mobile no longer supported) */}
+      {isOpen && !isMobile && (
         <div className={`
           ${getPopupPositionClasses()}
           md:absolute md:bg-gradient-to-b md:from-[#4daab5] md:to-transparent
@@ -140,6 +144,24 @@ export default function FeaturePopup({
             <p className="m-0 font-heading text-sm font-normal leading-[1.5] text-white md:text-xs md:leading-[1.4]">
               {description}
             </p>
+          </div>
+        </div>
+      )}
+
+      {/* Mobile Content — Popup below image */}
+      {isMobile && isOpen && (
+        <div className="absolute left-0 right-0 top-full mt-1 z-[100] pointer-events-none">
+          <div className="mx-4 pointer-events-auto">
+            <div className="relative w-full min-h-[123px] rounded-[11px] border border-[#88dde1] bg-gradient-to-b from-[#4daab5] to-transparent p-4 animate-in fade-in slide-in-from-top-2 duration-300">
+              <div className="flex flex-col gap-2 md:gap-2">
+                <h3 className="m-0 font-heading text-base font-bold leading-normal text-white">
+                  {title}
+                </h3>
+                <p className="m-0 font-heading text-sm font-normal leading-[1.5] text-white">
+                  {description}
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       )}
