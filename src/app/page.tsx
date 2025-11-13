@@ -187,8 +187,7 @@ export default function Home() {
             <div className="products-section-text">
               <h1 className="products-header">OUR PRODUCTS</h1>
               <p className="products-description">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua.
+              Experience music through touch. Our wearables transform every beat into a physical sensation, bringing you closer to the music you love.
               </p>
             </div>
             <div className="products-list">
@@ -279,8 +278,7 @@ export default function Home() {
                   DON&apos;T MISS A BEAT
                 </h1>
                 <p className="contact-form-description-text">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                Stay connected for early access to news from the Tactus team.
                 </p>
                 <div className="contact-form-input">
                   <button className="learn-more-button">STAY IN TOUCH</button>
