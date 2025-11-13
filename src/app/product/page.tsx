@@ -42,10 +42,8 @@ export default function ProductPage() {
 
           {/* Product Image Container with Feature Dots */}
           <div className="relative mx-auto mb-5 w-full max-w-[1440px] md:min-h-[1000px] min-h-[500px] pb-5 md:mb-0 md:min-h-[850px] md:pb-0">
-            {/* <div className="absolute left-1/2 top-0 z-[5] mb-5 flex w-full -translate-x-1/2 justify-center md:mb-0 md:w-auto md:transform-none md:relative md:left-auto"> */}
             <div className="absolute left-1/2 top-0 z-[5] mb-5 -translate-x-1/2 md:mb-0 md:relative md:left-0 md:translate-x-0 md:flex md:justify-center">
 
-            {/* <div className="relative w-[90%] md:w-[537px]"> */}
             <div className="relative w-[90vw] max-w-[483px] md:w-[537px]">
               <Image
                 src="/product-home-photo.png"
@@ -111,7 +109,7 @@ export default function ProductPage() {
                 description="Music is translated into vibrations which are sent to different parts of the body with low latency so you can flow in sync with the music."
                 isOpen={isLiveSignalOpen}
                 onToggle={() => setIsLiveSignalOpen(!isLiveSignalOpen)}
-                position="top-left"
+                position="mobile"
                 dotPosition={{ top: "24%", left: "24%" }}
               />
 
@@ -120,7 +118,7 @@ export default function ProductPage() {
                 description="Proprietary conductive threads are used to seamlessly integrate the technology into the garment."
                 isOpen={isSeamlessOpen}
                 onToggle={() => setIsSeamlessOpen(!isSeamlessOpen)}
-                position="top-right"
+                position="mobile"
                 dotPosition={{ top: "24%", left: "55%" }}
               />
 
@@ -129,7 +127,7 @@ export default function ProductPage() {
                 description="The garment is made with stretchable, breathable, lightweight fabric to keep you comfortable without inhibiting your dance moves."
                 isOpen={isPremiumFabricOpen}
                 onToggle={() => setIsPremiumFabricOpen(!isPremiumFabricOpen)}
-                position="left"
+                position="mobile"
                 dotPosition={{ top: "54%", left: "13%" }}
               />
 
@@ -138,7 +136,7 @@ export default function ProductPage() {
                 description="Simply connect to your phone or any Bluetooth device. Press play on your preferred music player or streaming service. Dance without constraints."
                 isOpen={isWirelessOpen}
                 onToggle={() => setIsWirelessOpen(!isWirelessOpen)}
-                position="right"
+                position="mobile"
                 dotPosition={{ top: "54%", left: "83%" }}
               />
 
@@ -147,7 +145,7 @@ export default function ProductPage() {
                   description="A removable rechargeable battery will keep you vibing for hours."
                   isOpen={isBatteryOpen}
                   onToggle={() => setIsBatteryOpen(!isBatteryOpen)}
-                  position="bottom"
+                  position="mobile"
                   dotPosition={{ top: "75%", left: "50%" }}
               />
             </div>

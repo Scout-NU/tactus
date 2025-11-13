@@ -7,7 +7,7 @@ interface FeaturePopupProps {
   description: string;
   isOpen: boolean;
   onToggle: () => void;
-  position: "top-left" | "top-right" | "left" | "right" | "bottom";
+  position: "top-left" | "top-right" | "left" | "right" | "bottom" | "mobile";
   dotPosition: { top?: string; left?: string; right?: string; bottom?: string };
 }
 
@@ -52,6 +52,13 @@ export default function FeaturePopup({
               y2: "417px",
             };
         case "bottom":
+          return {
+            x1: "calc(50% + 8px)",
+            y1: "604px",           // 954 - 350 = 604
+            x2: "calc(50% + 8px)",
+            y2: "693px",           // 1043 - 350 = 693
+          };
+        case "mobile":
           return {
             x1: "calc(50% + 8px)",
             y1: "604px",           // 954 - 350 = 604
