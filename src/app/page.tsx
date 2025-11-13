@@ -3,11 +3,13 @@
 import Image from "next/image";
 import Carousel from "./components/Carousel/Carousel";
 import "./HomePage.css";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
+import HubSpotPopup from "./components/HubSpotPopup/HubSpotPopup";
 
 export default function Home() {
   const router = useRouter();
+  const [isHubSpotPopupOpen, setIsHubSpotPopupOpen] = useState(false);
 
   return (
     <div className="home-page">
@@ -281,7 +283,13 @@ export default function Home() {
                 Stay connected for early access to news from the Tactus team.
                 </p>
                 <div className="contact-form-input">
-                  <button className="learn-more-button">STAY IN TOUCH</button>
+                  <button
+                    className="learn-more-button"
+                    style={{ zIndex: 10, position: "relative" }}
+                    onClick={() => setIsHubSpotPopupOpen(true)}
+                  >
+                    STAY IN TOUCH
+                  </button>
                   {/* <input
                     type="text"
                     placeholder="example@provider.com"
@@ -323,6 +331,12 @@ export default function Home() {
           />
         </div>
       </div>
+
+      {/* HubSpot Form Popup */}
+      <HubSpotPopup
+        isOpen={isHubSpotPopupOpen}
+        onClose={() => setIsHubSpotPopupOpen(false)}
+      />
     </div>
   );
 }
