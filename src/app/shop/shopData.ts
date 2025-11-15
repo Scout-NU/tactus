@@ -12,7 +12,7 @@ function getStripeEnvVar(key: string, productName: string): string | undefined {
   return value;
 }
 
-export const SHOP_SIZES = ["S", "M", "L"] as const;
+export const SHOP_SIZES = ["XS", "S", "M", "L", "XL"] as const;
 
 export type ShopSize = (typeof SHOP_SIZES)[number];
 
@@ -24,7 +24,7 @@ export type ShopProduct = {
   price: string;
   originalPrice?: string;
   priceInCents: number;
-  stripePriceId?: string;
+  stripePriceIds?: Record<string, string>;
   sizes?: readonly ShopSize[];
   galleryImages?: readonly GalleryImage[];
 };
@@ -39,10 +39,28 @@ export const SHOP_PRODUCTS: readonly ShopProduct[] = [
     price: "$459",
     originalPrice: "$500",
     priceInCents: 45900,
-    stripePriceId: getStripeEnvVar(
-      "NEXT_PUBLIC_STRIPE_PRICE_JACKET",
-      "Codec Jacket"
-    ),
+    stripePriceIds: {
+      XS: getStripeEnvVar(
+        "NEXT_PUBLIC_STRIPE_PRICE_JACKET_XS",
+        "Codec Jacket XS"
+      ),
+      S: getStripeEnvVar(
+        "NEXT_PUBLIC_STRIPE_PRICE_JACKET_S",
+        "Codec Jacket S"
+      ),
+      M: getStripeEnvVar(
+        "NEXT_PUBLIC_STRIPE_PRICE_JACKET_M",
+        "Codec Jacket M"
+      ),
+      L: getStripeEnvVar(
+        "NEXT_PUBLIC_STRIPE_PRICE_JACKET_L",
+        "Codec Jacket L"
+      ),
+      XL: getStripeEnvVar(
+        "NEXT_PUBLIC_STRIPE_PRICE_JACKET_XL",
+        "Codec Jacket XL"
+      ),
+    } as Record<string, string>,
     sizes: SHOP_SIZES,
     galleryImages: [
       {
@@ -79,10 +97,28 @@ export const SHOP_PRODUCTS: readonly ShopProduct[] = [
     price: "$459",
     originalPrice: "$500",
     priceInCents: 45900,
-    stripePriceId: getStripeEnvVar(
-      "NEXT_PUBLIC_STRIPE_PRICE_VEST",
-      "Codec Vest"
-    ),
+    stripePriceIds: {
+      XS: getStripeEnvVar(
+        "NEXT_PUBLIC_STRIPE_PRICE_VEST_XS",
+        "Codec Vest XS"
+      ),
+      S: getStripeEnvVar(
+        "NEXT_PUBLIC_STRIPE_PRICE_VEST_S",
+        "Codec Vest S"
+      ),
+      M: getStripeEnvVar(
+        "NEXT_PUBLIC_STRIPE_PRICE_VEST_M",
+        "Codec Vest M"
+      ),
+      L: getStripeEnvVar(
+        "NEXT_PUBLIC_STRIPE_PRICE_VEST_L",
+        "Codec Vest L"
+      ),
+      XL: getStripeEnvVar(
+        "NEXT_PUBLIC_STRIPE_PRICE_VEST_XL",
+        "Codec Vest XL"
+      ),
+    } as Record<string, string>,
     sizes: SHOP_SIZES,
     galleryImages: [
       {

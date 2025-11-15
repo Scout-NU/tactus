@@ -164,9 +164,9 @@ export default function JacketProductPage() {
             {/* Size Selection */}
             <div className="flex flex-col gap-3">
               <p className="text-[15px] font-light text-[#05365f]">
-                Size: <span className="font-bold">{selectedSize === "S" ? "Small" : selectedSize === "M" ? "Medium" : "Large"}</span>
+                Size: <span className="font-bold">{selectedSize}</span>
               </p>
-              <div className="flex items-end gap-3">
+              <div className="flex flex-col sm:flex-row items-start sm:items-end gap-3">
                 <SizeSelector
                   sizes={SHOP_SIZES}
                   selected={selectedSize}
@@ -174,7 +174,7 @@ export default function JacketProductPage() {
                 />
                 <button
                   onClick={() => setShowSizeGuide(true)}
-                  className="text-[15px] text-[#05365f] underline hover:no-underline"
+                  className="text-[15px] text-[#05365f] underline hover:no-underline whitespace-nowrap"
                 >
                   View Size Chart
                 </button>
@@ -258,7 +258,7 @@ export default function JacketProductPage() {
                     {expandedSpec === "size-chart" && (
                       <div className="px-6 pb-6">
                         <p className="text-[15px] text-[#05365f] leading-relaxed">
-                          Our jackets are available in sizes S through L. Please refer to the measurements below or click &quot;View Size Chart&quot; above for detailed sizing information.
+                          Our jackets are available in sizes XS through XL. Please refer to the measurements below or click &quot;View Size Chart&quot; above for detailed sizing information.
                         </p>
                       </div>
                     )}
@@ -472,103 +472,103 @@ export default function JacketProductPage() {
           <div className="bg-white rounded-[5px] border border-[#d0d0d0] max-w-2xl w-full max-h-[90vh] overflow-y-auto relative">
             <button
               onClick={() => setShowSizeGuide(false)}
-              className="absolute top-4 right-4 text-[#05365f] hover:text-[#063d6f] transition"
+              className="sticky top-4 float-right mr-4 mt-4 text-[#05365f] hover:text-[#063d6f] transition z-10"
               aria-label="Close size guide"
             >
               <X className="w-6 h-6" />
             </button>
             
-            <div className="p-8">
-              <h2 className="text-[#05365f] text-[20px] font-bold text-center mb-6">
+            <div className="p-4 sm:p-8">
+              <h2 className="text-[#05365f] text-[18px] sm:text-[20px] font-bold text-center mb-4 sm:mb-6">
                 Jacket
               </h2>
               
               <div className="overflow-x-auto">
-                <table className="w-full border-collapse">
+                <table className="w-full border-collapse min-w-[400px]">
                   <thead>
                     <tr>
-                      <th className="border border-[#cccccc] bg-white px-4 py-3 text-[14px] font-bold text-[#05365f] text-center">
+                      <th className="border border-[#cccccc] bg-white px-2 sm:px-4 py-2 sm:py-3 text-[12px] sm:text-[14px] font-bold text-[#05365f] text-center">
                         SIZE
                       </th>
-                      <th className="border border-[#cccccc] bg-white px-4 py-3 text-[14px] font-bold text-[#05365f] text-center">
+                      <th className="border border-[#cccccc] bg-white px-2 sm:px-4 py-2 sm:py-3 text-[12px] sm:text-[14px] font-bold text-[#05365f] text-center">
                         LENGTH
                       </th>
-                      <th className="border border-[#cccccc] bg-white px-4 py-3 text-[14px] font-bold text-[#05365f] text-center">
+                      <th className="border border-[#cccccc] bg-white px-2 sm:px-4 py-2 sm:py-3 text-[12px] sm:text-[14px] font-bold text-[#05365f] text-center">
                         CHEST WIDTH
                       </th>
-                      <th className="border border-[#cccccc] bg-white px-4 py-3 text-[14px] font-bold text-[#05365f] text-center">
+                      <th className="border border-[#cccccc] bg-white px-2 sm:px-4 py-2 sm:py-3 text-[12px] sm:text-[14px] font-bold text-[#05365f] text-center">
                         SHOULDER WIDTH
                       </th>
                     </tr>
                   </thead>
                   <tbody>
                     <tr>
-                      <td className="border border-[#cccccc] px-4 py-3 text-[14px] font-bold text-[#05365f] text-center">
+                      <td className="border border-[#cccccc] px-2 sm:px-4 py-2 sm:py-3 text-[12px] sm:text-[14px] font-bold text-[#05365f] text-center">
                         XS
                       </td>
-                      <td className="border border-[#cccccc] px-4 py-3 text-[14px] font-normal text-[#05365f] text-center">
+                      <td className="border border-[#cccccc] px-2 sm:px-4 py-2 sm:py-3 text-[12px] sm:text-[14px] font-normal text-[#05365f] text-center">
                         56
                       </td>
-                      <td className="border border-[#cccccc] px-4 py-3 text-[14px] font-normal text-[#05365f] text-center">
+                      <td className="border border-[#cccccc] px-2 sm:px-4 py-2 sm:py-3 text-[12px] sm:text-[14px] font-normal text-[#05365f] text-center">
                         56
                       </td>
-                      <td className="border border-[#cccccc] px-4 py-3 text-[14px] font-normal text-[#05365f] text-center">
+                      <td className="border border-[#cccccc] px-2 sm:px-4 py-2 sm:py-3 text-[12px] sm:text-[14px] font-normal text-[#05365f] text-center">
                         56
                       </td>
                     </tr>
                     <tr>
-                      <td className="border border-[#cccccc] px-4 py-3 text-[14px] font-bold text-[#05365f] text-center">
+                      <td className="border border-[#cccccc] px-2 sm:px-4 py-2 sm:py-3 text-[12px] sm:text-[14px] font-bold text-[#05365f] text-center">
                         S
                       </td>
-                      <td className="border border-[#cccccc] px-4 py-3 text-[14px] font-normal text-[#05365f] text-center">
+                      <td className="border border-[#cccccc] px-2 sm:px-4 py-2 sm:py-3 text-[12px] sm:text-[14px] font-normal text-[#05365f] text-center">
                         62
                       </td>
-                      <td className="border border-[#cccccc] px-4 py-3 text-[14px] font-normal text-[#05365f] text-center">
+                      <td className="border border-[#cccccc] px-2 sm:px-4 py-2 sm:py-3 text-[12px] sm:text-[14px] font-normal text-[#05365f] text-center">
                         62
                       </td>
-                      <td className="border border-[#cccccc] px-4 py-3 text-[14px] font-normal text-[#05365f] text-center">
+                      <td className="border border-[#cccccc] px-2 sm:px-4 py-2 sm:py-3 text-[12px] sm:text-[14px] font-normal text-[#05365f] text-center">
                         62
                       </td>
                     </tr>
                     <tr>
-                      <td className="border border-[#cccccc] px-4 py-3 text-[14px] font-bold text-[#05365f] text-center">
+                      <td className="border border-[#cccccc] px-2 sm:px-4 py-2 sm:py-3 text-[12px] sm:text-[14px] font-bold text-[#05365f] text-center">
                         M
                       </td>
-                      <td className="border border-[#cccccc] px-4 py-3 text-[14px] font-normal text-[#05365f] text-center">
+                      <td className="border border-[#cccccc] px-2 sm:px-4 py-2 sm:py-3 text-[12px] sm:text-[14px] font-normal text-[#05365f] text-center">
                         68
                       </td>
-                      <td className="border border-[#cccccc] px-4 py-3 text-[14px] font-normal text-[#05365f] text-center">
+                      <td className="border border-[#cccccc] px-2 sm:px-4 py-2 sm:py-3 text-[12px] sm:text-[14px] font-normal text-[#05365f] text-center">
                         68
                       </td>
-                      <td className="border border-[#cccccc] px-4 py-3 text-[14px] font-normal text-[#05365f] text-center">
+                      <td className="border border-[#cccccc] px-2 sm:px-4 py-2 sm:py-3 text-[12px] sm:text-[14px] font-normal text-[#05365f] text-center">
                         68
                       </td>
                     </tr>
                     <tr>
-                      <td className="border border-[#cccccc] px-4 py-3 text-[14px] font-bold text-[#05365f] text-center">
+                      <td className="border border-[#cccccc] px-2 sm:px-4 py-2 sm:py-3 text-[12px] sm:text-[14px] font-bold text-[#05365f] text-center">
                         L
                       </td>
-                      <td className="border border-[#cccccc] px-4 py-3 text-[14px] font-normal text-[#05365f] text-center">
+                      <td className="border border-[#cccccc] px-2 sm:px-4 py-2 sm:py-3 text-[12px] sm:text-[14px] font-normal text-[#05365f] text-center">
                         74
                       </td>
-                      <td className="border border-[#cccccc] px-4 py-3 text-[14px] font-normal text-[#05365f] text-center">
+                      <td className="border border-[#cccccc] px-2 sm:px-4 py-2 sm:py-3 text-[12px] sm:text-[14px] font-normal text-[#05365f] text-center">
                         74
                       </td>
-                      <td className="border border-[#cccccc] px-4 py-3 text-[14px] font-normal text-[#05365f] text-center">
+                      <td className="border border-[#cccccc] px-2 sm:px-4 py-2 sm:py-3 text-[12px] sm:text-[14px] font-normal text-[#05365f] text-center">
                         74
                       </td>
                     </tr>
                     <tr>
-                      <td className="border border-[#cccccc] px-4 py-3 text-[14px] font-bold text-[#05365f] text-center">
+                      <td className="border border-[#cccccc] px-2 sm:px-4 py-2 sm:py-3 text-[12px] sm:text-[14px] font-bold text-[#05365f] text-center">
                         XL
                       </td>
-                      <td className="border border-[#cccccc] px-4 py-3 text-[14px] font-normal text-[#05365f] text-center">
+                      <td className="border border-[#cccccc] px-2 sm:px-4 py-2 sm:py-3 text-[12px] sm:text-[14px] font-normal text-[#05365f] text-center">
                         80
                       </td>
-                      <td className="border border-[#cccccc] px-4 py-3 text-[14px] font-normal text-[#05365f] text-center">
+                      <td className="border border-[#cccccc] px-2 sm:px-4 py-2 sm:py-3 text-[12px] sm:text-[14px] font-normal text-[#05365f] text-center">
                         80
                       </td>
-                      <td className="border border-[#cccccc] px-4 py-3 text-[14px] font-normal text-[#05365f] text-center">
+                      <td className="border border-[#cccccc] px-2 sm:px-4 py-2 sm:py-3 text-[12px] sm:text-[14px] font-normal text-[#05365f] text-center">
                         80
                       </td>
                     </tr>
@@ -576,7 +576,7 @@ export default function JacketProductPage() {
                 </table>
               </div>
               
-              <p className="text-[13px] text-[#666] text-center mt-4">
+              <p className="text-[12px] sm:text-[13px] text-[#666] text-center mt-4">
                 All measurements are in centimeters
               </p>
             </div>
