@@ -41,13 +41,16 @@ export default function VestProductPage() {
   const handleAddToCart = () => {
     if (!product) return;
     
+    // Select the correct Price ID based on the selected size
+    const stripePriceId = product.stripePriceIds?.[selectedSize];
+    
     addToCart({
       productId: product.id,
       title: product.title,
       price: product.priceInCents,
       size: selectedSize,
       image: carouselImages[0].src,
-      stripePriceId: product.stripePriceId,
+      stripePriceId,
     });
 
     // Show feedback notification
