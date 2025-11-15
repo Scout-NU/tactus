@@ -1,17 +1,6 @@
 import type { ProductGalleryVariant } from "@/app/components/shop/ProductGallery";
 import type { GalleryImage } from "@/app/components/shop/GalleryPlaceholder";
 
-// Validate and retrieve environment variables
-function getStripeEnvVar(key: string, productName: string): string | undefined {
-  const value = process.env[key];
-  if (!value) {
-    console.warn(
-      `Warning: ${key} is not set. Stripe checkout for ${productName} may not work.`
-    );
-  }
-  return value;
-}
-
 export const SHOP_SIZES = ["XS", "S", "M", "L", "XL"] as const;
 
 export type ShopSize = (typeof SHOP_SIZES)[number];
@@ -40,26 +29,11 @@ export const SHOP_PRODUCTS: readonly ShopProduct[] = [
     originalPrice: "$500",
     priceInCents: 45900,
     stripePriceIds: {
-      XS: getStripeEnvVar(
-        "NEXT_PUBLIC_STRIPE_PRICE_JACKET_XS",
-        "Codec Jacket XS"
-      ),
-      S: getStripeEnvVar(
-        "NEXT_PUBLIC_STRIPE_PRICE_JACKET_S",
-        "Codec Jacket S"
-      ),
-      M: getStripeEnvVar(
-        "NEXT_PUBLIC_STRIPE_PRICE_JACKET_M",
-        "Codec Jacket M"
-      ),
-      L: getStripeEnvVar(
-        "NEXT_PUBLIC_STRIPE_PRICE_JACKET_L",
-        "Codec Jacket L"
-      ),
-      XL: getStripeEnvVar(
-        "NEXT_PUBLIC_STRIPE_PRICE_JACKET_XL",
-        "Codec Jacket XL"
-      ),
+      XS: process.env.NEXT_PUBLIC_STRIPE_PRICE_JACKET_XS,
+      S: process.env.NEXT_PUBLIC_STRIPE_PRICE_JACKET_S,
+      M: process.env.NEXT_PUBLIC_STRIPE_PRICE_JACKET_M,
+      L: process.env.NEXT_PUBLIC_STRIPE_PRICE_JACKET_L,
+      XL: process.env.NEXT_PUBLIC_STRIPE_PRICE_JACKET_XL,
     } as Record<string, string>,
     sizes: SHOP_SIZES,
     galleryImages: [
@@ -98,26 +72,11 @@ export const SHOP_PRODUCTS: readonly ShopProduct[] = [
     originalPrice: "$500",
     priceInCents: 45900,
     stripePriceIds: {
-      XS: getStripeEnvVar(
-        "NEXT_PUBLIC_STRIPE_PRICE_VEST_XS",
-        "Codec Vest XS"
-      ),
-      S: getStripeEnvVar(
-        "NEXT_PUBLIC_STRIPE_PRICE_VEST_S",
-        "Codec Vest S"
-      ),
-      M: getStripeEnvVar(
-        "NEXT_PUBLIC_STRIPE_PRICE_VEST_M",
-        "Codec Vest M"
-      ),
-      L: getStripeEnvVar(
-        "NEXT_PUBLIC_STRIPE_PRICE_VEST_L",
-        "Codec Vest L"
-      ),
-      XL: getStripeEnvVar(
-        "NEXT_PUBLIC_STRIPE_PRICE_VEST_XL",
-        "Codec Vest XL"
-      ),
+      XS: process.env.NEXT_PUBLIC_STRIPE_PRICE_VEST_XS,
+      S: process.env.NEXT_PUBLIC_STRIPE_PRICE_VEST_S,
+      M: process.env.NEXT_PUBLIC_STRIPE_PRICE_VEST_M,
+      L: process.env.NEXT_PUBLIC_STRIPE_PRICE_VEST_L,
+      XL: process.env.NEXT_PUBLIC_STRIPE_PRICE_VEST_XL,
     } as Record<string, string>,
     sizes: SHOP_SIZES,
     galleryImages: [

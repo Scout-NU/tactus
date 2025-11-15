@@ -135,6 +135,13 @@ export function QuickAddModal({
       // Select the correct Price ID based on the selected size
       const stripePriceId = stripePriceIds?.[selectedSize];
       
+      // Debug logging
+      console.log("🔍 Quick Add Modal - Add to Cart Debug:");
+      console.log("  Selected Size:", selectedSize);
+      console.log("  All stripePriceIds:", stripePriceIds);
+      console.log("  Selected stripePriceId:", stripePriceId);
+      console.log("  Product title:", title);
+      
       addToCart({
         productId,
         title,

@@ -415,7 +415,7 @@ export default function JacketProductPage() {
                 to match your<br />
                 lifestyle
               </p>
-            </div>
+          </div>
 
             {/* Gradient Card with Waveform */}
             <div 
