@@ -16,7 +16,7 @@ export function SizeSelector<Size extends string>({
   className,
 }: SizeSelectorProps<Size>) {
   return (
-    <div className={cn("flex gap-4", className)}>
+    <div className={cn("flex gap-2 md:gap-4 flex-wrap", className)}>
       {sizes.map((size) => {
         const isSelected = selected === size;
 
@@ -28,7 +28,7 @@ export function SizeSelector<Size extends string>({
             aria-label={`Select size ${size}`}
             onClick={() => onSelect?.(size)}
             className={cn(
-              "font-body flex h-[53px] w-[76px] items-center justify-center rounded-[5px] border text-[19px] font-light text-[#05365f] transition",
+              "font-body flex h-[53px] w-[60px] sm:w-[70px] md:w-[76px] items-center justify-center rounded-[5px] border text-[17px] md:text-[19px] font-light text-[#05365f] transition",
               "hover:border-[#f4c592] focus-visible:outline-none focus-visible:ring focus-visible:ring-[#05365f]/30",
               isSelected 
                 ? "bg-[#f8eddb] border-[#f4c592]" 

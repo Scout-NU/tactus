@@ -75,7 +75,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
         return updatedItems;
       } else {
         // New item, add to cart
-        const { quantity, ...itemWithoutQuantity } = newItem;
+        const { quantity: _, ...itemWithoutQuantity } = newItem;
         return [...prevItems, { ...itemWithoutQuantity, quantity: quantityToAdd }];
       }
     });

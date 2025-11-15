@@ -15,7 +15,7 @@ type QuickAddModalProps = {
   price: string;
   originalPrice?: string;
   priceInCents: number;
-  stripePriceId?: string;
+  stripePriceIds?: Record<string, string>;
   sizes: readonly string[];
   galleryImages?: readonly GalleryImage[];
 };
@@ -29,7 +29,7 @@ export function QuickAddModal({
   price,
   originalPrice,
   priceInCents,
-  stripePriceId,
+  stripePriceIds,
   sizes,
   galleryImages = [],
 }: QuickAddModalProps) {
@@ -132,6 +132,16 @@ export function QuickAddModal({
     setIsAdding(true);
     try {
       const image = galleryImages[0];
+      // Select the correct Price ID based on the selected size
+      const stripePriceId = stripePriceIds?.[selectedSize];
+      
+      // Debug logging
+      console.log("🔍 Quick Add Modal - Add to Cart Debug:");
+      console.log("  Selected Size:", selectedSize);
+      console.log("  All stripePriceIds:", stripePriceIds);
+      console.log("  Selected stripePriceId:", stripePriceId);
+      console.log("  Product title:", title);
+      
       addToCart({
         productId,
         title,
@@ -187,7 +197,7 @@ export function QuickAddModal({
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4"
+      className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-2 sm:p-4"
       onClick={handleBackdropClick}
       role="dialog"
       aria-modal="true"
@@ -195,7 +205,7 @@ export function QuickAddModal({
     >
       <div
         ref={modalRef}
-        className="relative flex h-[600px] w-full max-w-5xl overflow-hidden rounded-2xl bg-white shadow-2xl"
+        className="relative flex flex-col md:flex-row h-[90vh] md:h-[600px] w-full max-w-5xl overflow-hidden rounded-2xl bg-white shadow-2xl"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Close Button */}
@@ -208,9 +218,9 @@ export function QuickAddModal({
         </button>
 
         {/* Left Side - Image Carousel */}
-        <div className="relative flex w-1/2 flex-col bg-gray-100 p-8">
+        <div className="relative flex w-full md:w-1/2 flex-col bg-gray-100 p-4 md:p-8">
           {/* Main Image */}
-          <div className="relative mb-4 flex h-[450px] flex-1 items-center justify-center overflow-hidden">
+          <div className="relative mb-4 flex h-[250px] md:h-[450px] flex-1 items-center justify-center overflow-hidden">
             {currentImage ? (
               <div className="relative h-full w-full">
                 <Image
@@ -250,12 +260,12 @@ export function QuickAddModal({
 
           {/* Thumbnail Navigation */}
           {galleryImages.length > 1 && (
-            <div className="flex gap-2 overflow-x-auto">
+            <div className="flex gap-2 overflow-x-auto pb-2">
               {galleryImages.map((image, index) => (
                 <button
                   key={index}
                   onClick={() => setCurrentImageIndex(index)}
-                  className={`relative h-20 w-20 flex-shrink-0 overflow-hidden rounded-lg border-2 transition ${
+                  className={`relative h-16 w-16 md:h-20 md:w-20 flex-shrink-0 overflow-hidden rounded-lg border-2 transition ${
                     index === currentImageIndex
                       ? "border-[#05365f]"
                       : "border-transparent hover:border-gray-300"
@@ -274,51 +284,51 @@ export function QuickAddModal({
         </div>
 
         {/* Right Side - Product Details */}
-        <div className="flex w-1/2 flex-col overflow-y-auto p-8">
+        <div className="flex w-full md:w-1/2 flex-col overflow-y-auto p-4 md:p-8">
           {/* Product Title */}
           <h2
             id="modal-title"
-            className="font-heading mb-4 text-3xl font-bold uppercase text-[#05365f]"
+            className="font-heading mb-2 md:mb-4 text-2xl md:text-3xl font-bold uppercase text-[#05365f]"
           >
             {title}
           </h2>
 
           {/* Description */}
-          <p className="font-body mb-6 text-sm leading-relaxed text-gray-600">
+          <p className="font-body mb-4 md:mb-6 text-sm leading-relaxed text-gray-600">
             {description}
           </p>
 
           {/* Price */}
-          <div className="mb-6 flex items-center gap-3">
+          <div className="mb-4 md:mb-6 flex items-center gap-2 md:gap-3">
             {originalPrice && (
-              <span className="font-body text-2xl font-semibold text-gray-400 line-through">
+              <span className="font-body text-xl md:text-2xl font-semibold text-gray-400 line-through">
                 {originalPrice}
               </span>
             )}
-            <span className="font-body text-3xl font-semibold text-[#FF6B4A]">
+            <span className="font-body text-2xl md:text-3xl font-semibold text-[#FF6B4A]">
               {price}
             </span>
-            <span className="font-body text-sm text-gray-500">
+            <span className="font-body text-xs md:text-sm text-gray-500">
               shipping not included
             </span>
           </div>
 
           {/* Product Label */}
-          <p className="font-body mb-6 text-sm text-gray-600">
+          <p className="font-body mb-4 md:mb-6 text-sm text-gray-600">
             Product: {title}
           </p>
 
           {/* Size Selection */}
-          <div className="mb-6">
+          <div className="mb-4 md:mb-6">
             <p className="font-body mb-3 text-sm font-medium text-[#05365f]">
               Size
             </p>
-            <div className="flex gap-3">
+            <div className="flex flex-wrap gap-2">
               {sizes.map((size) => (
                 <button
                   key={size}
                   onClick={() => setSelectedSize(size)}
-                  className={`font-body flex h-12 w-16 items-center justify-center rounded-lg border-2 text-base font-medium transition ${
+                  className={`font-body flex h-12 w-14 sm:w-16 items-center justify-center rounded-lg border-2 text-base font-medium transition ${
                     selectedSize === size
                       ? "border-[#05365f] bg-[#05365f] text-white"
                       : "border-gray-300 text-gray-700 hover:border-[#05365f]"
@@ -331,7 +341,7 @@ export function QuickAddModal({
           </div>
 
           {/* Quantity Selection */}
-          <div className="mb-8">
+          <div className="mb-4 md:mb-8">
             <p className="font-body mb-3 text-sm font-medium text-[#05365f]">
               Quantity
             </p>
@@ -365,7 +375,7 @@ export function QuickAddModal({
           <button
             onClick={handleBuyNow}
             disabled={isAdding}
-            className="font-body w-full rounded-lg bg-[#05365f] py-4 text-lg font-semibold text-white transition hover:bg-[#042a48] focus:outline-none focus:ring-2 focus:ring-[#05365f] focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed"
+            className="font-body w-full rounded-lg bg-[#05365f] py-3 md:py-4 text-base md:text-lg font-semibold text-white transition hover:bg-[#042a48] focus:outline-none focus:ring-2 focus:ring-[#05365f] focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed"
           >
             {isAdding ? "Adding..." : "Add to Cart"}
           </button>

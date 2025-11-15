@@ -71,6 +71,7 @@ export async function POST(req: NextRequest) {
       mode: "payment",
       success_url: `${req.headers.get("origin")}/shop/success?session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: `${req.headers.get("origin")}/shop`,
+      allow_promotion_codes: true,
       shipping_address_collection: {
         allowed_countries: ["US", "CA"],
       },

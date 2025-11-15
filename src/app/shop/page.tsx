@@ -42,7 +42,7 @@ export default function ShopPage() {
             price={product.price}
             originalPrice={product.originalPrice}
             priceInCents={product.priceInCents}
-            stripePriceId={product.stripePriceId}
+            stripePriceIds={product.stripePriceIds}
             galleryVariant={product.galleryVariant}
             sizes={product.sizes ?? SHOP_SIZES}
             galleryImages={product.galleryImages}
