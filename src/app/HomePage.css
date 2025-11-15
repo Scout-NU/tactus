@@ -383,9 +383,10 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  border-radius: 1.965px;
-  background: #f1f1f1;
+  border-radius: 8px;
+    background: transparent;
   overflow: hidden;
+  padding: 15px;
   min-width: 120px;
 }
 
