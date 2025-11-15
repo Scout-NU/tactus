@@ -80,7 +80,7 @@ export default function CommunityPage() {
         >
           Connect with others who are experiencing music in revolutionary new
           ways. Share your stories, discover events, and be part of a movement
-          that's making music accessible to everyone.
+          that&apos;s making music accessible to everyone.
         </p>
 
         <div
