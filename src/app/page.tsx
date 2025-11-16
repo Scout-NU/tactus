@@ -206,7 +206,7 @@ export default function Home() {
                       >
                         $500
                       </p>
-                      <p>$469</p>
+                      <p>$459</p>
                     </>
                   ),
                   image: "/assets/shop/Jacket.png",
@@ -224,7 +224,7 @@ export default function Home() {
                       >
                         $500
                       </p>
-                      <p>$469</p>
+                      <p>$459</p>
                     </>
                   ),
                   image: "/assets/shop/vest.png",
