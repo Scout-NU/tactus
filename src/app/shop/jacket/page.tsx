@@ -502,6 +502,12 @@ export default function JacketProductPage() {
                       <th className="border border-[#cccccc] bg-white px-2 sm:px-4 py-2 sm:py-3 text-[12px] sm:text-[14px] font-bold text-[#05365f] text-center">
                         SHOULDER WIDTH
                       </th>
+                      <th className="border border-[#cccccc] bg-white px-2 sm:px-4 py-2 sm:py-3 text-[12px] sm:text-[14px] font-bold text-[#05365f] text-center">
+                        BOTTOM
+                      </th>
+                      <th className="border border-[#cccccc] bg-white px-2 sm:px-4 py-2 sm:py-3 text-[12px] sm:text-[14px] font-bold text-[#05365f] text-center">
+                        SLEEVE LENGTH
+                      </th>
                     </tr>
                   </thead>
                   <tbody>
@@ -513,10 +519,16 @@ export default function JacketProductPage() {
                         56
                       </td>
                       <td className="border border-[#cccccc] px-2 sm:px-4 py-2 sm:py-3 text-[12px] sm:text-[14px] font-normal text-[#05365f] text-center">
-                        56
+                        91
                       </td>
                       <td className="border border-[#cccccc] px-2 sm:px-4 py-2 sm:py-3 text-[12px] sm:text-[14px] font-normal text-[#05365f] text-center">
-                        56
+                        40
+                      </td>
+                      <td className="border border-[#cccccc] px-2 sm:px-4 py-2 sm:py-3 text-[12px] sm:text-[14px] font-normal text-[#05365f] text-center">
+                        80
+                      </td>
+                      <td className="border border-[#cccccc] px-2 sm:px-4 py-2 sm:py-3 text-[12px] sm:text-[14px] font-normal text-[#05365f] text-center">
+                        61
                       </td>
                     </tr>
                     <tr>
@@ -527,10 +539,16 @@ export default function JacketProductPage() {
                         62
                       </td>
                       <td className="border border-[#cccccc] px-2 sm:px-4 py-2 sm:py-3 text-[12px] sm:text-[14px] font-normal text-[#05365f] text-center">
-                        62
+                        98.5
                       </td>
                       <td className="border border-[#cccccc] px-2 sm:px-4 py-2 sm:py-3 text-[12px] sm:text-[14px] font-normal text-[#05365f] text-center">
-                        62
+                        43
+                      </td>
+                      <td className="border border-[#cccccc] px-2 sm:px-4 py-2 sm:py-3 text-[12px] sm:text-[14px] font-normal text-[#05365f] text-center">
+                        86
+                      </td>
+                      <td className="border border-[#cccccc] px-2 sm:px-4 py-2 sm:py-3 text-[12px] sm:text-[14px] font-normal text-[#05365f] text-center">
+                        62.5
                       </td>
                     </tr>
                     <tr>
@@ -541,10 +559,16 @@ export default function JacketProductPage() {
                         68
                       </td>
                       <td className="border border-[#cccccc] px-2 sm:px-4 py-2 sm:py-3 text-[12px] sm:text-[14px] font-normal text-[#05365f] text-center">
-                        68
+                        106
                       </td>
                       <td className="border border-[#cccccc] px-2 sm:px-4 py-2 sm:py-3 text-[12px] sm:text-[14px] font-normal text-[#05365f] text-center">
-                        68
+                        46
+                      </td>
+                      <td className="border border-[#cccccc] px-2 sm:px-4 py-2 sm:py-3 text-[12px] sm:text-[14px] font-normal text-[#05365f] text-center">
+                        92
+                      </td>
+                      <td className="border border-[#cccccc] px-2 sm:px-4 py-2 sm:py-3 text-[12px] sm:text-[14px] font-normal text-[#05365f] text-center">
+                        64
                       </td>
                     </tr>
                     <tr>
@@ -555,10 +579,16 @@ export default function JacketProductPage() {
                         74
                       </td>
                       <td className="border border-[#cccccc] px-2 sm:px-4 py-2 sm:py-3 text-[12px] sm:text-[14px] font-normal text-[#05365f] text-center">
-                        74
+                        115
                       </td>
                       <td className="border border-[#cccccc] px-2 sm:px-4 py-2 sm:py-3 text-[12px] sm:text-[14px] font-normal text-[#05365f] text-center">
-                        74
+                        49
+                      </td>
+                      <td className="border border-[#cccccc] px-2 sm:px-4 py-2 sm:py-3 text-[12px] sm:text-[14px] font-normal text-[#05365f] text-center">
+                        102
+                      </td>
+                      <td className="border border-[#cccccc] px-2 sm:px-4 py-2 sm:py-3 text-[12px] sm:text-[14px] font-normal text-[#05365f] text-center">
+                        65.5
                       </td>
                     </tr>
                     <tr>
@@ -569,10 +599,16 @@ export default function JacketProductPage() {
                         80
                       </td>
                       <td className="border border-[#cccccc] px-2 sm:px-4 py-2 sm:py-3 text-[12px] sm:text-[14px] font-normal text-[#05365f] text-center">
-                        80
+                        124
                       </td>
                       <td className="border border-[#cccccc] px-2 sm:px-4 py-2 sm:py-3 text-[12px] sm:text-[14px] font-normal text-[#05365f] text-center">
-                        80
+                        52
+                      </td>
+                      <td className="border border-[#cccccc] px-2 sm:px-4 py-2 sm:py-3 text-[12px] sm:text-[14px] font-normal text-[#05365f] text-center">
+                        112
+                      </td>
+                      <td className="border border-[#cccccc] px-2 sm:px-4 py-2 sm:py-3 text-[12px] sm:text-[14px] font-normal text-[#05365f] text-center">
+                        67
                       </td>
                     </tr>
                   </tbody>
