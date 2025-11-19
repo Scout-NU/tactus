@@ -502,6 +502,9 @@ export default function VestProductPage() {
                       <th className="border border-[#cccccc] bg-white px-2 sm:px-4 py-2 sm:py-3 text-[12px] sm:text-[14px] font-bold text-[#05365f] text-center">
                         SHOULDER WIDTH
                       </th>
+                      <th className="border border-[#cccccc] bg-white px-2 sm:px-4 py-2 sm:py-3 text-[12px] sm:text-[14px] font-bold text-[#05365f] text-center">
+                        BOTTOM
+                      </th>
                     </tr>
                   </thead>
                   <tbody>
@@ -510,13 +513,16 @@ export default function VestProductPage() {
                         XS
                       </td>
                       <td className="border border-[#cccccc] px-2 sm:px-4 py-2 sm:py-3 text-[12px] sm:text-[14px] font-normal text-[#05365f] text-center">
-                        56
+                        54
                       </td>
                       <td className="border border-[#cccccc] px-2 sm:px-4 py-2 sm:py-3 text-[12px] sm:text-[14px] font-normal text-[#05365f] text-center">
-                        56
+                        87
                       </td>
                       <td className="border border-[#cccccc] px-2 sm:px-4 py-2 sm:py-3 text-[12px] sm:text-[14px] font-normal text-[#05365f] text-center">
-                        56
+                        40.5
+                      </td>
+                      <td className="border border-[#cccccc] px-2 sm:px-4 py-2 sm:py-3 text-[12px] sm:text-[14px] font-normal text-[#05365f] text-center">
+                        79
                       </td>
                     </tr>
                     <tr>
@@ -524,13 +530,16 @@ export default function VestProductPage() {
                         S
                       </td>
                       <td className="border border-[#cccccc] px-2 sm:px-4 py-2 sm:py-3 text-[12px] sm:text-[14px] font-normal text-[#05365f] text-center">
-                        62
+                        60
                       </td>
                       <td className="border border-[#cccccc] px-2 sm:px-4 py-2 sm:py-3 text-[12px] sm:text-[14px] font-normal text-[#05365f] text-center">
-                        62
+                        94.5
                       </td>
                       <td className="border border-[#cccccc] px-2 sm:px-4 py-2 sm:py-3 text-[12px] sm:text-[14px] font-normal text-[#05365f] text-center">
-                        62
+                        43.5
+                      </td>
+                      <td className="border border-[#cccccc] px-2 sm:px-4 py-2 sm:py-3 text-[12px] sm:text-[14px] font-normal text-[#05365f] text-center">
+                        85
                       </td>
                     </tr>
                     <tr>
@@ -538,13 +547,16 @@ export default function VestProductPage() {
                         M
                       </td>
                       <td className="border border-[#cccccc] px-2 sm:px-4 py-2 sm:py-3 text-[12px] sm:text-[14px] font-normal text-[#05365f] text-center">
-                        68
+                        66
                       </td>
                       <td className="border border-[#cccccc] px-2 sm:px-4 py-2 sm:py-3 text-[12px] sm:text-[14px] font-normal text-[#05365f] text-center">
-                        68
+                        102
                       </td>
                       <td className="border border-[#cccccc] px-2 sm:px-4 py-2 sm:py-3 text-[12px] sm:text-[14px] font-normal text-[#05365f] text-center">
-                        68
+                        46.5
+                      </td>
+                      <td className="border border-[#cccccc] px-2 sm:px-4 py-2 sm:py-3 text-[12px] sm:text-[14px] font-normal text-[#05365f] text-center">
+                        91
                       </td>
                     </tr>
                     <tr>
@@ -552,13 +564,16 @@ export default function VestProductPage() {
                         L
                       </td>
                       <td className="border border-[#cccccc] px-2 sm:px-4 py-2 sm:py-3 text-[12px] sm:text-[14px] font-normal text-[#05365f] text-center">
-                        74
+                        72
                       </td>
                       <td className="border border-[#cccccc] px-2 sm:px-4 py-2 sm:py-3 text-[12px] sm:text-[14px] font-normal text-[#05365f] text-center">
-                        74
+                        110.5
                       </td>
                       <td className="border border-[#cccccc] px-2 sm:px-4 py-2 sm:py-3 text-[12px] sm:text-[14px] font-normal text-[#05365f] text-center">
-                        74
+                        49.5
+                      </td>
+                      <td className="border border-[#cccccc] px-2 sm:px-4 py-2 sm:py-3 text-[12px] sm:text-[14px] font-normal text-[#05365f] text-center">
+                        99.5
                       </td>
                     </tr>
                     <tr>
@@ -566,13 +581,16 @@ export default function VestProductPage() {
                         XL
                       </td>
                       <td className="border border-[#cccccc] px-2 sm:px-4 py-2 sm:py-3 text-[12px] sm:text-[14px] font-normal text-[#05365f] text-center">
-                        80
+                        78
                       </td>
                       <td className="border border-[#cccccc] px-2 sm:px-4 py-2 sm:py-3 text-[12px] sm:text-[14px] font-normal text-[#05365f] text-center">
-                        80
+                        119
                       </td>
                       <td className="border border-[#cccccc] px-2 sm:px-4 py-2 sm:py-3 text-[12px] sm:text-[14px] font-normal text-[#05365f] text-center">
-                        80
+                        52.5
+                      </td>
+                      <td className="border border-[#cccccc] px-2 sm:px-4 py-2 sm:py-3 text-[12px] sm:text-[14px] font-normal text-[#05365f] text-center">
+                        108
                       </td>
                     </tr>
                   </tbody>
