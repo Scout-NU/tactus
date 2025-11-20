@@ -97,7 +97,13 @@ export default function CustomHeader() {
             color: textColor,
           }}
         >
-          <h1 style={{ color: textColor }}>Tactus</h1>
+          <Image
+            src="/tactus_wavy_logo.gif"
+            alt="Tactus"
+            width={75}
+            height={25}
+            style={{ objectFit: 'contain', }}
+          />
         </Link>
       </div>
 
