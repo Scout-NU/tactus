@@ -86,7 +86,7 @@ export default function ProductPage() {
           </p>
 
           {/* Product Image Container with Feature Dots */}
-          <div className="relative mx-auto mb-5 w-full max-w-[1440px] min-h-[480px] md:min-h-[1000px] mb-[150px] pb-5 md:mb-0 md:min-h-[850px] md:pb-0">
+          <div className="relative mx-auto mb-5 w-full max-w-[1440px] min-h-[380px] md:min-h-[1000px] mb-[150px] pb-5 md:mb-0 md:min-h-[850px] md:pb-0">
             <div className="absolute left-1/2 top-0 z-[5] mb-5 flex w-full -translate-x-1/2 justify-center md:mb-0 md:w-auto md:transform-none md:relative md:left-auto">
               <Image
                 src="/product-home-photo.png"
@@ -173,7 +173,7 @@ export default function ProductPage() {
                 isOpen={isPremiumFabricOpen}
                 onToggle={handleToggleMobilePremiumFabric}
                 position="mobile"
-                dotPosition={{ top: "60%", left: "14%" }}
+                dotPosition={{ top: "60%", left: "16%" }}
               />
 
               <FeaturePopup
@@ -182,7 +182,7 @@ export default function ProductPage() {
                 isOpen={isWirelessOpen}
                 onToggle={handleToggleMobileWireless}
                 position="mobile"
-                dotPosition={{ top: "55%", left: "85%" }}
+                dotPosition={{ top: "55%", left: "78%" }}
               />
 
               <FeaturePopup
@@ -191,7 +191,7 @@ export default function ProductPage() {
                 isOpen={isBatteryOpen}
                 onToggle={handleToggleMobileBattery}
                 position="mobile"
-                dotPosition={{ top: "80%", left: "50%" }}
+                dotPosition={{ top: "70%", left: "50%" }}
               />
             </div>
           </div>
