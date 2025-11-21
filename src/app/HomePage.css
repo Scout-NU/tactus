@@ -745,4 +745,8 @@ body {
     right: 0;
     margin-left: calc(-50vw + 50%);
   }
+
+  .product-info-text {
+    font-size: 55px;
+  }
 }

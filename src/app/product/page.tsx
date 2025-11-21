@@ -198,9 +198,9 @@ export default function ProductPage() {
         </section>
 
         {/* Bottom Section */}
-        <section className="relative mx-auto flex max-w-[1440px] flex-col items-center px-5 pb-[100px] pt-[50px] text-center md:items-start md:px-5 md:pb-[200px] md:pt-[100px] md:text-left">
+        <section className="relative mx-auto flex max-w-[1440px] flex-col items-center px-5 pb-[100px] pt-[50px] text-center md:items-start md:px-5 md:pb-[200px] md:pt-[100px] md:text-left items-center">
           <h2 className="mb-6 max-w-[984px] font-heading text-[28px] font-bold uppercase leading-[110%] text-white md:mb-6 md:ml-[98px] md:text-[64px] md:leading-[100%]">
-            FEEL EVERY BEAT. LIVE EVERY MOMENT.
+            FEEL EVERY BEAT.<br />LIVE EVERY MOMENT.
           </h2>
           <p className="mb-8 max-w-[685px] font-body text-base font-normal leading-[1.5] text-white md:mb-10 md:ml-[98px] md:text-xl md:leading-normal">
             Our patented vibration technology is woven into the fabric, letting
@@ -208,27 +208,26 @@ export default function ProductPage() {
             your day.
           </p>
 
-          <Link 
-            href="/shop" 
+          <Link
+            href="/shop"
             className="ml-0 flex h-12 w-[200px] items-center justify-center rounded-md border border-gray-600 bg-[#95e2e2] font-heading text-base font-normal text-[#05365f] transition-all duration-200 hover:-translate-y-0.5 hover:bg-[#88dde1] hover:shadow-[0_4px_12px_rgba(149,226,226,0.3)] md:ml-[98px] md:h-[40.069px] md:w-[224.385px] md:rounded-[6.411px] md:text-[14.194px]"
           >
             Preorder Now
           </Link>
 
         </section>
-         {/* Hand Holding Device Image */}
-         <div 
-            className="absolute right-0 bottom-[200px] z-[5] hidden md:block md:rotate-180 md:scale-y-[-1]"
-            >
-            <Image
-              src="/holding_tactus.png"
-              alt="Hand holding Tactus device"
-              width={403}
-              height={495}
-              className="!w-[200px] !h-auto md:!w-[403px]"
-              style={{ objectFit: "contain" }}
-            />
-          </div>
+
+        {/* Hand Holding Device Image */}
+        <div className="absolute right-0 bottom-[75px] z-[5] hidden md:block">
+          <Image
+            src="/Finger Holding Battery_Flipped.png"
+            alt="Hand holding Tactus device"
+            width={403}
+            height={495}
+            style={{ objectFit: "contain" }}
+          />
+        </div>
+    
       </div>
     </div>
   );
