@@ -470,7 +470,7 @@ function DontMissABeatSection({ onOpenPopup }: { onOpenPopup: () => void }) {
         </div>
 
         {/* Record image - positioned on the right */}
-        <div className="absolute right-[-235px] top-[100%] hidden h-[966px] w-[969px] -translate-y-1/2 md:block">
+        <div className="absolute right-[-150px] top-[100%] hidden h-[750px] w-[750px] -translate-y-1/2 md:block">
           <Image
             src="/record.png"
             alt="Vinyl record"

@@ -117,35 +117,35 @@ export default function Home() {
                 <Carousel
                   items={[
                     <Image
-                      src={"/carousel-sponsor-images/affya.png"}
+                      src={"/assets/about/sponsor-5.png"}
                       alt="afya"
                       key={1}
                       width={167}
                       height={76}
                     />,
                     <Image
-                      src={"/carousel-sponsor-images/idea-venture.png"}
+                      src={"/assets/about/sponsor-3.png"}
                       alt="idea venture accelerator"
                       key={2}
                       width={168}
                       height={76}
                     />,
                     <Image
-                      src={"/carousel-sponsor-images/mass-challenge.png"}
+                      src={"/assets/about/sponsor-4.png"}
                       alt="mass challenge"
                       key={3}
                       width={92}
                       height={76}
                     />,
                     <Image
-                      src={"/carousel-sponsor-images/sherman-center.png"}
+                      src={"/assets/about/sponsor-2.png"}
                       alt="sherman center"
                       key={4}
                       width={224}
                       height={42}
                     />,
                     <Image
-                      src={"/carousel-sponsor-images/y-startup.png"}
+                      src={"/assets/about/sponsor-1.png"}
                       alt="y startup school"
                       key={5}
                       width={190}

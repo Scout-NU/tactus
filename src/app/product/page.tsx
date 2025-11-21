@@ -198,9 +198,9 @@ export default function ProductPage() {
         </section>
 
         {/* Bottom Section */}
-        <section className="relative mx-auto flex max-w-[1440px] flex-col items-center px-5 pb-[100px] pt-[50px] text-center md:items-start md:px-5 md:pb-[200px] md:pt-[100px] md:text-left">
+        <section className="relative mx-auto flex max-w-[1440px] flex-col items-center px-5 pb-[100px] pt-[50px] text-center md:items-start md:px-5 md:pb-[200px] md:pt-[100px] md:text-left items-center">
           <h2 className="mb-6 max-w-[984px] font-heading text-[28px] font-bold uppercase leading-[110%] text-white md:mb-6 md:ml-[98px] md:text-[64px] md:leading-[100%]">
-            FEEL EVERY BEAT. LIVE EVERY MOMENT.
+            FEEL EVERY BEAT.<br />LIVE EVERY MOMENT.
           </h2>
           <p className="mb-8 max-w-[685px] font-body text-base font-normal leading-[1.5] text-white md:mb-10 md:ml-[98px] md:text-xl md:leading-normal">
             Our patented vibration technology is woven into the fabric, letting
@@ -215,20 +215,23 @@ export default function ProductPage() {
             Preorder Now
           </Link>
 
-        </section>
-         {/* Hand Holding Device Image */}
+
+               {/* Hand Holding Device Image */}
          <div 
-            className="absolute right-0 bottom-[200px] z-[5] hidden md:block md:rotate-180 md:scale-y-[-1]"
+            className="absolute right-[-30] bottom-[75px] z-[5] hidden md:block md:scale-y-[1]"
             >
             <Image
-              src="/holding_tactus.png"
+              src="/Finger Holding Battery_Flipped.png"
               alt="Hand holding Tactus device"
               width={403}
               height={495}
-              className="!w-[200px] !h-auto md:!w-[403px]"
+              // className="!w-[200px] !h-auto md:!w-[403px]"
               style={{ objectFit: "contain" }}
             />
           </div>
+
+        </section>
+    
       </div>
     </div>
   );
