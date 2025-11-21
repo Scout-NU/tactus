@@ -208,29 +208,25 @@ export default function ProductPage() {
             your day.
           </p>
 
-          <Link 
-            href="/shop" 
+          <Link
+            href="/shop"
             className="ml-0 flex h-12 w-[200px] items-center justify-center rounded-md border border-gray-600 bg-[#95e2e2] font-heading text-base font-normal text-[#05365f] transition-all duration-200 hover:-translate-y-0.5 hover:bg-[#88dde1] hover:shadow-[0_4px_12px_rgba(149,226,226,0.3)] md:ml-[98px] md:h-[40.069px] md:w-[224.385px] md:rounded-[6.411px] md:text-[14.194px]"
           >
             Preorder Now
           </Link>
 
-
-               {/* Hand Holding Device Image */}
-         <div 
-            className="absolute right-[-30] bottom-[75px] z-[5] hidden md:block md:scale-y-[1]"
-            >
-            <Image
-              src="/Finger Holding Battery_Flipped.png"
-              alt="Hand holding Tactus device"
-              width={403}
-              height={495}
-              // className="!w-[200px] !h-auto md:!w-[403px]"
-              style={{ objectFit: "contain" }}
-            />
-          </div>
-
         </section>
+
+        {/* Hand Holding Device Image */}
+        <div className="absolute right-0 bottom-[75px] z-[5] hidden md:block">
+          <Image
+            src="/Finger Holding Battery_Flipped.png"
+            alt="Hand holding Tactus device"
+            width={403}
+            height={495}
+            style={{ objectFit: "contain" }}
+          />
+        </div>
     
       </div>
     </div>
