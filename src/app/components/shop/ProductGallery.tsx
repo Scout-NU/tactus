@@ -34,7 +34,7 @@ export function ProductGallery({
           className="rounded-[24px] bg-[#efefef]"
           image={getImage(0)}
         />
-        <div className="flex h-full flex-col gap-4">
+        <div className="hidden h-full flex-col gap-4 lg:flex">
           <div className="grid gap-4 sm:grid-cols-2 lg:flex lg:flex-1 lg:gap-4">
             <GalleryPlaceholder
               aspect="aspect-square lg:aspect-auto lg:h-full"
@@ -65,7 +65,7 @@ export function ProductGallery({
         className="rounded-[24px] bg-[#f4f5f7]"
         image={getImage(0)}
       />
-      <div className="flex h-full flex-col gap-4">
+      <div className="hidden h-full flex-col gap-4 lg:flex">
         <div className="grid gap-4 sm:grid-cols-2 lg:flex lg:flex-1 lg:gap-4">
           <GalleryPlaceholder
             tone="muted"
