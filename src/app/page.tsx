@@ -160,7 +160,7 @@ export default function Home() {
         </div>
         <div
           style={{
-            top: "130vh",
+            top: "150vh",
           }}
           className="wave-pattern-blue first"
         >
@@ -168,12 +168,12 @@ export default function Home() {
             alt="wave pattern"
             src="/wave-in-community.svg"
             fill
-            style={{ objectFit: "cover" }}
+            style={{ objectFit: "cover"}}
           />
         </div>
         <div
           style={{
-            top: "160vh",
+            top: "200vh",
           }}
           className="wave-pattern-blue second"
         >
@@ -319,7 +319,7 @@ export default function Home() {
         </div>
         <div
           style={{
-            top: "310vh",
+            top: "350vh"
           }}
           className="wave-pattern-orange second"
         >
