@@ -22,8 +22,8 @@ This guide will help you set up Stripe for the Tactus shop.
 1. Go to [https://dashboard.stripe.com/products](https://dashboard.stripe.com/products)
 2. Click "Add product"
 3. Fill in the details:
-   - **Name**: TACTUS CODEC JACKET
-   - **Description**: Premium codec jacket with haptic feedback technology
+   - **Name**: TACTUS VIBEWEAR JACKET
+   - **Description**: Premium vibewear jacket with haptic feedback technology
    - **Price**: $459.00 USD (or 45900 cents)
    - **Recurring**: Leave unchecked (one-time payment)
 4. Click "Save product"
@@ -33,8 +33,8 @@ This guide will help you set up Stripe for the Tactus shop.
 
 1. Click "Add product" again
 2. Fill in the details:
-   - **Name**: TACTUS CODEC VEST
-   - **Description**: Premium codec vest with haptic feedback technology
+   - **Name**: TACTUS VIBEWEAR VEST
+   - **Description**: Premium vibewear vest with haptic feedback technology
    - **Price**: $459.00 USD (or 45900 cents)
    - **Recurring**: Leave unchecked (one-time payment)
 3. Click "Save product"

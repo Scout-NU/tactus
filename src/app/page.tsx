@@ -195,7 +195,7 @@ export default function Home() {
             <div className="products-list">
               {[
                 {
-                  name: "CODEC JACKET",
+                  name: "VIBEWEAR JACKET",
                   price: (
                     <>
                       <p
@@ -213,7 +213,7 @@ export default function Home() {
                   route: "/shop/jacket",
                 },
                 {
-                  name: "CODEC VEST",
+                  name: "VIBEWEAR VEST",
                   price: (
                     <>
                       <p

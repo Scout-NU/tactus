@@ -20,8 +20,8 @@ export type ShopProduct = {
 
 export const SHOP_PRODUCTS: readonly ShopProduct[] = [
   {
-    id: "codec-jacket",
-    title: "TACTUS CODEC JACKET",
+    id: "vibewear-jacket",
+    title: "TACTUS VIBEWEAR JACKET",
     description:
       "A lightweight, breathable jacket designed to bring music to motion.",
     galleryVariant: "feature",
@@ -63,8 +63,8 @@ export const SHOP_PRODUCTS: readonly ShopProduct[] = [
     ],
   },
   {
-    id: "codec-vest",
-    title: "TACTUS CODEC VEST",
+    id: "vibewear-vest",
+    title: "TACTUS VIBEWEAR VEST",
     description:
       "The design that started it all. The vest that can be layered for every occasion where you want to feel the music.",
     galleryVariant: "simple",
