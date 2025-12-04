@@ -9,10 +9,10 @@ import { ChevronLeft, ChevronRight, Heart, Bluetooth, Spool, HeartHandshake, Aud
 
 // Image carousel data
 const carouselImages = [
-  { src: "/jacket_details/slide1.png", alt: "Tactus Codec Jacket - Front View" },
-  { src: "/assets/shop/Jacket.png", alt: "Tactus Codec Jacket - Product Shot" },
-  { src: "/jacket_details/slide3.png", alt: "Tactus Codec Jacket - Side View" },
-  { src: "/jacket_details/slide4.png", alt: "Tactus Codec Jacket - Back View" },
+  { src: "/jacket_details/slide1.png", alt: "Tactus Vibewear Jacket - Front View" },
+  { src: "/assets/shop/Jacket.png", alt: "Tactus Vibewear Jacket - Product Shot" },
+  { src: "/jacket_details/slide3.png", alt: "Tactus Vibewear Jacket - Side View" },
+  { src: "/jacket_details/slide4.png", alt: "Tactus Vibewear Jacket - Back View" },
 ];
 
 export default function JacketProductPage() {
@@ -24,7 +24,7 @@ export default function JacketProductPage() {
   const [showAddedToCart, setShowAddedToCart] = useState(false);
   
   const { addToCart } = useCart();
-  const product = SHOP_PRODUCTS.find(p => p.id === "codec-jacket");
+  const product = SHOP_PRODUCTS.find(p => p.id === "vibewear-jacket");
 
   const toggleSpec = (specName: string) => {
     setExpandedSpec(expandedSpec === specName ? null : specName);
@@ -133,7 +133,7 @@ export default function JacketProductPage() {
             {/* Title and Price */}
             <div>
               <h1 className="text-[32px] font-semibold text-[#05365f] mb-2">
-                TACTUS CODEC JACKET
+                TACTUS VIBEWEAR JACKET
               </h1>
               <div className="flex items-center gap-3">
                 <span className="text-[20px] text-[#9e9e9e] line-through">$500</span>
@@ -149,13 +149,13 @@ export default function JacketProductPage() {
             {/* Product Type */}
             <div className="flex flex-col gap-3">
               <p className="text-[15px] font-light text-[#05365f]">
-                Product: <span className="font-bold">Codec Jacket</span>
+                Product: <span className="font-bold">Vibewear Jacket</span>
               </p>
               <div className="flex gap-3">
                 <div className="relative bg-[#f8eddb] border-2 border-[#f4c592] rounded-[5px] w-[97px] h-[97px] p-1">
                   <Image
                     src="/assets/shop/Jacket.png"
-                    alt="Codec Jacket"
+                    alt="Vibewear Jacket"
                     fill
                     className="object-contain rounded-[5px]"
                     sizes="97px"
@@ -224,7 +224,7 @@ export default function JacketProductPage() {
                   About the product
                 </h3>
                 <p className="text-[15px] font-light text-[#05365f] leading-relaxed mb-8">
-                  Each piece is designed with intention from the premium, breathable materials to the lightweight, stretchable fit that moves naturally with you. The Tactus Codec line combines handcrafted design with advanced haptic technology to create a responsive, wearable experience that lets you feel every beat. With seamless Bluetooth connectivity, it syncs effortlessly with your music. Innovation in one refined design.
+                  Each piece is designed with intention from the premium, breathable materials to the lightweight, stretchable fit that moves naturally with you. The Tactus Vibewear line combines handcrafted design with advanced haptic technology to create a responsive, wearable experience that lets you feel every beat. With seamless Bluetooth connectivity, it syncs effortlessly with your music. Innovation in one refined design.
                 </p>
 
                 {/* Feature Icons */}
@@ -246,7 +246,7 @@ export default function JacketProductPage() {
             ) : (
               <div>
                 <h2 className="font-semibold text-[24px] text-[#05365f] mb-8">
-                  TACTUS CODEC JACKET<br />SPECIFICATIONS
+                  TACTUS VIBEWEAR JACKET<br />SPECIFICATIONS
                 </h2>
                 
                 <div className="space-y-4">

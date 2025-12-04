@@ -46,7 +46,7 @@ export function ProductSection<Size extends string = string>({
   // Fallback to hard-coded paths if not provided, but prefer prop
   const resolvedDetailsPath =
     detailsPath ||
-    (productId === "codec-jacket" ? "/shop/jacket" : "/shop/vest");
+    (productId === "vibewear-jacket" ? "/shop/jacket" : "/shop/vest");
 
   return (
     <>

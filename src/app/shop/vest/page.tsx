@@ -9,10 +9,10 @@ import { ChevronLeft, ChevronRight, Heart, Bluetooth, Spool, HeartHandshake, Aud
 
 // Image carousel data
 const carouselImages = [
-  { src: "/assets/shop/shop-vest.png", alt: "Tactus Codec Vest - Front View" },
-  { src: "/assets/shop/vest.png", alt: "Tactus Codec Vest - Product Shot" },
-  { src: "/jacket_details/slide3.png", alt: "Tactus Codec Vest - Side View" },
-  { src: "/jacket_details/slide4.png", alt: "Tactus Codec Vest - Back View" },
+  { src: "/assets/shop/shop-vest.png", alt: "Tactus Vibewear Vest - Front View" },
+  { src: "/assets/shop/vest.png", alt: "Tactus Vibewear Vest - Product Shot" },
+  { src: "/jacket_details/slide3.png", alt: "Tactus Vibewear Vest - Side View" },
+  { src: "/jacket_details/slide4.png", alt: "Tactus Vibewear Vest - Back View" },
 ];
 
 export default function VestProductPage() {
@@ -24,7 +24,7 @@ export default function VestProductPage() {
   const [showAddedToCart, setShowAddedToCart] = useState(false);
   
   const { addToCart } = useCart();
-  const product = SHOP_PRODUCTS.find(p => p.id === "codec-vest");
+  const product = SHOP_PRODUCTS.find(p => p.id === "vibewear-vest");
 
   const toggleSpec = (specName: string) => {
     setExpandedSpec(expandedSpec === specName ? null : specName);
@@ -133,7 +133,7 @@ export default function VestProductPage() {
             {/* Title and Price */}
             <div>
               <h1 className="text-[32px] font-semibold text-[#05365f] mb-2">
-                TACTUS CODEC VEST
+                TACTUS VIBEWEAR VEST
               </h1>
               <div className="flex items-center gap-3">
                 <span className="text-[20px] text-[#9e9e9e] line-through">$500</span>
@@ -149,13 +149,13 @@ export default function VestProductPage() {
             {/* Product Type */}
             <div className="md:flex md:flex-col md:gap-3 hidden">
               <p className="text-[15px] font-light text-[#05365f]">
-                Product: <span className="font-bold">Codec Vest</span>
+                Product: <span className="font-bold">Vibewear Vest</span>
               </p>
               <div className="flex gap-3">
                 <div className="relative bg-[#f8eddb] border-2 border-[#f4c592] rounded-[5px] w-[97px] h-[97px] p-1">
                   <Image
                     src="/assets/shop/vest.png"
-                    alt="Codec Vest"
+                    alt="Vibewear Vest"
                     fill
                     className="object-contain rounded-[5px]"
                     sizes="97px"
@@ -224,7 +224,7 @@ export default function VestProductPage() {
                   About the product
                 </h3>
                 <p className="text-[15px] font-light text-[#05365f] leading-relaxed mb-8">
-                  Each piece is designed with intention from the premium, breathable materials to the lightweight, stretchable fit that moves naturally with you. The Tactus Codec line combines handcrafted design with advanced haptic technology to create a responsive, wearable experience that lets you feel every beat. With seamless Bluetooth connectivity, it syncs effortlessly with your music. Innovation in one refined design.
+                  Each piece is designed with intention from the premium, breathable materials to the lightweight, stretchable fit that moves naturally with you. The Tactus Vibewear line combines handcrafted design with advanced haptic technology to create a responsive, wearable experience that lets you feel every beat. With seamless Bluetooth connectivity, it syncs effortlessly with your music. Innovation in one refined design.
                 </p>
 
                 {/* Feature Icons */}
@@ -246,7 +246,7 @@ export default function VestProductPage() {
             ) : (
               <div>
                 <h2 className="font-semibold text-[24px] text-[#05365f] mb-8">
-                  TACTUS CODEC VEST<br />SPECIFICATIONS
+                  TACTUS VIBEWEAR VEST<br />SPECIFICATIONS
                 </h2>
                 
                 <div className="space-y-4">
