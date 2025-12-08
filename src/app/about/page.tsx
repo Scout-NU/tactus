@@ -426,169 +426,75 @@ function TeamSection() {
 
 // Sponsors Section
 function SponsorsSection() {
+  const sponsors = [
+    { src: "/assets/about/sponsor-1.png", alt: "Sponsor 1" },
+    { src: "/assets/about/sponsor-2.png", alt: "Sponsor 2" },
+    { src: "/assets/about/sponsor-3.png", alt: "Sponsor 3" },
+    {
+      src: "/assets/about/sponsor-4.png",
+      alt: "Sponsor 4",
+      href: "https://www.bizjournals.com/boston/inno/stories/profiles/2020/09/22/exclusive-tactus-deaf-startup-smart-clothing-music.html",
+    },
+    { src: "/assets/about/sponsor-5.png", alt: "Sponsor 5" },
+    { src: "/assets/about/sponsor-6.png", alt: "Sponsor 6" },
+    { src: "/assets/about/sponsor-11.png", alt: "Sponsor 11" },
+    { src: "/assets/about/sponsor-7.png", alt: "Sponsor 7" },
+    { src: "/assets/about/sponsor-8.png", alt: "Sponsor 8" },
+    {
+      src: "/assets/about/sponsor-9.png",
+      alt: "Sponsor 9",
+      href: "https://cic.com/blog/bringing-music-to-life-through-touch-a-conversation-with-tactus-founder-jeremy-chow/",
+    },
+    {
+      src: "/assets/about/sponsor-10.png",
+      alt: "Sponsor 10",
+      href: "https://drive.google.com/file/d/1V4Z2YlX6ZHufJGKbVSVu6fP_SNiRcR-O/view?usp=sharing",
+    },
+    {
+      src: "/assets/about/sponsor-12.png",
+      alt: "Sponsor 12",
+      href: "https://dttproductions.com/2025/11/10/tactus-music/",
+    },
+    { src: "/assets/about/sponsor-13.png", alt: "Sponsor 13" },
+    {
+      src: "/assets/about/sponsor-14.png",
+      alt: "Sponsor 14",
+      href: "https://fashionunited.com/news/fashion/how-tactus-makes-music-more-accessible-to-the-deaf-community-with-a-vibrating-shirt/2023031452805",
+    },
+  ];
+
   return (
     <section className="relative bg-white px-5 pb-[80px] md:px-[110px] md:pb-[120px]">
       <h2 className="mb-12 font-heading text-[48px] font-bold uppercase text-[#05365f] md:mb-16 md:text-[64px]">
         OUR SUPPORTERS
       </h2>
-      <div className="mx-auto flex max-w-[1172px] flex-col gap-16 scale-[0.65] md:scale-100 md:gap-20">
-        {/* Row 1 - 4 sponsors evenly spaced */}
-        <div className="flex items-center justify-center gap-8 md:justify-between md:gap-12">
-          <div className="relative h-[60px] w-[140px] flex-shrink-0 md:h-[76px] md:w-[190px]">
-            <Image
-              src="/assets/about/sponsor-1.png"
-              alt="Sponsor 1"
-              fill
-              className="object-contain"
-            />
-          </div>
-          <div className="relative h-[60px] w-[160px] flex-shrink-0 md:h-[76px] md:w-[224px]">
-            <Image
-              src="/assets/about/sponsor-2.png"
-              alt="Sponsor 2"
-              fill
-              className="object-contain"
-            />
-          </div>
-          <div className="relative h-[60px] w-[120px] flex-shrink-0 md:h-[76px] md:w-[168px]">
-            <Image
-              src="/assets/about/sponsor-3.png"
-              alt="Sponsor 3"
-              fill
-              className="object-contain"
-            />
-          </div>
-          <div className="relative h-[60px] w-[70px] flex-shrink-0 md:h-[76px] md:w-[92px]">
-            <a
-              href="https://www.bizjournals.com/boston/inno/stories/profiles/2020/09/22/exclusive-tactus-deaf-startup-smart-clothing-music.html"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
+      <div className="mx-auto grid max-w-[1240px] grid-cols-2 gap-8 md:grid-cols-4 md:gap-12 md:gap-y-16">
+        {sponsors.map((sponsor, index) => {
+          const Content = (
+            <div className="relative mx-auto h-[80px] w-full max-w-[200px] md:h-[100px]">
               <Image
-                src="/assets/about/sponsor-4.png"
-                alt="Sponsor 4"
+                src={sponsor.src}
+                alt={sponsor.alt}
                 fill
                 className="object-contain"
               />
-            </a>
-          </div>
-        </div>
+            </div>
+          );
 
-        {/* Row 2 - 4 sponsors evenly spaced */}
-        <div className="flex items-center justify-center gap-8 md:justify-between md:gap-12">
-          <div className="relative h-[60px] w-[120px] flex-shrink-0 md:h-[76px] md:w-[167px]">
-            <Image
-              src="/assets/about/sponsor-5.png"
-              alt="Sponsor 5"
-              fill
-              className="object-contain"
-            />
-          </div>
-          <div className="relative h-[60px] w-[70px] flex-shrink-0 md:h-[76px] md:w-[96px]">
-            <Image
-              src="/assets/about/sponsor-6.png"
-              alt="Sponsor 6"
-              fill
-              className="object-contain"
-            />
-          </div>
-          <div className="relative h-[60px] w-[120px] flex-shrink-0 md:h-[76px] md:w-[160px]">
-            <Image
-              src="/assets/about/sponsor-11.png"
-              alt="Sponsor 11"
-              fill
-              className="object-contain"
-            />
-          </div>
-          <div className="relative h-[60px] w-[160px] flex-shrink-0 md:h-[76px] md:w-[220px]">
-            <Image
-              src="/assets/about/sponsor-7.png"
-              alt="Sponsor 7"
-              fill
-              className="object-contain"
-            />
-          </div>
-        </div>
-
-        {/* Row 3 - 4 sponsors evenly spaced */}
-        <div className="flex items-center justify-center gap-8 md:justify-between md:gap-12">
-          <div className="relative h-[60px] w-[55px] flex-shrink-0 md:h-[76px] md:w-[74px]">
-            <Image
-              src="/assets/about/sponsor-8.png"
-              alt="Sponsor 8"
-              fill
-              className="object-contain"
-            />
-          </div>
-          <div className="relative h-[60px] w-[110px] flex-shrink-0 md:h-[76px] md:w-[154px]">
+          return sponsor.href ? (
             <a
-              href="https://cic.com/blog/bringing-music-to-life-through-touch-a-conversation-with-tactus-founder-jeremy-chow/"
+              key={index}
+              href={sponsor.href}
               target="_blank"
               rel="noopener noreferrer"
+              className="block transition-opacity hover:opacity-80"
             >
-              <Image
-                src="/assets/about/sponsor-9.png"
-                alt="Sponsor 9"
-                fill
-                className="object-contain"
-              />
+              {Content}
             </a>
-          </div>
-          <div className="relative h-[60px] w-[120px] flex-shrink-0 md:h-[76px] md:w-[165px]">
-            <a
-              href="https://drive.google.com/file/d/1V4Z2YlX6ZHufJGKbVSVu6fP_SNiRcR-O/view?usp=sharing"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <Image
-                src="/assets/about/sponsor-10.png"
-                alt="Sponsor 10"
-                fill
-                className="object-contain"
-              />
-            </a>
-          </div>
-          <div className="relative h-[60px] w-[120px] flex-shrink-0 md:h-[76px] md:w-[165px]">
-            <a
-              href="https://dttproductions.com/2025/11/10/tactus-music/"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <Image
-                src="/assets/about/sponsor-12.png"
-                alt="Sponsor 12"
-                fill
-                className="object-contain"
-              />
-            </a>
-          </div>
-        </div>
-
-        {/* Row 4 - 2 sponsors centered */}
-        <div className="flex items-center justify-center gap-8 md:gap-12">
-          <div className="relative h-[80px] w-[160px] flex-shrink-0 md:h-[100px] md:w-[220px]">
-            <Image
-              src="/assets/about/sponsor-13.png"
-              alt="Sponsor 13"
-              fill
-              className="object-contain"
-            />
-          </div>
-          <div className="relative h-[80px] w-[160px] flex-shrink-0 md:h-[100px] md:w-[220px]">
-            <a
-              href="https://fashionunited.com/news/fashion/how-tactus-makes-music-more-accessible-to-the-deaf-community-with-a-vibrating-shirt/2023031452805"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <Image
-                src="/assets/about/sponsor-14.png"
-                alt="Sponsor 14"
-                fill
-                className="object-contain"
-              />
-            </a>
-          </div>
-        </div>
+          ) : (
+            <div key={index}>{Content}</div>
+          );
+        })}
       </div>
     </section>
   );
