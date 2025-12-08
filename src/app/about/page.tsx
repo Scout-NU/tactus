@@ -17,13 +17,12 @@ export default function AboutPage() {
       }}
     >
       <BackgroundWave
-          src="/assets/shop/wave-top.svg"
-          className="-top-1 left-[40%] h-[900px] w-[2100px] -translate-x-[40%] md:-translate-x-1/3"
-          priority
-        />
+        src="/assets/shop/wave-top.svg"
+        className="-top-1 left-[40%] h-[900px] w-[2100px] -translate-x-[40%] md:-translate-x-1/3"
+        priority
+      />
 
       <div className="relative z-[1] pt-[80px] md:pt-[100px]">
-
         {/* Mission Section */}
         <MissionSection />
 
@@ -86,10 +85,36 @@ function PhotoGridSection() {
               key={index}
               className="absolute overflow-hidden rounded-md border-4 border-[#97eff1]"
               style={{
-                left: index === 0 ? "0px" : index === 1 ? "270px" : index === 2 ? "655px" : "1023px",
-                top: index === 0 || index === 3 ? "100px" : index === 1 ? "146px" : "75px",
-                width: index === 0 ? "315px" : index === 1 ? "396px" : index === 2 ? "414px" : "411px",
-                height: index === 0 ? "236px" : index === 1 ? "297px" : index === 2 ? "285px" : "291px",
+                left:
+                  index === 0
+                    ? "0px"
+                    : index === 1
+                      ? "270px"
+                      : index === 2
+                        ? "655px"
+                        : "1023px",
+                top:
+                  index === 0 || index === 3
+                    ? "100px"
+                    : index === 1
+                      ? "146px"
+                      : "75px",
+                width:
+                  index === 0
+                    ? "315px"
+                    : index === 1
+                      ? "396px"
+                      : index === 2
+                        ? "414px"
+                        : "411px",
+                height:
+                  index === 0
+                    ? "236px"
+                    : index === 1
+                      ? "297px"
+                      : index === 2
+                        ? "285px"
+                        : "291px",
                 zIndex: photo.zIndex,
               }}
             >
@@ -112,10 +137,36 @@ function PhotoGridSection() {
             key={index}
             className="absolute overflow-hidden rounded-md border-2 border-[#97eff1]"
             style={{
-              left: index === 0 ? "0px" : index === 1 ? "80px" : index === 2 ? "190px" : "290px",
-              top: index === 0 || index === 3 ? "50px" : index === 1 ? "70px" : "35px",
-              width: index === 0 ? "110px" : index === 1 ? "138px" : index === 2 ? "144px" : "143px",
-              height: index === 0 ? "82px" : index === 1 ? "104px" : index === 2 ? "99px" : "101px",
+              left:
+                index === 0
+                  ? "0px"
+                  : index === 1
+                    ? "80px"
+                    : index === 2
+                      ? "190px"
+                      : "290px",
+              top:
+                index === 0 || index === 3
+                  ? "50px"
+                  : index === 1
+                    ? "70px"
+                    : "35px",
+              width:
+                index === 0
+                  ? "110px"
+                  : index === 1
+                    ? "138px"
+                    : index === 2
+                      ? "144px"
+                      : "143px",
+              height:
+                index === 0
+                  ? "82px"
+                  : index === 1
+                    ? "104px"
+                    : index === 2
+                      ? "99px"
+                      : "101px",
               zIndex: photo.zIndex,
             }}
           >
@@ -152,7 +203,6 @@ function CorePrinciplesSection() {
 
   return (
     <section className="relative bg-white px-5 py-[80px] pt-[180px] md:px-[110px] md:py-[120px] md:pt-[220px]">
-
       <h2 className="relative z-10 mb-[150px] font-heading text-[48px] font-bold uppercase text-[#05365f] md:mb-[180px] md:text-[64px]">
         THE CORE PRINCIPLES
       </h2>
@@ -187,7 +237,7 @@ function PrincipleCard({
   const [isHovered, setIsHovered] = useState(false);
 
   return (
-    <div 
+    <div
       className="relative flex-shrink-0 overflow-visible"
       onMouseEnter={() => !isMobile && setIsHovered(true)}
       onMouseLeave={() => !isMobile && setIsHovered(false)}
@@ -197,10 +247,11 @@ function PrincipleCard({
       }}
     >
       {/* Background circular gradient container */}
-      <div 
+      <div
         className="absolute inset-0 overflow-visible rounded-full"
         style={{
-          background: "radial-gradient(circle at 50% 45.3%, #05365F 0%, #042947 25%, #031B30 50%, #010E18 75%, #01070C 87.5%, #000000 100%)",
+          background:
+            "radial-gradient(circle at 50% 45.3%, #05365F 0%, #042947 25%, #031B30 50%, #010E18 75%, #01070C 87.5%, #000000 100%)",
         }}
       >
         {/* Vinyl Record - positioned at top, slides up on hover (static on mobile) */}
@@ -225,7 +276,7 @@ function PrincipleCard({
         </div>
 
         {/* Vinyl cover image - SQUARE with higher z-index to overlay record */}
-        <div 
+        <div
           className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 overflow-hidden"
           style={{
             width: isMobile ? "18rem" : "22.625rem",
@@ -240,11 +291,12 @@ function PrincipleCard({
             className="object-cover"
             sizes={isMobile ? "224px" : "362px"}
           />
-          <div 
+          <div
             className="absolute inset-0"
             style={{
-              background: "radial-gradient(69.2% 69.2% at 50% 45.3%, #05365F 0%, #000 100%)",
-              mixBlendMode: "screen"
+              background:
+                "radial-gradient(69.2% 69.2% at 50% 45.3%, #05365F 0%, #000 100%)",
+              mixBlendMode: "screen",
             }}
           />
         </div>
@@ -266,12 +318,44 @@ function PrincipleCard({
 // Team Section
 function TeamSection() {
   const teamMembers = [
-    { name: "Jeremy Chow", role: "Founder", image: "/assets/about/jeremy-team.png", linkedinUrl: "https://www.linkedin.com/in/jeremy-py-chow/" },
-    { name: "Johan Darboven", role: "Strategy Director", image: "/assets/about/johan-team.png", linkedinUrl: "https://www.linkedin.com/in/johann-arthur-darboven-a01275196/" },
-    { name: "Alex Crist", role: "Lead Software Engineer", image: "/assets/about/alex-team.png", linkedinUrl: "https://www.linkedin.com/in/alex-crist/" },
-    { name: "Cayle O'Brien", role: "Staff Interpreter", image: "/assets/about/cayle-team.png", linkedinUrl: "https://www.linkedin.com/in/cayle-o-brien-ms-nic-b69a68211/" },
-    { name: "Antoinette Chow", role: "Designer", image: "/assets/about/antoinette-team.png", linkedinUrl: "https://www.linkedin.com/in/antoinette-chow/" },
-    { name: "Nicholas Chow", role: "Product Engineer", image: "/assets/about/nicholas-team.png", linkedinUrl: "https://www.linkedin.com/in/nptchow/" },
+    {
+      name: "Jeremy Chow",
+      role: "Founder",
+      image: "/assets/about/jeremy-team.png",
+      linkedinUrl: "https://www.linkedin.com/in/jeremy-py-chow/",
+    },
+    {
+      name: "Johan Darboven",
+      role: "Strategy Director",
+      image: "/assets/about/johan-team.png",
+      linkedinUrl:
+        "https://www.linkedin.com/in/johann-arthur-darboven-a01275196/",
+    },
+    {
+      name: "Alex Crist",
+      role: "Lead Software Engineer",
+      image: "/assets/about/alex-team.png",
+      linkedinUrl: "https://www.linkedin.com/in/alex-crist/",
+    },
+    {
+      name: "Cayle O'Brien",
+      role: "Staff Interpreter",
+      image: "/assets/about/cayle-team.png",
+      linkedinUrl:
+        "https://www.linkedin.com/in/cayle-o-brien-ms-nic-b69a68211/",
+    },
+    {
+      name: "Antoinette Chow",
+      role: "Designer",
+      image: "/assets/about/antoinette-team.png",
+      linkedinUrl: "https://www.linkedin.com/in/antoinette-chow/",
+    },
+    {
+      name: "Nicholas Chow",
+      role: "Product Engineer",
+      image: "/assets/about/nicholas-team.png",
+      linkedinUrl: "https://www.linkedin.com/in/nptchow/",
+    },
   ];
 
   return (
@@ -305,16 +389,30 @@ function TeamSection() {
                 <p className="text-center font-heading text-[0.65rem] font-normal leading-normal pb-[2px] text-white md:text-[12px] lg:text-[14px]">
                   {member.role}
                 </p>
-                <a 
-                  href={member.linkedinUrl} 
-                  target="_blank" 
+                <a
+                  href={member.linkedinUrl}
+                  target="_blank"
                   rel="noopener noreferrer"
                   className="mt-0.5 h-[12px] w-[12px] cursor-pointer transition-opacity hover:opacity-80 md:mt-1 md:h-[21px] md:w-[21px]"
                 >
-                  <svg className="h-full w-full" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M19.5 0H1.5C0.671573 0 0 0.671573 0 1.5V19.5C0 20.3284 0.671573 21 1.5 21H19.5C20.3284 21 21 20.3284 21 19.5V1.5C21 0.671573 20.3284 0 19.5 0Z" fill="white"/>
-                    <path d="M3.15 7.875H6.3V17.85H3.15V7.875ZM4.725 3.15C5.76975 3.15 6.615 3.99525 6.615 5.04C6.615 6.08475 5.76975 6.93 4.725 6.93C3.68025 6.93 2.835 6.08475 2.835 5.04C2.835 3.99525 3.68025 3.15 4.725 3.15Z" fill="#05365f"/>
-                    <path d="M9.45 7.875H12.39V9.24H12.4305C12.8355 8.4735 13.9185 7.665 15.5025 7.665C18.6105 7.665 19.215 9.72 19.215 12.39V17.85H16.065V13.104C16.065 11.9175 16.0455 10.3755 14.406 10.3755C12.7455 10.3755 12.4875 11.697 12.4875 13.0185V17.85H9.3375V7.875H9.45Z" fill="#05365f"/>
+                  <svg
+                    className="h-full w-full"
+                    viewBox="0 0 21 21"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M19.5 0H1.5C0.671573 0 0 0.671573 0 1.5V19.5C0 20.3284 0.671573 21 1.5 21H19.5C20.3284 21 21 20.3284 21 19.5V1.5C21 0.671573 20.3284 0 19.5 0Z"
+                      fill="white"
+                    />
+                    <path
+                      d="M3.15 7.875H6.3V17.85H3.15V7.875ZM4.725 3.15C5.76975 3.15 6.615 3.99525 6.615 5.04C6.615 6.08475 5.76975 6.93 4.725 6.93C3.68025 6.93 2.835 6.08475 2.835 5.04C2.835 3.99525 3.68025 3.15 4.725 3.15Z"
+                      fill="#05365f"
+                    />
+                    <path
+                      d="M9.45 7.875H12.39V9.24H12.4305C12.8355 8.4735 13.9185 7.665 15.5025 7.665C18.6105 7.665 19.215 9.72 19.215 12.39V17.85H16.065V13.104C16.065 11.9175 16.0455 10.3755 14.406 10.3755C12.7455 10.3755 12.4875 11.697 12.4875 13.0185V17.85H9.3375V7.875H9.45Z"
+                      fill="#05365f"
+                    />
                   </svg>
                 </a>
               </div>
@@ -361,12 +459,18 @@ function SponsorsSection() {
             />
           </div>
           <div className="relative h-[60px] w-[70px] flex-shrink-0 md:h-[76px] md:w-[92px]">
-            <Image
-              src="/assets/about/sponsor-4.png"
-              alt="Sponsor 4"
-              fill
-              className="object-contain"
-            />
+            <a
+              href="https://www.bizjournals.com/boston/inno/stories/profiles/2020/09/22/exclusive-tactus-deaf-startup-smart-clothing-music.html"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Image
+                src="/assets/about/sponsor-4.png"
+                alt="Sponsor 4"
+                fill
+                className="object-contain"
+              />
+            </a>
           </div>
         </div>
 
@@ -406,8 +510,8 @@ function SponsorsSection() {
           </div>
         </div>
 
-        {/* Row 3 - 3 sponsors: one on each edge and one in middle */}
-        <div className="flex items-center justify-between px-0 md:px-8">
+        {/* Row 3 - 4 sponsors evenly spaced */}
+        <div className="flex items-center justify-center gap-8 md:justify-between md:gap-12">
           <div className="relative h-[60px] w-[55px] flex-shrink-0 md:h-[76px] md:w-[74px]">
             <Image
               src="/assets/about/sponsor-8.png"
@@ -417,20 +521,72 @@ function SponsorsSection() {
             />
           </div>
           <div className="relative h-[60px] w-[110px] flex-shrink-0 md:h-[76px] md:w-[154px]">
+            <a
+              href="https://cic.com/blog/bringing-music-to-life-through-touch-a-conversation-with-tactus-founder-jeremy-chow/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Image
+                src="/assets/about/sponsor-9.png"
+                alt="Sponsor 9"
+                fill
+                className="object-contain"
+              />
+            </a>
+          </div>
+          <div className="relative h-[60px] w-[120px] flex-shrink-0 md:h-[76px] md:w-[165px]">
+            <a
+              href="https://drive.google.com/file/d/1V4Z2YlX6ZHufJGKbVSVu6fP_SNiRcR-O/view?usp=sharing"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Image
+                src="/assets/about/sponsor-10.png"
+                alt="Sponsor 10"
+                fill
+                className="object-contain"
+              />
+            </a>
+          </div>
+          <div className="relative h-[60px] w-[120px] flex-shrink-0 md:h-[76px] md:w-[165px]">
+            <a
+              href="https://dttproductions.com/2025/11/10/tactus-music/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Image
+                src="/assets/about/sponsor-12.png"
+                alt="Sponsor 12"
+                fill
+                className="object-contain"
+              />
+            </a>
+          </div>
+        </div>
+
+        {/* Row 4 - 2 sponsors centered */}
+        <div className="flex items-center justify-center gap-8 md:gap-12">
+          <div className="relative h-[80px] w-[160px] flex-shrink-0 md:h-[100px] md:w-[220px]">
             <Image
-              src="/assets/about/sponsor-9.png"
-              alt="Sponsor 9"
+              src="/assets/about/sponsor-13.png"
+              alt="Sponsor 13"
               fill
               className="object-contain"
             />
           </div>
-          <div className="relative h-[60px] w-[120px] flex-shrink-0 md:h-[76px] md:w-[165px]">
-            <Image
-              src="/assets/about/sponsor-10.png"
-              alt="Sponsor 10"
-              fill
-              className="object-contain"
-            />
+          <div className="relative h-[80px] w-[160px] flex-shrink-0 md:h-[100px] md:w-[220px]">
+            <a
+              href="https://fashionunited.com/news/fashion/how-tactus-makes-music-more-accessible-to-the-deaf-community-with-a-vibrating-shirt/2023031452805"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Image
+                src="/assets/about/sponsor-14.png"
+                alt="Sponsor 14"
+                fill
+                className="object-contain"
+              />
+            </a>
           </div>
         </div>
       </div>
@@ -482,4 +638,3 @@ function DontMissABeatSection({ onOpenPopup }: { onOpenPopup: () => void }) {
     </section>
   );
 }
-
