@@ -468,7 +468,7 @@ function SponsorsSection() {
       <h2 className="mb-12 font-heading text-[48px] font-bold uppercase text-[#05365f] md:mb-16 md:text-[64px]">
         OUR SUPPORTERS
       </h2>
-      <div className="mx-auto grid max-w-[1240px] grid-cols-2 gap-8 md:grid-cols-4 md:gap-12 md:gap-y-16">
+      <div className="mx-auto flex max-w-[1240px] flex-wrap justify-center gap-8 md:gap-x-12 md:gap-y-16">
         {sponsors.map((sponsor, index) => {
           const Content = (
             <div className="relative mx-auto h-[80px] w-full max-w-[200px] md:h-[100px]">
@@ -481,18 +481,22 @@ function SponsorsSection() {
             </div>
           );
 
+          const itemClassName = "w-[calc(50%-1rem)] md:w-[calc(25%-2.25rem)]";
+
           return sponsor.href ? (
             <a
               key={index}
               href={sponsor.href}
               target="_blank"
               rel="noopener noreferrer"
-              className="block transition-opacity hover:opacity-80"
+              className={`block transition-opacity hover:opacity-80 ${itemClassName}`}
             >
               {Content}
             </a>
           ) : (
-            <div key={index}>{Content}</div>
+            <div key={index} className={itemClassName}>
+              {Content}
+            </div>
           );
         })}
       </div>
