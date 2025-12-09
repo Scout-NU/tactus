@@ -1,7 +1,11 @@
+"use client";
+
 import Image from "next/image";
-import React from "react";
+import React, { useState } from "react";
+import HubSpotPopup from "../HubSpotPopup/HubSpotPopup";
 
 export default function CustomFooter() {
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
   return (
     <footer className="bg-[#05365f] py-12 md:py-20 lg:py-[90px] px-4 md:px-8">
       <div className="w-full max-w-[1400px] mx-auto">
@@ -91,14 +95,22 @@ export default function CustomFooter() {
                 </a>
               </li>
               <li>
-                <a href="/contact" className="underline decoration-solid hover:opacity-80 transition-opacity">
-                  Contact US
-                </a>
+                <button 
+                  onClick={() => setIsPopupOpen(true)}
+                  className="underline decoration-solid hover:opacity-80 transition-opacity cursor-pointer"
+                >
+                  Contact Us
+                </button>
               </li>
             </ul>
           </nav>
         </div>
       </div>
+      
+      <HubSpotPopup 
+        isOpen={isPopupOpen} 
+        onClose={() => setIsPopupOpen(false)} 
+      />
     </footer>
   );
 }
