@@ -209,7 +209,7 @@ export default function Home() {
                       <p>$459</p>
                     </>
                   ),
-                  image: "/assets/shop/Jacket.png",
+                  image: "/product-home-photo.png",
                   route: "/shop/jacket",
                 },
                 {
@@ -227,7 +227,7 @@ export default function Home() {
                       <p>$459</p>
                     </>
                   ),
-                  image: "/assets/shop/vest.png",
+                  image: "/assets/shop/shop-vest.png",
                   route: "/shop/vest",
                 },
               ].map((product) => (
