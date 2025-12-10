@@ -152,11 +152,12 @@ function CorePrinciplesSection() {
 
   return (
     <section className="relative bg-white px-5 py-[80px] pt-[180px] md:px-[110px] md:py-[120px] md:pt-[220px]">
+      <div className="mx-auto flex max-w-[76rem] flex-col gap-8">
 
-      <h2 className="relative z-10 mb-[150px] font-heading text-[48px] font-bold uppercase text-[#05365f] md:mb-[180px] md:text-[64px]">
+      <h2 className="relative z-10 mb-[150px] font-heading p-[-10px] font-bold uppercase text-[#05365f] md:mb-[180px] text-[36px] md:text-[64px]">
         THE CORE PRINCIPLES
       </h2>
-
+      </div>
       {/* Desktop: 3 Column Layout */}
       <div className="relative z-10 mx-auto hidden max-w-[1200px] items-center justify-center gap-12 md:flex lg:gap-16">
         {principles.map((principle, index) => (
@@ -170,6 +171,7 @@ function CorePrinciplesSection() {
           <PrincipleCard key={index} {...principle} isMobile={true} />
         ))}
       </div>
+     
     </section>
   );
 }
@@ -276,11 +278,12 @@ function TeamSection() {
 
   return (
     <section className="relative bg-white px-5 pb-[80px] md:px-[110px] md:pb-[120px]">
-      <h2 className="mb-8 font-heading text-[48px] font-bold uppercase text-[#05365f] md:mb-12 md:text-[60px]">
+     
+      <div className="mx-auto flex max-w-[76rem] flex-col gap-8">
+      <h2 className="mb-8 font-heading font-bold uppercase text-[#05365f] align-left md:mb-12 text-[36px] md:text-[64px]">
         MEET THE TEAM
       </h2>
-      <div className="mx-auto flex max-w-[76rem] flex-col items-center gap-8">
-        <div className="grid grid-cols-3 justify-items-center gap-2 md:flex md:flex-wrap md:justify-center md:gap-[15px]">
+        <div className="grid grid-cols-3 justify-items-center gap-1 md:flex md:flex-wrap md:justify-center md:gap-[15px]">
           {teamMembers.map((member, index) => (
             <div
               key={index}
@@ -298,7 +301,7 @@ function TeamSection() {
                   sizes="(max-width: 768px) 109px, 182px"
                 />
               </div>
-              <div className="flex h-[4.43313rem] flex-col items-center justify-center  px-1 py-1 pb-2 md:h-[7.93906rem] md:gap-2 md:p-3 md:pb-4">
+              <div className="flex h-[4.5rem] flex-col items-center justify-center  px-1 py-1 pb-2 md:h-[8rem] md:gap-2 md:p-3 md:pb-4">
                 <h3 className="text-center font-heading text-[0.78663rem] font-normal leading-normal text-white md:text-[18px] lg:text-[21px]">
                   {member.name}
                 </h3>
@@ -330,9 +333,10 @@ function TeamSection() {
 function SponsorsSection() {
   return (
     <section className="relative bg-white px-5 pb-[80px] md:px-[110px] md:pb-[120px]">
-      <h2 className="mb-12 font-heading text-[48px] font-bold uppercase text-[#05365f] md:mb-16 md:text-[64px]">
+       <div className="mx-auto flex max-w-[76rem] flex-col gap-5">
+      <h2 className="mb-12 font-heading font-bold uppercase text-[#05365f] md:mb-16 text-[36px] md:text-[64px]">
         OUR SUPPORTERS
-      </h2>
+      </h2> </div>
       <div className="mx-auto flex max-w-[1172px] flex-col gap-16 scale-[0.65] md:scale-100 md:gap-20">
         {/* Row 1 - 4 sponsors evenly spaced */}
         <div className="flex items-center justify-center gap-8 md:justify-between md:gap-12">
@@ -434,6 +438,7 @@ function SponsorsSection() {
           </div>
         </div>
       </div>
+      
     </section>
   );
 }
@@ -455,7 +460,7 @@ function DontMissABeatSection({ onOpenPopup }: { onOpenPopup: () => void }) {
       <div className="relative z-10 flex h-full items-center justify-start px-5 md:px-[124px]">
         {/* Content */}
         <div className="flex max-w-[657px] flex-col gap-[18px]">
-          <h2 className="font-heading text-[48px] font-bold uppercase leading-[100%] text-[#05365f] md:text-[64px]">
+          <h2 className="font-heading font-bold uppercase leading-[100%] text-[#05365f] text-[36px] md:text-[64px]">
             DON&apos;T MISS A BEAT
           </h2>
           <p className="font-body text-[16px] leading-normal text-[#05365f] md:text-[20px]">

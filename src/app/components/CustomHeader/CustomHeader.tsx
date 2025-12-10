@@ -114,6 +114,15 @@ export default function CustomHeader() {
       {/* Desktop Navigation */}
       <div className="navigation-buttons">
         <nav className="navbar desktop-nav">
+        <Link
+            href="/"
+            style={{
+              fontWeight: pathname === "/" ? "bold" : "normal",
+              color: textColor,
+            }}
+          >
+            Home
+          </Link>
           <Link
             href="/product"
             style={{
