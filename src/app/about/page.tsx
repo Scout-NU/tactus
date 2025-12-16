@@ -469,46 +469,23 @@ function SponsorsSection() {
 
   return (
     <section className="relative bg-white px-5 pb-[80px] md:px-[110px] md:pb-[120px]">
-       <div className="mx-auto flex max-w-[76rem] flex-col gap-5">
-      <h2 className="mb-12 font-heading font-bold uppercase text-[#05365f] md:mb-16 text-[36px] md:text-[64px]">
-        OUR SUPPORTERS
-      </h2> </div>
-      <div className="mx-auto flex max-w-[1172px] flex-col gap-16 scale-[0.65] md:scale-100 md:gap-20">
-        {/* Row 1 - 4 sponsors evenly spaced */}
-        <div className="flex items-center justify-center gap-8 md:justify-between md:gap-12">
-          <div className="relative h-[60px] w-[140px] flex-shrink-0 md:h-[76px] md:w-[190px]">
-            <Image
-              src="/assets/about/sponsor-1.png"
-              alt="Sponsor 1"
-              fill
-              className="object-contain"
-            />
-          </div>
-          <div className="relative h-[60px] w-[160px] flex-shrink-0 md:h-[76px] md:w-[224px]">
-            <Image
-              src="/assets/about/sponsor-2.png"
-              alt="Sponsor 2"
-              fill
-              className="object-contain"
-            />
-          </div>
-          <div className="relative h-[60px] w-[120px] flex-shrink-0 md:h-[76px] md:w-[168px]">
-            <Image
-              src="/assets/about/sponsor-3.png"
-              alt="Sponsor 3"
-              fill
-              className="object-contain"
-            />
-          </div>
-          <div className="relative h-[60px] w-[70px] flex-shrink-0 md:h-[76px] md:w-[92px]">
-            <Image
-              src="/assets/about/sponsor-4.png"
-              alt="Sponsor 4"
-              fill
-              className="object-contain"
-            />
-          </div>
-        </div>
+      <div className="mx-auto flex max-w-[76rem] flex-col gap-5">
+        <h2 className="mb-12 font-heading font-bold uppercase text-[#05365f] md:mb-16 text-[36px] md:text-[64px]">
+          OUR SUPPORTERS
+        </h2>
+      </div>
+      <div className="mx-auto flex max-w-[1240px] flex-wrap justify-center gap-8 md:gap-x-12 md:gap-y-16">
+        {sponsors.map((sponsor, index) => {
+          const Content = (
+            <div className="relative mx-auto h-[80px] w-full max-w-[200px] md:h-[100px]">
+              <Image
+                src={sponsor.src}
+                alt={sponsor.alt}
+                fill
+                className="object-contain"
+              />
+            </div>
+          );
 
           const itemClassName = "w-[calc(50%-1rem)] md:w-[calc(25%-2.25rem)]";
 
@@ -529,7 +506,6 @@ function SponsorsSection() {
           );
         })}
       </div>
-      
     </section>
   );
 }
