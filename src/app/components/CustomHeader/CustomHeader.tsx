@@ -97,7 +97,15 @@ export default function CustomHeader() {
             color: textColor,
           }}
         >
-          <h1 style={{ color: textColor }}>Tactus</h1>
+          <Image
+            src="/tactus-gif-logo.gif"
+            alt="Tactus"
+            width={40}
+            height={20}
+            className="h-auto"
+            priority
+            unoptimized
+          />
         </Link>
       </div>
 

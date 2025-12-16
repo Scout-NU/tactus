@@ -160,7 +160,7 @@ export default function Home() {
         </div>
         <div
           style={{
-            top: "130vh",
+            top: "150vh",
           }}
           className="wave-pattern-blue first"
         >
@@ -168,12 +168,12 @@ export default function Home() {
             alt="wave pattern"
             src="/wave-in-community.svg"
             fill
-            style={{ objectFit: "cover" }}
+            style={{ objectFit: "cover"}}
           />
         </div>
         <div
           style={{
-            top: "160vh",
+            top: "200vh",
           }}
           className="wave-pattern-blue second"
         >
@@ -195,7 +195,7 @@ export default function Home() {
             <div className="products-list">
               {[
                 {
-                  name: "CODEC JACKET",
+                  name: "VIBEWEAR JACKET",
                   price: (
                     <>
                       <p
@@ -209,11 +209,11 @@ export default function Home() {
                       <p>$459</p>
                     </>
                   ),
-                  image: "/assets/shop/Jacket.png",
+                  image: "/product-home-photo.png",
                   route: "/shop/jacket",
                 },
                 {
-                  name: "CODEC VEST",
+                  name: "VIBEWEAR VEST",
                   price: (
                     <>
                       <p
@@ -227,7 +227,7 @@ export default function Home() {
                       <p>$459</p>
                     </>
                   ),
-                  image: "/assets/shop/vest.png",
+                  image: "/assets/shop/shop-vest.png",
                   route: "/shop/vest",
                 },
               ].map((product) => (
@@ -319,7 +319,7 @@ export default function Home() {
         </div>
         <div
           style={{
-            top: "310vh",
+            top: "350vh"
           }}
           className="wave-pattern-orange second"
         >

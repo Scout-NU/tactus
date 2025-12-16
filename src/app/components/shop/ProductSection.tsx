@@ -46,7 +46,7 @@ export function ProductSection<Size extends string = string>({
   // Fallback to hard-coded paths if not provided, but prefer prop
   const resolvedDetailsPath =
     detailsPath ||
-    (productId === "codec-jacket" ? "/shop/jacket" : "/shop/vest");
+    (productId === "vibewear-jacket" ? "/shop/jacket" : "/shop/vest");
 
   return (
     <>
@@ -78,7 +78,7 @@ export function ProductSection<Size extends string = string>({
             {/* View Details - visible on all screen sizes */}
             <Link
               href={resolvedDetailsPath}
-            className="font-body flex items-center justify-center rounded-lg border border-white bg-white px-10 py-3 text-lg font-medium text-[#05365f] transition hover:bg-white/90 focus-visible:outline-none focus-visible:ring focus-visible:ring-white/30"
+            className="font-body flex items-center justify-center rounded-sm bg-[#FF6B4A] px-10 py-3 text-lg font-medium text-white transition hover:bg-[#FF5A39] focus-visible:outline-none focus-visible:ring focus-visible:ring-[#FF6B4A]/60 lg:border lg:border-white lg:bg-white lg:text-[#05365f] lg:hover:bg-white/90 lg:focus-visible:ring-white/30"
           >
             {viewDetailsLabel}
             </Link>
@@ -87,7 +87,7 @@ export function ProductSection<Size extends string = string>({
           <button
             type="button"
               onClick={() => setIsModalOpen(true)}
-              className="font-body hidden items-center justify-center rounded-lg bg-[#FF6B4A] px-10 py-3 text-lg font-medium text-white transition hover:bg-[#FF5A39] focus-visible:outline-none focus-visible:ring focus-visible:ring-[#FF6B4A]/60 sm:flex"
+              className="font-body hidden items-center justify-center rounded-sm bg-[#FF6B4A] px-10 py-3 text-lg font-medium text-white transition hover:bg-[#FF5A39] focus-visible:outline-none focus-visible:ring focus-visible:ring-[#FF6B4A]/60 sm:flex"
           >
             {quickAddLabel}
           </button>

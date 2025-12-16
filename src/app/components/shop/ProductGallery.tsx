@@ -31,25 +31,25 @@ export function ProductGallery({
       <div className={sharedWrapperClasses}>
         <GalleryPlaceholder
           aspect="aspect-[4/5] lg:aspect-auto lg:h-full"
-          className="rounded-[24px] bg-[#efefef]"
+          className="rounded-[5px] bg-[#efefef]"
           image={getImage(0)}
         />
-        <div className="flex h-full flex-col gap-4">
+        <div className="hidden h-full flex-col gap-4 lg:flex">
           <div className="grid gap-4 sm:grid-cols-2 lg:flex lg:flex-1 lg:gap-4">
             <GalleryPlaceholder
               aspect="aspect-square lg:aspect-auto lg:h-full"
-              className="rounded-[24px] bg-[#efefef] lg:flex-1"
+              className="rounded-[5px] bg-[#efefef] lg:flex-1"
               image={getImage(1)}
             />
             <GalleryPlaceholder
               aspect="aspect-square lg:aspect-auto lg:h-full"
-              className="rounded-[24px] bg-[#efefef] lg:flex-1"
+              className="rounded-[5px] bg-[#efefef] lg:flex-1"
               image={getImage(2)}
             />
           </div>
           <GalleryPlaceholder
             aspect="aspect-[3/2] lg:aspect-auto lg:h-full"
-            className="rounded-[24px] bg-[#efefef] lg:flex-1"
+            className="rounded-[5px] bg-[#efefef] lg:flex-1"
             image={getImage(3)}
           />
         </div>
@@ -62,28 +62,28 @@ export function ProductGallery({
       <GalleryPlaceholder
         tone="muted"
         aspect="aspect-[4/5] lg:aspect-auto lg:h-full"
-        className="rounded-[24px] bg-[#f4f5f7]"
+        className="rounded-[5px] bg-[#f4f5f7]"
         image={getImage(0)}
       />
-      <div className="flex h-full flex-col gap-4">
+      <div className="hidden h-full flex-col gap-4 lg:flex">
         <div className="grid gap-4 sm:grid-cols-2 lg:flex lg:flex-1 lg:gap-4">
           <GalleryPlaceholder
             tone="muted"
             aspect="aspect-square lg:aspect-auto lg:h-full"
-            className="rounded-[24px] bg-[#f4f5f7] lg:flex-1"
+            className="rounded-[5px] bg-[#f4f5f7] lg:flex-1"
             image={getImage(1)}
           />
           <GalleryPlaceholder
             tone="muted"
             aspect="aspect-square lg:aspect-auto lg:h-full"
-            className="rounded-[24px] bg-[#f4f5f7] lg:flex-1"
+            className="rounded-[5px] bg-[#f4f5f7] lg:flex-1"
             image={getImage(2)}
           />
         </div>
         <GalleryPlaceholder
           tone="muted"
           aspect="aspect-[3/2] lg:aspect-auto lg:h-full"
-          className="rounded-[24px] bg-[#f4f5f7] lg:flex-1"
+          className="rounded-[5px] bg-[#f4f5f7] lg:flex-1"
           image={getImage(3)}
         />
       </div>
