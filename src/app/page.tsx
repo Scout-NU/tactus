@@ -113,7 +113,7 @@ export default function Home() {
                   gap={25}
                 />
               </div>
-              <div className="sponsor-carousel">
+              <div className="sponsor-carousel items-top">
                 <Carousel
                   items={[
                     <Image

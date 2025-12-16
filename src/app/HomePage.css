@@ -683,7 +683,7 @@ body {
     top: 0vh !important;
     z-index: 0;
   }
-
+ 
   .tag-line-text {
     font-size: 40px;
   }
@@ -726,6 +726,7 @@ body {
 
   .products-description {
     font-size: 16px;
+    font-family: "DM Sans", sans-serif;
   }
 
   .contact-form-info-text {
