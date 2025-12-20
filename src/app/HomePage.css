@@ -603,6 +603,10 @@ body {
     height: 313px;
   }
 
+        /* Show only first 2 videos on mobile */
+        .people-carousel .carousel-item:nth-child(n+3) {
+          display: none;
+        }
   .product-image-container.vest {
     position: absolute;
     left: -15vw !important;
@@ -765,7 +769,6 @@ body {
   overflow: hidden;
   border-radius: 12px;
   flex-shrink: 0;
-  touch-action: pan-x pan-y;
 }
 
 .video-container video {

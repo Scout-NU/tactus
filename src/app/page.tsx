@@ -262,12 +262,10 @@ export default function Home() {
   );
 }
 
-// Click-to-play video component with pause/play toggle and mobile swipe support
+// Click-to-play video component with pause/play toggle
 function ClickToPlayVideo({ video }: { video: VideoItem }) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [isPlaying, setIsPlaying] = useState(false);
-  const touchStartX = useRef<number | null>(null);
-  const touchStartY = useRef<number | null>(null);
 
   const handleTogglePlay = () => {
     if (videoRef.current) {
@@ -281,39 +279,8 @@ function ClickToPlayVideo({ video }: { video: VideoItem }) {
     }
   };
 
-  // Touch event handlers to distinguish taps from swipes
-  const handleTouchStart = (e: React.TouchEvent) => {
-    touchStartX.current = e.touches[0].clientX;
-    touchStartY.current = e.touches[0].clientY;
-  };
-
-  const handleTouchEnd = (e: React.TouchEvent) => {
-    if (touchStartX.current === null || touchStartY.current === null) return;
-
-    const touchEndX = e.changedTouches[0].clientX;
-    const touchEndY = e.changedTouches[0].clientY;
-    const deltaX = Math.abs(touchEndX - touchStartX.current);
-    const deltaY = Math.abs(touchEndY - touchStartY.current);
-
-    // If horizontal movement is minimal, it's a tap (not a swipe)
-    const isSwipe = deltaX > 30 || deltaY > 30;
-
-    if (!isSwipe) {
-      handleTogglePlay();
-    }
-
-    // Reset touch positions
-    touchStartX.current = null;
-    touchStartY.current = null;
-  };
-
   return (
-    <div
-      className="video-container"
-      onClick={handleTogglePlay}
-      onTouchStart={handleTouchStart}
-      onTouchEnd={handleTouchEnd}
-    >
+    <div className="video-container" onClick={handleTogglePlay}>
       <video
         ref={videoRef}
         muted
