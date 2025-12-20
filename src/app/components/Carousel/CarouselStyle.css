@@ -19,3 +19,14 @@
   flex-shrink: 0;
   scroll-snap-align: center;
 }
+
+/* Auto-scroll specific styles */
+.carousel-auto-scroll {
+  justify-content: flex-start;
+  scroll-snap-type: none;
+  scroll-behavior: auto;
+}
+
+.carousel-auto-scroll .carousel-item {
+  scroll-snap-align: none;
+}
