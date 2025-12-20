@@ -5,6 +5,11 @@ import Image from "next/image";
 import Link from "next/link";
 import FeaturePopup from "../components/FeaturePopup/FeaturePopup";
 
+// Assets
+import waveInLanding from "@/app/_assets/shared/waves/wave-in-landing.svg";
+import productHomePhoto from "@/app/_assets/shared/product-images/product-home-photo.png";
+import fingerBattery from "@/app/_assets/product/Finger Holding Battery_Flipped.png";
+
 export default function ProductPage() {
   // State for each feature popup
   const [isLiveSignalOpen, setIsLiveSignalOpen] = useState(false);
@@ -68,7 +73,7 @@ export default function ProductPage() {
       {/* Background Wave Pattern */}
       <div className="pointer-events-none absolute left-0 bottom-[400px] z-0 h-full w-full hidden md:block">
         <Image
-          src="/wave-in-landing.svg"
+          src={waveInLanding}
           alt=""
           fill
           style={{ objectFit: "cover" }}
@@ -89,7 +94,7 @@ export default function ProductPage() {
           <div className="relative mx-auto mb-5 w-full max-w-[1440px] min-h-[380px] md:min-h-[1000px] mb-[150px] pb-5 md:mb-0 md:min-h-[850px] md:pb-0">
             <div className="absolute left-1/2 top-0 z-[5] mb-5 flex w-full -translate-x-1/2 justify-center md:mb-0 md:w-auto md:transform-none md:relative md:left-auto">
               <Image
-                src="/product-home-photo.png"
+                src={productHomePhoto}
                 alt="Tactus Jacket"
                 width={537}
                 height={630}
@@ -220,7 +225,7 @@ export default function ProductPage() {
         {/* Hand Holding Device Image */}
         <div className="absolute right-0 bottom-[75px] z-[5] hidden md:block">
           <Image
-            src="/Finger Holding Battery_Flipped.png"
+            src={fingerBattery}
             alt="Hand holding Tactus device"
             width={403}
             height={495}

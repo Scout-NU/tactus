@@ -7,12 +7,21 @@ import { SHOP_PRODUCTS, SHOP_SIZES, ShopSize } from "../shopData";
 import { useCart } from "@/context/CartContext";
 import { ChevronLeft, ChevronRight, Heart, Bluetooth, Spool, HeartHandshake, AudioWaveform, X } from "lucide-react";
 
+// Shop assets
+import slide1 from "@/app/_assets/shop/details/slide1.png";
+import jacketMain from "@/app/_assets/shop/jacket/Jacket.png";
+import slide3 from "@/app/_assets/shop/details/slide3.png";
+import slide4 from "@/app/_assets/shop/details/slide4.png";
+import runningJpg from "@/app/_assets/shop/details/running_jpg.png";
+import batterImg from "@/app/_assets/shop/details/batter.png";
+import armsCrossedImg from "@/app/_assets/shop/shared-model-photos/arms_crossed_jpg.png";
+
 // Image carousel data
 const carouselImages = [
-  { src: "/jacket_details/slide1.png", alt: "Tactus Vibewear Jacket - Front View" },
-  { src: "/assets/shop/Jacket.png", alt: "Tactus Vibewear Jacket - Product Shot" },
-  { src: "/jacket_details/slide3.png", alt: "Tactus Vibewear Jacket - Side View" },
-  { src: "/jacket_details/slide4.png", alt: "Tactus Vibewear Jacket - Back View" },
+  { src: slide1, alt: "Tactus Vibewear Jacket - Front View" },
+  { src: jacketMain, alt: "Tactus Vibewear Jacket - Product Shot" },
+  { src: slide3, alt: "Tactus Vibewear Jacket - Side View" },
+  { src: slide4, alt: "Tactus Vibewear Jacket - Back View" },
 ];
 
 export default function JacketProductPage() {
@@ -49,7 +58,7 @@ export default function JacketProductPage() {
       title: product.title,
       price: product.priceInCents,
       size: selectedSize,
-      image: carouselImages[0].src,
+      image: typeof carouselImages[0].src === 'string' ? carouselImages[0].src : carouselImages[0].src.src,
       stripePriceId,
     });
 
@@ -154,7 +163,7 @@ export default function JacketProductPage() {
               <div className="flex gap-3">
                 <div className="relative bg-[#f8eddb] border-2 border-[#f4c592] rounded-[5px] w-[97px] h-[97px] p-1">
                   <Image
-                    src="/assets/shop/Jacket.png"
+                    src={jacketMain}
                     alt="Vibewear Jacket"
                     fill
                     className="object-contain rounded-[5px]"
@@ -340,7 +349,7 @@ export default function JacketProductPage() {
             {/* Large Image Card - Full Width */}
             <div className="relative rounded-[5px] overflow-hidden h-[215px]">
               <Image
-                src="/jacket_details/running_jpg.png"
+                src={runningJpg}
                 alt="Running couple by city skyline"
                 fill
                 className="object-cover"
@@ -373,7 +382,7 @@ export default function JacketProductPage() {
               {/* Battery Image Card */}
               <div className="relative rounded-[5px] overflow-hidden h-[187px]">
                 <Image
-                  src="/jacket_details/batter.png"
+                  src={batterImg}
                   alt="Battery charging"
                   fill
                   className="object-cover"
@@ -389,7 +398,7 @@ export default function JacketProductPage() {
             {/* Large Image Card */}
             <div className="relative rounded-[5px] overflow-hidden h-[519px] md:col-span-2 lg:col-span-2">
               <Image
-                src="/jacket_details/running_jpg.png"
+                src={runningJpg}
                 alt="Running couple by city skyline"
                 fill
                 className="object-cover"
@@ -435,7 +444,7 @@ export default function JacketProductPage() {
             {/* Medium Image Card */}
             <div className="relative rounded-[5px] overflow-hidden h-[465px] lg:col-span-1">
               <Image
-                src="/jacket_details/arms_crossed_jpg.png"
+                src={armsCrossedImg}
                 alt="Person wearing jacket with arms crossed"
                 fill
                 className="object-cover"
@@ -452,7 +461,7 @@ export default function JacketProductPage() {
             {/* Battery Image Card */}
             <div className="relative rounded-[5px] overflow-hidden h-[465px]">
               <Image
-                src="/jacket_details/batter.png"
+                src={batterImg}
                 alt="Battery charging"
                 fill
                 className="object-cover"

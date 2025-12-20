@@ -1,6 +1,6 @@
 "use client";
 
-import Image from "next/image";
+import Image, { StaticImageData } from "next/image";
 import Carousel from "./components/Carousel/Carousel";
 import "./HomePage.css";
 import { useRef, useState } from "react";
@@ -13,6 +13,15 @@ import {
   HOME_PRODUCTS,
   type VideoItem,
 } from "./homeData";
+
+// Wave pattern imports
+import waveInLanding from "@/app/_assets/shared/waves/wave-in-landing.svg";
+import waveInCommunity from "@/app/_assets/shared/waves/wave-in-community.svg";
+import wave2InCommunity from "@/app/_assets/shared/waves/wave-2-in-community.svg";
+import waveInContact from "@/app/_assets/shared/waves/wave-in-contact.svg";
+
+// Brand assets
+import recordImage from "@/app/_assets/shared/brand/record.png";
 
 export default function Home() {
   const router = useRouter();
@@ -74,7 +83,7 @@ export default function Home() {
           >
             <Image
               alt="wave pattern"
-              src="/wave-in-landing.svg"
+              src={waveInLanding}
               fill
               style={{
                 objectFit: "cover",
@@ -128,7 +137,7 @@ export default function Home() {
         >
           <Image
             alt="wave pattern"
-            src="/wave-in-community.svg"
+            src={waveInCommunity}
             fill
             style={{ objectFit: "cover" }}
           />
@@ -141,7 +150,7 @@ export default function Home() {
         >
           <Image
             alt="wave pattern"
-            src="/wave-2-in-community.svg"
+            src={wave2InCommunity}
             fill
             style={{ objectFit: "cover" }}
           />
@@ -230,7 +239,7 @@ export default function Home() {
             <div
               className="product-image-container record"
               style={{
-                backgroundImage: 'url("/record.png")',
+                backgroundImage: `url(${recordImage.src})`,
                 backgroundSize: "cover",
                 position: "absolute",
                 right: -235,
@@ -246,7 +255,7 @@ export default function Home() {
         >
           <Image
             alt="wave pattern"
-            src="/wave-in-contact.svg"
+            src={waveInContact}
             fill
             style={{ objectFit: "cover" }}
           />
@@ -287,7 +296,7 @@ function ClickToPlayVideo({ video }: { video: VideoItem }) {
         loop
         playsInline
         preload="none"
-        poster={video.poster}
+        poster={typeof video.poster === 'string' ? video.poster : (video.poster as StaticImageData).src}
       >
         <source src={video.src} type="video/mp4" />
       </video>

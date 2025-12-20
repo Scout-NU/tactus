@@ -1,6 +1,18 @@
 import type { ProductGalleryVariant } from "@/app/components/shop/ProductGallery";
 import type { GalleryImage } from "@/app/components/shop/GalleryPlaceholder";
 
+// Jacket images
+import jacketMain from "@/app/_assets/shop/jacket/Jacket.png";
+import jeremyStandingJacket from "@/app/_assets/shop/jacket/Jeremy-Standing-Jacket.png";
+import jeremyHappyJacket from "@/app/_assets/shop/jacket/Jeremy-Happy-Jacket.jpg";
+
+// Vest images
+import vestMain from "@/app/_assets/shop/vest/vest.png";
+import jeremyVest from "@/app/_assets/shop/vest/jeremy-vest.png";
+
+// Shared model photos
+import armsCrossed from "@/app/_assets/shop/shared-model-photos/arms_crossed_jpg.png";
+
 export const SHOP_SIZES = ["XS", "S", "M", "L", "XL"] as const;
 
 export type ShopSize = (typeof SHOP_SIZES)[number];
@@ -38,25 +50,25 @@ export const SHOP_PRODUCTS: readonly ShopProduct[] = [
     sizes: SHOP_SIZES,
     galleryImages: [
       {
-        src: "/assets/shop/Jacket.png",
+        src: jacketMain,
         alt: "Close-up of the Tactus jacket on a mannequin",
         objectFit: "contain",
         priority: true,
       },
       {
-        src: "/assets/shop/Jeremy-Standing-Jacket.png",
+        src: jeremyStandingJacket,
         alt: "Jeremy wearing the Tactus jacket facing forward",
         className:
           "object-cover lg:object-contain lg:scale-[1.50] lg:origin-top lg:-translate-y-[13%]",
         priority: true,
       },
       {
-        src: "/assets/shop/arms_crossed_jpg.png",
+        src: armsCrossed,
         alt: "Jeremy wearing the Tactus jacket with folded arms",
         objectFit: "cover",
       },
       {
-        src: "/assets/shop/Jeremy-Happy-Jacket.jpg",
+        src: jeremyHappyJacket,
         alt: "Jeremy smiling while wearing the Tactus jacket in the city",
         objectFit: "cover",
       },
@@ -81,23 +93,23 @@ export const SHOP_PRODUCTS: readonly ShopProduct[] = [
     sizes: SHOP_SIZES,
     galleryImages: [
       {
-        src: "/assets/shop/vest.png",
+        src: vestMain,
         alt: "Close-up of the Tactus vest on a mannequin",
         objectFit: "contain",
         priority: true,
       },
       {
-        src: "/assets/shop/jeremy-vest.png",
+        src: jeremyVest,
         alt: "Jeremy wearing the Tactus vest",
         objectFit: "cover",
       },
       {
-        src: "/assets/shop/arms_crossed_jpg.png",
+        src: armsCrossed,
         alt: "Jeremy wearing the Tactus jacket with folded arms",
         objectFit: "cover",
       },
       {
-        src: "/assets/shop/Jeremy-Happy-Jacket.jpg",
+        src: jeremyHappyJacket,
         alt: "Jeremy smiling while wearing the Tactus jacket in the city",
         objectFit: "cover",
       },

@@ -61,7 +61,7 @@ body {
   flex-shrink: 0;
 }
 .product-image-container.vest {
-  background-image: url("/product-home-photo.png");
+  background-image: url("/assets/shared/product-images/product-home-photo.png");
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
