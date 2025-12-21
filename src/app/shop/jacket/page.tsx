@@ -9,19 +9,20 @@ import { ChevronLeft, ChevronRight, Heart, Bluetooth, Spool, HeartHandshake, Aud
 
 // Shop assets
 import slide1 from "@/app/_assets/shop/details/slide1.png";
-import jacketMain from "@/app/_assets/shop/jacket/Jacket.png";
+import productHomePhoto from "@/app/_assets/shared/product-images/product-home-photo.png";
 import slide3 from "@/app/_assets/shop/details/slide3.png";
 import slide4 from "@/app/_assets/shop/details/slide4.png";
-import runningJpg from "@/app/_assets/shop/details/running_jpg.png";
+import jeremyModelRunning from "@/app/_assets/shop/jacket/jeremy-model-running.jpg";
 import batterImg from "@/app/_assets/shop/details/batter.png";
-import armsCrossedImg from "@/app/_assets/shop/shared-model-photos/arms_crossed_jpg.png";
+import armsCrossedImg from "@/app/_assets/shop/jacket/arms_crossed_jpg.png";
+import runningJacket from "@/app/_assets/shop/jacket/running-jacket.jpeg";
 
 // Image carousel data
 const carouselImages = [
   { src: slide1, alt: "Tactus Vibewear Jacket - Front View" },
-  { src: jacketMain, alt: "Tactus Vibewear Jacket - Product Shot" },
-  { src: slide3, alt: "Tactus Vibewear Jacket - Side View" },
-  { src: slide4, alt: "Tactus Vibewear Jacket - Back View" },
+  { src: productHomePhoto, alt: "Tactus Vibewear Jacket - Product Shot" },
+  { src: armsCrossedImg, alt: "Arms crossed model wearing the Vibewear jacket" },
+  { src: runningJacket, alt: "Jeremy and a woman running wearing Tactus Vibewear" },
 ];
 
 export default function JacketProductPage() {
@@ -163,7 +164,7 @@ export default function JacketProductPage() {
               <div className="flex gap-3">
                 <div className="relative bg-[#f8eddb] border-2 border-[#f4c592] rounded-[5px] w-[97px] h-[97px] p-1">
                   <Image
-                    src={jacketMain}
+                    src={productHomePhoto}
                     alt="Vibewear Jacket"
                     fill
                     className="object-contain rounded-[5px]"
@@ -349,8 +350,8 @@ export default function JacketProductPage() {
             {/* Large Image Card - Full Width */}
             <div className="relative rounded-[5px] overflow-hidden h-[215px]">
               <Image
-                src={runningJpg}
-                alt="Running couple by city skyline"
+                src={jeremyModelRunning}
+                alt="Jeremy and a woman running wearing Tactus Vibewear"
                 fill
                 className="object-cover"
                 sizes="100vw"
@@ -398,8 +399,8 @@ export default function JacketProductPage() {
             {/* Large Image Card */}
             <div className="relative rounded-[5px] overflow-hidden h-[519px] md:col-span-2 lg:col-span-2">
               <Image
-                src={runningJpg}
-                alt="Running couple by city skyline"
+                src={jeremyModelRunning}
+                alt="Jeremy and a woman running wearing Tactus Vibewear"
                 fill
                 className="object-cover"
                 sizes="(max-width: 1024px) 66vw, 731px"

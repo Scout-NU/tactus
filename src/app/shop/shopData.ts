@@ -2,16 +2,17 @@ import type { ProductGalleryVariant } from "@/app/components/shop/ProductGallery
 import type { GalleryImage } from "@/app/components/shop/GalleryPlaceholder";
 
 // Jacket images
-import jacketMain from "@/app/_assets/shop/jacket/Jacket.png";
 import jeremyStandingJacket from "@/app/_assets/shop/jacket/Jeremy-Standing-Jacket.png";
-import jeremyHappyJacket from "@/app/_assets/shop/jacket/Jeremy-Happy-Jacket.jpg";
+import productHomePhoto from "@/app/_assets/shared/product-images/product-home-photo.png";
+import armsCrossed from "@/app/_assets/shop/jacket/arms_crossed_jpg.png";
+import runningJacket from "@/app/_assets/shop/jacket/running-jacket.jpeg";
 
 // Vest images
-import vestMain from "@/app/_assets/shop/vest/vest.png";
-import jeremyVest from "@/app/_assets/shop/vest/jeremy-vest.png";
+import jeremyVest from "@/app/_assets/shop/vest/jeremy-vest.png"
+import shopVestImage from "@/app/_assets/shared/product-images/shop-vest.png";
+import vestModel from "@/app/_assets/shop/vest/vest-model.jpg";
+import jeremyModelVest from "@/app/_assets/shop/vest/jeremy-and-model-vest.jpeg";
 
-// Shared model photos
-import armsCrossed from "@/app/_assets/shop/shared-model-photos/arms_crossed_jpg.png";
 
 export const SHOP_SIZES = ["XS", "S", "M", "L", "XL"] as const;
 
@@ -50,26 +51,26 @@ export const SHOP_PRODUCTS: readonly ShopProduct[] = [
     sizes: SHOP_SIZES,
     galleryImages: [
       {
-        src: jacketMain,
-        alt: "Close-up of the Tactus jacket on a mannequin",
+        src: productHomePhoto,
+        alt: "Close-up of the Vibewear jacket",
         objectFit: "contain",
         priority: true,
       },
       {
         src: jeremyStandingJacket,
-        alt: "Jeremy wearing the Tactus jacket facing forward",
+        alt: "Jeremy wearing the Vibewear jacket",
         className:
           "object-cover lg:object-contain lg:scale-[1.50] lg:origin-top lg:-translate-y-[13%]",
         priority: true,
       },
       {
         src: armsCrossed,
-        alt: "Jeremy wearing the Tactus jacket with folded arms",
+        alt: "Jeremy wearing the Vibewear jacket with folded arms",
         objectFit: "cover",
       },
       {
-        src: jeremyHappyJacket,
-        alt: "Jeremy smiling while wearing the Tactus jacket in the city",
+        src: runningJacket,
+        alt: "Jeremy and a woman running wearing Tactus Vibewear",
         objectFit: "cover",
       },
     ],
@@ -93,24 +94,24 @@ export const SHOP_PRODUCTS: readonly ShopProduct[] = [
     sizes: SHOP_SIZES,
     galleryImages: [
       {
-        src: vestMain,
-        alt: "Close-up of the Tactus vest on a mannequin",
+        src: shopVestImage,
+        alt: "Close-up of the Vibewear vest ",
         objectFit: "contain",
         priority: true,
       },
       {
         src: jeremyVest,
-        alt: "Jeremy wearing the Tactus vest",
+        alt: "Jeremy wearing the Vibewear vest",
         objectFit: "cover",
       },
       {
-        src: armsCrossed,
-        alt: "Jeremy wearing the Tactus jacket with folded arms",
+        src: vestModel,
+        alt: " Woman wearing the Vibewear vest",
         objectFit: "cover",
       },
       {
-        src: jeremyHappyJacket,
-        alt: "Jeremy smiling while wearing the Tactus jacket in the city",
+        src: jeremyModelVest,
+        alt: "Jeremy wearing the Vibewear vest",
         objectFit: "cover",
       },
     ],

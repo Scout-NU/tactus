@@ -12,9 +12,9 @@ import shopVest from "@/app/_assets/shared/product-images/shop-vest.png";
 import vestMain from "@/app/_assets/shop/vest/vest.png";
 import slide3 from "@/app/_assets/shop/details/slide3.png";
 import slide4 from "@/app/_assets/shop/details/slide4.png";
-import runningJpg from "@/app/_assets/shop/details/running_jpg.png";
+import jeremyModelRunning from "@/app/_assets/shop/jacket/jeremy-model-running.jpg";
 import batterImg from "@/app/_assets/shop/details/batter.png";
-import armsCrossedImg from "@/app/_assets/shop/shared-model-photos/arms_crossed_jpg.png";
+import armsCrossedImg from "@/app/_assets/shop/jacket/arms_crossed_jpg.png";
 
 // Image carousel data
 const carouselImages = [
@@ -349,8 +349,8 @@ export default function VestProductPage() {
             {/* Large Image Card - Full Width */}
             <div className="relative rounded-[5px] overflow-hidden h-[215px]">
               <Image
-                src={runningJpg}
-                alt="Running couple by city skyline"
+                src={jeremyModelRunning}
+                alt="Jeremy and a woman running wearing Tactus Vibewear"
                 fill
                 className="object-cover"
                 sizes="100vw"
@@ -398,8 +398,8 @@ export default function VestProductPage() {
             {/* Large Image Card */}
             <div className="relative rounded-[5px] overflow-hidden h-[519px] md:col-span-2 lg:col-span-2">
               <Image
-                src={runningJpg}
-                alt="Running couple by city skyline"
+                src={jeremyModelRunning}
+                alt="Jeremy and a woman running wearing Tactus Vibewear"
                 fill
                 className="object-cover"
                 sizes="(max-width: 1024px) 66vw, 731px"
