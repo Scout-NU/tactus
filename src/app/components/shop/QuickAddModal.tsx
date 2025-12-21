@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef, useCallback } from "react";
-import Image from "next/image";
+import Image, { StaticImageData } from "next/image";
 import { X, ChevronLeft, ChevronRight } from "lucide-react";
 import { useCart } from "@/context/CartContext";
 import type { GalleryImage } from "./GalleryPlaceholder";
@@ -142,13 +142,18 @@ export function QuickAddModal({
       console.log("  Selected stripePriceId:", stripePriceId);
       console.log("  Product title:", title);
       
+      // Handle StaticImageData or string for image
+      const imageSrc = image?.src 
+        ? (typeof image.src === 'string' ? image.src : (image.src as StaticImageData).src)
+        : undefined;
+      
       addToCart({
         productId,
         title,
         price: priceInCents,
         size: selectedSize,
         quantity,
-        image: image?.src,
+        image: imageSrc,
         stripePriceId,
       });
       

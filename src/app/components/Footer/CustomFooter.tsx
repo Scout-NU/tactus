@@ -4,6 +4,9 @@ import Image from "next/image";
 import React, { useState } from "react";
 import HubSpotPopup from "../HubSpotPopup/HubSpotPopup";
 
+// Brand assets
+import footerLogo from "@/app/_assets/shared/brand/Tactus-footer-logo.svg";
+
 export default function CustomFooter() {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   return (
@@ -65,7 +68,7 @@ export default function CustomFooter() {
           <div className="flex items-center justify-center">
             <Image
               alt="Tactus logo"
-              src="/Tactus-footer-logo.svg"
+              src={footerLogo}
               width={212}
               height={165}
               className="w-40 md:w-48 lg:w-[212px] h-auto"

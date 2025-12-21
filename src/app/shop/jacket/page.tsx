@@ -7,12 +7,22 @@ import { SHOP_PRODUCTS, SHOP_SIZES, ShopSize } from "../shopData";
 import { useCart } from "@/context/CartContext";
 import { ChevronLeft, ChevronRight, Heart, Bluetooth, Spool, HeartHandshake, AudioWaveform, X } from "lucide-react";
 
+// Shop assets
+import slide1 from "@/app/_assets/shop/details/slide1.png";
+import productHomePhoto from "@/app/_assets/shared/product-images/product-home-photo.png";
+import slide3 from "@/app/_assets/shop/details/slide3.png";
+import slide4 from "@/app/_assets/shop/details/slide4.png";
+import jeremyModelRunning from "@/app/_assets/shop/jacket/jeremy-model-running.jpg";
+import batterImg from "@/app/_assets/shop/details/batter.png";
+import armsCrossedImg from "@/app/_assets/shop/jacket/arms_crossed_jpg.png";
+import runningJacket from "@/app/_assets/shop/jacket/running-jacket.jpeg";
+
 // Image carousel data
 const carouselImages = [
-  { src: "/jacket_details/slide1.png", alt: "Tactus Vibewear Jacket - Front View" },
-  { src: "/assets/shop/Jacket.png", alt: "Tactus Vibewear Jacket - Product Shot" },
-  { src: "/jacket_details/slide3.png", alt: "Tactus Vibewear Jacket - Side View" },
-  { src: "/jacket_details/slide4.png", alt: "Tactus Vibewear Jacket - Back View" },
+  { src: slide1, alt: "Tactus Vibewear Jacket - Front View" },
+  { src: productHomePhoto, alt: "Tactus Vibewear Jacket - Product Shot" },
+  { src: armsCrossedImg, alt: "Arms crossed model wearing the Vibewear jacket" },
+  { src: runningJacket, alt: "Jeremy and a woman running wearing Tactus Vibewear" },
 ];
 
 export default function JacketProductPage() {
@@ -49,7 +59,7 @@ export default function JacketProductPage() {
       title: product.title,
       price: product.priceInCents,
       size: selectedSize,
-      image: carouselImages[0].src,
+      image: typeof carouselImages[0].src === 'string' ? carouselImages[0].src : carouselImages[0].src.src,
       stripePriceId,
     });
 
@@ -154,7 +164,7 @@ export default function JacketProductPage() {
               <div className="flex gap-3">
                 <div className="relative bg-[#f8eddb] border-2 border-[#f4c592] rounded-[5px] w-[97px] h-[97px] p-1">
                   <Image
-                    src="/assets/shop/Jacket.png"
+                    src={productHomePhoto}
                     alt="Vibewear Jacket"
                     fill
                     className="object-contain rounded-[5px]"
@@ -340,8 +350,8 @@ export default function JacketProductPage() {
             {/* Large Image Card - Full Width */}
             <div className="relative rounded-[5px] overflow-hidden h-[215px]">
               <Image
-                src="/jacket_details/running_jpg.png"
-                alt="Running couple by city skyline"
+                src={jeremyModelRunning}
+                alt="Jeremy and a woman running wearing Tactus Vibewear"
                 fill
                 className="object-cover"
                 sizes="100vw"
@@ -373,7 +383,7 @@ export default function JacketProductPage() {
               {/* Battery Image Card */}
               <div className="relative rounded-[5px] overflow-hidden h-[187px]">
                 <Image
-                  src="/jacket_details/batter.png"
+                  src={batterImg}
                   alt="Battery charging"
                   fill
                   className="object-cover"
@@ -389,8 +399,8 @@ export default function JacketProductPage() {
             {/* Large Image Card */}
             <div className="relative rounded-[5px] overflow-hidden h-[519px] md:col-span-2 lg:col-span-2">
               <Image
-                src="/jacket_details/running_jpg.png"
-                alt="Running couple by city skyline"
+                src={jeremyModelRunning}
+                alt="Jeremy and a woman running wearing Tactus Vibewear"
                 fill
                 className="object-cover"
                 sizes="(max-width: 1024px) 66vw, 731px"
@@ -435,7 +445,7 @@ export default function JacketProductPage() {
             {/* Medium Image Card */}
             <div className="relative rounded-[5px] overflow-hidden h-[465px] lg:col-span-1">
               <Image
-                src="/jacket_details/arms_crossed_jpg.png"
+                src={armsCrossedImg}
                 alt="Person wearing jacket with arms crossed"
                 fill
                 className="object-cover"
@@ -443,7 +453,7 @@ export default function JacketProductPage() {
               />
               <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent p-10 z-10">
                 <p className="text-white text-[24px] font-normal leading-snug">
-                  Lightweight performance fit,<br />
+                  Lightweight performance fit,
                   made with premium materials
                 </p>
               </div>
@@ -452,7 +462,7 @@ export default function JacketProductPage() {
             {/* Battery Image Card */}
             <div className="relative rounded-[5px] overflow-hidden h-[465px]">
               <Image
-                src="/jacket_details/batter.png"
+                src={batterImg}
                 alt="Battery charging"
                 fill
                 className="object-cover"

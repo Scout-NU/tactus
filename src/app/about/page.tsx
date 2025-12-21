@@ -1,9 +1,49 @@
 "use client";
 
 import React, { useState } from "react";
-import Image from "next/image";
+import Image, { StaticImageData } from "next/image";
 import { BackgroundWave } from "../components/shop/BackgroundWave";
 import HubSpotPopup from "../components/HubSpotPopup/HubSpotPopup";
+
+// Shared assets
+import waveTop from "@/app/_assets/shop/waves/wave-top.svg";
+import waveInContact from "@/app/_assets/shared/waves/wave-in-contact.svg";
+import recordImage from "@/app/_assets/shared/brand/record.png";
+
+// Mission photos
+import mission1 from "@/app/_assets/about/mission/jeremy-with-community.jpg";
+import mission2 from "@/app/_assets/about/mission/our-mission-2.png";
+import mission3 from "@/app/_assets/about/mission/our-mission-3.png";
+import mission4 from "@/app/_assets/about/mission/jeremy-deaflympics-community.jpg";
+
+// Vinyl covers
+import vinylCover1 from "@/app/_assets/about/vinyl/vinyl-cover-1.jpg";
+import vinylCover2 from "@/app/_assets/about/vinyl/jeremy-holding-sign.jpg";
+import vinylCover3 from "@/app/_assets/about/vinyl/vinyl-cover-3.jpg";
+
+// Team photos
+import jeremyTeam from "@/app/_assets/about/team/jeremy-team.png";
+import johanTeam from "@/app/_assets/about/team/johan-team.png";
+import alexTeam from "@/app/_assets/about/team/alex-team.png";
+import cayleTeam from "@/app/_assets/about/team/cayle-team.png";
+import antoinetteTeam from "@/app/_assets/about/team/antoinette-team.png";
+import nicholasTeam from "@/app/_assets/about/team/nicholas-team.png";
+
+// Sponsor images
+import sponsor1 from "@/app/_assets/shared/sponsor-images/sponsor-1.png";
+import sponsor2 from "@/app/_assets/shared/sponsor-images/sponsor-2.png";
+import sponsor3 from "@/app/_assets/shared/sponsor-images/sponsor-3.png";
+import sponsor4 from "@/app/_assets/shared/sponsor-images/sponsor-4.png";
+import sponsor5 from "@/app/_assets/shared/sponsor-images/sponsor-5.png";
+import sponsor6 from "@/app/_assets/shared/sponsor-images/sponsor-6.png";
+import sponsor7 from "@/app/_assets/shared/sponsor-images/sponsor-7.png";
+import sponsor8 from "@/app/_assets/shared/sponsor-images/sponsor-8.png";
+import sponsor9 from "@/app/_assets/shared/sponsor-images/sponsor-9.png";
+import sponsor10 from "@/app/_assets/shared/sponsor-images/sponsor-10.png";
+import sponsor11 from "@/app/_assets/shared/sponsor-images/sponsor-11.png";
+import sponsor12 from "@/app/_assets/shared/sponsor-images/sponsor-12.png";
+import sponsor13 from "@/app/_assets/shared/sponsor-images/sponsor-13.png";
+import sponsor14 from "@/app/_assets/shared/sponsor-images/sponsor-14.png";
 
 export default function AboutPage() {
   const [isHubSpotPopupOpen, setIsHubSpotPopupOpen] = useState(false);
@@ -17,7 +57,7 @@ export default function AboutPage() {
       }}
     >
       <BackgroundWave
-        src="/assets/shop/wave-top.svg"
+        src={waveTop}
         className="-top-1 left-[40%] h-[900px] w-[2100px] -translate-x-[40%] md:-translate-x-1/3"
         priority
       />
@@ -69,10 +109,10 @@ function MissionSection() {
 // Photo Grid Section (positioned to overlap mission end and core principles start)
 function PhotoGridSection() {
   const missionPhotos = [
-    { src: "/assets/about/our-mission-1.png", zIndex: 40 },
-    { src: "/assets/about/our-mission-2.png", zIndex: 39 },
-    { src: "/assets/about/our-mission-3.png", zIndex: 38 },
-    { src: "/assets/about/our-mision-4.png", zIndex: 37 },
+    { src: mission1, zIndex: 40 },
+    { src: mission2, zIndex: 39 },
+    { src: mission3, zIndex: 38 },
+    { src: mission4, zIndex: 37 },
   ];
 
   return (
@@ -189,15 +229,15 @@ function CorePrinciplesSection() {
   const principles = [
     {
       title: "Embrace Music",
-      vinylCover: "/assets/about/vinyl-cover-1.jpg",
+      vinylCover: vinylCover1,
     },
     {
       title: "Empower Connection",
-      vinylCover: "/assets/about/vinyl-cover-2.jpg",
+      vinylCover: vinylCover2,
     },
     {
       title: "Celebrate Inclusion",
-      vinylCover: "/assets/about/vinyl-cover-3.jpg",
+      vinylCover: vinylCover3,
     },
   ];
 
@@ -234,7 +274,7 @@ function PrincipleCard({
   isMobile = false,
 }: {
   title: string;
-  vinylCover: string;
+  vinylCover: string | StaticImageData;
   isMobile?: boolean;
 }) {
   const [isHovered, setIsHovered] = useState(false);
@@ -269,7 +309,7 @@ function PrincipleCard({
         >
           <div className="relative h-full w-full">
             <Image
-              src="/assets/about/record.png"
+              src={recordImage}
               alt="Vinyl record"
               fill
               className="object-contain"
@@ -324,39 +364,39 @@ function TeamSection() {
     {
       name: "Jeremy Chow",
       role: "Founder",
-      image: "/assets/about/jeremy-team.png",
+      image: jeremyTeam,
       linkedinUrl: "https://www.linkedin.com/in/jeremy-py-chow/",
     },
     {
       name: "Johan Darboven",
       role: "Strategy Director",
-      image: "/assets/about/johan-team.png",
+      image: johanTeam,
       linkedinUrl:
         "https://www.linkedin.com/in/johann-arthur-darboven-a01275196/",
     },
     {
       name: "Alex Crist",
       role: "Lead Software Engineer",
-      image: "/assets/about/alex-team.png",
+      image: alexTeam,
       linkedinUrl: "https://www.linkedin.com/in/alex-crist/",
     },
     {
       name: "Cayle O'Brien",
       role: "Staff Interpreter",
-      image: "/assets/about/cayle-team.png",
+      image: cayleTeam,
       linkedinUrl:
         "https://www.linkedin.com/in/cayle-o-brien-ms-nic-b69a68211/",
     },
     {
       name: "Antoinette Chow",
       role: "Designer",
-      image: "/assets/about/antoinette-team.png",
+      image: antoinetteTeam,
       linkedinUrl: "https://www.linkedin.com/in/antoinette-chow/",
     },
     {
       name: "Nicholas Chow",
       role: "Product Engineer",
-      image: "/assets/about/nicholas-team.png",
+      image: nicholasTeam,
       linkedinUrl: "https://www.linkedin.com/in/nptchow/",
     },
   ];
@@ -430,38 +470,38 @@ function TeamSection() {
 
 // Sponsors Section
 function SponsorsSection() {
-  const sponsors = [
-    { src: "/assets/about/sponsor-1.png", alt: "Sponsor 1" },
-    { src: "/assets/about/sponsor-2.png", alt: "Sponsor 2" },
-    { src: "/assets/about/sponsor-3.png", alt: "Sponsor 3" },
+  const sponsors: { src: StaticImageData; alt: string; href?: string }[] = [
+    { src: sponsor1, alt: "Sponsor 1" },
+    { src: sponsor2, alt: "Sponsor 2" },
+    { src: sponsor3, alt: "Sponsor 3" },
     {
-      src: "/assets/about/sponsor-4.png",
+      src: sponsor4,
       alt: "Sponsor 4",
       href: "https://www.bizjournals.com/boston/inno/stories/profiles/2020/09/22/exclusive-tactus-deaf-startup-smart-clothing-music.html",
     },
-    { src: "/assets/about/sponsor-5.png", alt: "Sponsor 5" },
-    { src: "/assets/about/sponsor-6.png", alt: "Sponsor 6" },
-    { src: "/assets/about/sponsor-11.png", alt: "Sponsor 11" },
-    { src: "/assets/about/sponsor-7.png", alt: "Sponsor 7" },
-    { src: "/assets/about/sponsor-8.png", alt: "Sponsor 8" },
+    { src: sponsor5, alt: "Sponsor 5" },
+    { src: sponsor6, alt: "Sponsor 6" },
+    { src: sponsor11, alt: "Sponsor 11" },
+    { src: sponsor7, alt: "Sponsor 7" },
+    { src: sponsor8, alt: "Sponsor 8" },
     {
-      src: "/assets/about/sponsor-9.png",
+      src: sponsor9,
       alt: "Sponsor 9",
       href: "https://cic.com/blog/bringing-music-to-life-through-touch-a-conversation-with-tactus-founder-jeremy-chow/",
     },
     {
-      src: "/assets/about/sponsor-10.png",
+      src: sponsor10,
       alt: "Sponsor 10",
       href: "https://drive.google.com/file/d/1V4Z2YlX6ZHufJGKbVSVu6fP_SNiRcR-O/view?usp=sharing",
     },
     {
-      src: "/assets/about/sponsor-12.png",
+      src: sponsor12,
       alt: "Sponsor 12",
       href: "https://dttproductions.com/2025/11/10/tactus-music/",
     },
-    { src: "/assets/about/sponsor-13.png", alt: "Sponsor 13" },
+    { src: sponsor13, alt: "Sponsor 13" },
     {
-      src: "/assets/about/sponsor-14.png",
+      src: sponsor14,
       alt: "Sponsor 14",
       href: "https://fashionunited.com/news/fashion/how-tactus-makes-music-more-accessible-to-the-deaf-community-with-a-vibrating-shirt/2023031452805",
     },
@@ -517,7 +557,7 @@ function DontMissABeatSection({ onOpenPopup }: { onOpenPopup: () => void }) {
       {/* Wave pattern background */}
       <div className="pointer-events-none absolute inset-0 z-0 ">
         <Image
-          src="/wave-in-contact.svg"
+          src={waveInContact}
           alt=""
           fill
           className="object-cover"
@@ -544,7 +584,7 @@ function DontMissABeatSection({ onOpenPopup }: { onOpenPopup: () => void }) {
         {/* Record image - positioned on the right */}
         <div className="absolute right-[-150px] top-[100%] hidden h-[750px] w-[750px] -translate-y-1/2 md:block">
           <Image
-            src="/record.png"
+            src={recordImage}
             alt="Vinyl record"
             fill
             className="object-contain"

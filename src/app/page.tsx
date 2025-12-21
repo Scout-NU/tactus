@@ -1,15 +1,52 @@
 "use client";
 
-import Image from "next/image";
+import Image, { StaticImageData } from "next/image";
 import Carousel from "./components/Carousel/Carousel";
 import "./HomePage.css";
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import HubSpotPopup from "./components/HubSpotPopup/HubSpotPopup";
+import {
+  HOME_CONTENT,
+  HOME_VIDEOS,
+  HOME_SPONSORS,
+  HOME_PRODUCTS,
+  type VideoItem,
+} from "./homeData";
+
+// Wave pattern imports
+import waveInLanding from "@/app/_assets/shared/waves/wave-in-landing.svg";
+import waveInCommunity from "@/app/_assets/shared/waves/wave-in-community.svg";
+import wave2InCommunity from "@/app/_assets/shared/waves/wave-2-in-community.svg";
+import waveInContact from "@/app/_assets/shared/waves/wave-in-contact.svg";
+
+// Brand assets
+import recordImage from "@/app/_assets/shared/brand/record.png";
 
 export default function Home() {
   const router = useRouter();
   const [isHubSpotPopupOpen, setIsHubSpotPopupOpen] = useState(false);
+
+  // Helper function to render heading with highlighted words
+  const renderHeading = (
+    text: string,
+    highlights: readonly string[]
+  ): React.ReactNode => {
+    const words = text.split(" ");
+    return words.map((word, index) => {
+      const isHighlight = highlights.includes(word);
+      return (
+        <span key={index}>
+          {isHighlight ? (
+            <span className="product-info-blue-text">{word}</span>
+          ) : (
+            word
+          )}
+          {index < words.length - 1 ? " " : ""}
+        </span>
+      );
+    });
+  };
 
   return (
     <div className="home-page">
@@ -18,21 +55,22 @@ export default function Home() {
           <div className="product-info">
             <div className="product-text">
               <h1 className="product-info-text">
-                YOU DON’T NEED TO{" "}
-                <span className="product-info-blue-text">HEAR</span> THE MUSIC
-                TO <span className="product-info-blue-text">FEEL</span> IT.{" "}
+                {renderHeading(
+                  HOME_CONTENT.hero.heading,
+                  HOME_CONTENT.hero.highlightWords
+                )}
               </h1>
               <p className="product-description-text">
-                Wearable tech developed with and for the Deaf community.{" "}
+                {HOME_CONTENT.hero.subtext}
               </p>
               <button
                 className="learn-more-button orange"
                 style={{ zIndex: 2 }}
                 onClick={() => {
-                  router.push("/product");
+                  router.push(HOME_CONTENT.hero.ctaLink);
                 }}
               >
-                LEARN MORE
+                {HOME_CONTENT.hero.ctaText}
               </button>
             </div>
           </div>
@@ -45,7 +83,7 @@ export default function Home() {
           >
             <Image
               alt="wave pattern"
-              src="/wave-in-landing.svg"
+              src={waveInLanding}
               fill
               style={{
                 objectFit: "cover",
@@ -54,105 +92,38 @@ export default function Home() {
             />
           </div>
         </div>
-        {/* <div className="blue-pixels">
-          <Image
-            alt="blue pixels"
-            src="/pixels/left.svg"
-            width={515}
-            height={360}
-          />
-          <Image
-            alt="blue pixels"
-            src="/pixels/middle.svg"
-            width={254}
-            height={304}
-          />
-          <Image
-            alt="blue pixels"
-            src="/pixels/right.svg"
-            width={515}
-            height={360}
-          />
-        </div> */}
 
         <div className="community-section">
           <div className="community-content">
             <div className="community-text">
               <h1 className="community-header">
-                TRANSFORMING THE WAY MUSIC IS EXPERIENCED.
+                {HOME_CONTENT.community.heading}
               </h1>
-              <h2 className="community-quote">
-                “I feel like my soul is moving.”
-              </h2>
+              <h2 className="community-quote">{HOME_CONTENT.community.quote}</h2>
             </div>
             <div className="carousel-content">
               <div className="people-carousel">
                 <Carousel
-                  items={[
-                    <LazyVideo
-                      key={1}
-                      src="/Alleyna_Tactus.mp4"
-                      poster="/Alleyna_Tactus-poster.jpg"
-                    />,
-                    <LazyVideo
-                      key={2}
-                      src="/Ashwin_Tactus.mp4"
-                      poster="/Ashwin_Tactus-poster.jpg"
-                    />,
-                    <LazyVideo
-                      key={3}
-                      src="/Dancing_Testing.mp4"
-                      poster="/Dancing_Testing-poster.jpg"
-                    />,
-                    <LazyVideo
-                      key={4}
-                      src="/Sign_Tactus.mp4"
-                      poster="/Sign_Tactus-poster.jpg"
-                    />,
-                  ]}
+                  items={HOME_VIDEOS.map((video) => (
+                    <ClickToPlayVideo key={video.id} video={video} />
+                  ))}
                   gap={25}
                 />
               </div>
               <div className="sponsor-carousel items-top">
                 <Carousel
-                  items={[
+                  items={HOME_SPONSORS.map((sponsor, index) => (
                     <Image
-                      src={"/assets/about/sponsor-5.png"}
-                      alt="afya"
-                      key={1}
-                      width={167}
-                      height={76}
-                    />,
-                    <Image
-                      src={"/assets/about/sponsor-3.png"}
-                      alt="idea venture accelerator"
-                      key={2}
-                      width={168}
-                      height={76}
-                    />,
-                    <Image
-                      src={"/assets/about/sponsor-4.png"}
-                      alt="mass challenge"
-                      key={3}
-                      width={92}
-                      height={76}
-                    />,
-                    <Image
-                      src={"/assets/about/sponsor-2.png"}
-                      alt="sherman center"
-                      key={4}
-                      width={224}
-                      height={42}
-                    />,
-                    <Image
-                      src={"/assets/about/sponsor-1.png"}
-                      alt="y startup school"
-                      key={5}
-                      width={190}
-                      height={76}
-                    />,
-                  ]}
+                      key={index}
+                      src={sponsor.src}
+                      alt={sponsor.alt}
+                      width={sponsor.width}
+                      height={sponsor.height}
+                    />
+                  ))}
                   gap={64}
+                  autoScroll={true}
+                  scrollSpeed={40}
                 />
               </div>
             </div>
@@ -166,9 +137,9 @@ export default function Home() {
         >
           <Image
             alt="wave pattern"
-            src="/wave-in-community.svg"
+            src={waveInCommunity}
             fill
-            style={{ objectFit: "cover"}}
+            style={{ objectFit: "cover" }}
           />
         </div>
         <div
@@ -179,7 +150,7 @@ export default function Home() {
         >
           <Image
             alt="wave pattern"
-            src="/wave-2-in-community.svg"
+            src={wave2InCommunity}
             fill
             style={{ objectFit: "cover" }}
           />
@@ -187,54 +158,16 @@ export default function Home() {
         <div className="products-section-wrapper">
           <div className="products-section">
             <div className="products-section-text">
-              <h1 className="products-header">OUR PRODUCTS</h1>
+              <h1 className="products-header">
+                {HOME_CONTENT.products.heading}
+              </h1>
               <p className="products-description">
-              Experience music through touch. Our wearables transform every beat into a physical sensation, bringing you closer to the music you love.
+                {HOME_CONTENT.products.description}
               </p>
             </div>
             <div className="products-list">
-              {[
-                {
-                  name: "VIBEWEAR JACKET",
-                  price: (
-                    <>
-                      <p
-                        style={{
-                          textDecoration: "line-through",
-                          color: "#f06532",
-                        }}
-                      >
-                        $500
-                      </p>
-                      <p>$459</p>
-                    </>
-                  ),
-                  image: "/product-home-photo.png",
-                  route: "/shop/jacket",
-                },
-                {
-                  name: "VIBEWEAR VEST",
-                  price: (
-                    <>
-                      <p
-                        style={{
-                          textDecoration: "line-through",
-                          color: "#f06532",
-                        }}
-                      >
-                        $500
-                      </p>
-                      <p>$459</p>
-                    </>
-                  ),
-                  image: "/assets/shop/shop-vest.png",
-                  route: "/shop/vest",
-                },
-              ].map((product) => (
-                <div
-                  key={product.name}
-                  className="product-item-container"
-                >
+              {HOME_PRODUCTS.map((product) => (
+                <div key={product.name} className="product-item-container">
                   <div className="product-item">
                     <div className="product-display-container">
                       <Image
@@ -248,7 +181,17 @@ export default function Home() {
                     <div className="product-description">
                       <div className="product-properties">
                         <h2 className="product-name">{product.name}</h2>
-                        <div>{product.price}</div>
+                        <div>
+                          <p
+                            style={{
+                              textDecoration: "line-through",
+                              color: "#f06532",
+                            }}
+                          >
+                            {product.originalPrice}
+                          </p>
+                          <p>{product.currentPrice}</p>
+                        </div>
                       </div>
                       <button
                         className="learn-more-button small"
@@ -277,10 +220,10 @@ export default function Home() {
             <div className="contact-form-info">
               <div className="contact-form-text">
                 <h1 className="contact-form-info-text">
-                  DON&apos;T MISS A BEAT
+                  {HOME_CONTENT.contact.heading}
                 </h1>
                 <p className="contact-form-description-text">
-                Stay connected for early access to news from the Tactus team.
+                  {HOME_CONTENT.contact.description}
                 </p>
                 <div className="contact-form-input">
                   <button
@@ -288,28 +231,15 @@ export default function Home() {
                     style={{ zIndex: 10, position: "relative" }}
                     onClick={() => setIsHubSpotPopupOpen(true)}
                   >
-                    STAY IN TOUCH
+                    {HOME_CONTENT.contact.ctaText}
                   </button>
-                  {/* <input
-                    type="text"
-                    placeholder="example@provider.com"
-                    className="contact-form-text-input"
-                  />
-                  <button className="contact-form-submit-button">
-                    <Image
-                      alt="wave pattern"
-                      src="/Arrow.svg"
-                      width={20}
-                      height={20}
-                    />
-                  </button> */}
                 </div>
               </div>
             </div>
             <div
               className="product-image-container record"
               style={{
-                backgroundImage: 'url("/record.png")',
+                backgroundImage: `url(${recordImage.src})`,
                 backgroundSize: "cover",
                 position: "absolute",
                 right: -235,
@@ -319,13 +249,13 @@ export default function Home() {
         </div>
         <div
           style={{
-            top: "350vh"
+            top: "350vh",
           }}
           className="wave-pattern-orange second"
         >
           <Image
             alt="wave pattern"
-            src="/wave-in-contact.svg"
+            src={waveInContact}
             fill
             style={{ objectFit: "cover" }}
           />
@@ -341,53 +271,56 @@ export default function Home() {
   );
 }
 
-// LazyVideo component - only loads videos when they're visible in viewport
-function LazyVideo({ src, poster }: { src: string; poster: string }) {
+// Click-to-play video component with pause/play toggle
+function ClickToPlayVideo({ video }: { video: VideoItem }) {
   const videoRef = useRef<HTMLVideoElement>(null);
-  const hasLoadedRef = useRef(false);
+  const [isPlaying, setIsPlaying] = useState(false);
 
-  useEffect(() => {
-    const video = videoRef.current;
-    if (!video) return;
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            // Video is visible
-            if (!hasLoadedRef.current) {
-              // Load video only once
-              video.load();
-              hasLoadedRef.current = true;
-            }
-            video.play().catch(() => {});
-          } else {
-            // Video is not visible, pause it but don't reload
-            video.pause();
-          }
-        });
-      },
-      { threshold: 0.25 } // Load when 25% visible
-    );
-
-    observer.observe(video);
-
-    return () => observer.disconnect();
-  }, []);
+  const handleTogglePlay = () => {
+    if (videoRef.current) {
+      if (isPlaying) {
+        videoRef.current.pause();
+        setIsPlaying(false);
+      } else {
+        videoRef.current.play().catch(() => {});
+        setIsPlaying(true);
+      }
+    }
+  };
 
   return (
-    <video
-      ref={videoRef}
-      width={303}
-      height={540}
-      muted
-      loop
-      playsInline
-      preload="none"
-      poster={poster}
-      style={{ objectFit: "cover" }}
-    >
-      <source src={src} type="video/mp4" />
-    </video>
+    <div className="video-container" onClick={handleTogglePlay}>
+      <video
+        ref={videoRef}
+        muted
+        loop
+        playsInline
+        preload="none"
+        poster={typeof video.poster === 'string' ? video.poster : (video.poster as StaticImageData).src}
+      >
+        <source src={video.src} type="video/mp4" />
+      </video>
+      {/* Play button overlay - shown when paused */}
+      {!isPlaying && (
+        <div className="play-button-overlay" aria-label={`Play ${video.alt}`}>
+          <span className="play-icon">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <polygon points="5,3 19,12 5,21" />
+            </svg>
+          </span>
+        </div>
+      )}
+      {/* Pause overlay - shown on hover when playing (desktop only) */}
+      {isPlaying && (
+        <div className="pause-overlay" aria-label={`Pause ${video.alt}`}>
+          <span className="pause-icon">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <rect x="6" y="4" width="4" height="16" />
+              <rect x="14" y="4" width="4" height="16" />
+            </svg>
+          </span>
+        </div>
+      )}
+    </div>
   );
 }

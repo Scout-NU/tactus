@@ -61,7 +61,7 @@ body {
   flex-shrink: 0;
 }
 .product-image-container.vest {
-  background-image: url("/product-home-photo.png");
+  background-image: url("/assets/shared/product-images/product-home-photo.png");
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
@@ -603,6 +603,10 @@ body {
     height: 313px;
   }
 
+        /* Show only first 2 videos on mobile */
+        .people-carousel .carousel-item:nth-child(n+3) {
+          display: none;
+        }
   .product-image-container.vest {
     position: absolute;
     left: -15vw !important;
@@ -750,5 +754,147 @@ body {
 
   .product-info-text {
     font-size: 55px;
+  }
+}
+
+/* ============================================
+   CLICK-TO-PLAY VIDEO STYLES
+   ============================================ */
+
+.video-container {
+  position: relative;
+  width: 303px;
+  height: 540px;
+  cursor: pointer;
+  overflow: hidden;
+  border-radius: 12px;
+  flex-shrink: 0;
+}
+
+.video-container video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none;
+}
+
+/* Play button overlay - shown when video is paused */
+.play-button-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.3);
+  border: none;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  pointer-events: none;
+}
+
+.video-container:hover .play-button-overlay {
+  background: rgba(0, 0, 0, 0.4);
+}
+
+.video-container:hover .play-icon {
+  transform: scale(1.1);
+}
+
+.play-icon {
+  width: 80px;
+  height: 80px;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: .8;
+  transition: transform 0.2s ease;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.play-icon svg {
+  width: 32px;
+  height: 32px;
+  margin-left: 4px;
+  fill: #05365f;
+}
+
+/* Pause overlay - shown on hover when video is playing (desktop only) */
+.pause-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0);
+  opacity: 0;
+  transition: opacity 0.3s ease, background 0.3s ease;
+  pointer-events: none;
+}
+
+.video-container:hover .pause-overlay {
+  opacity: 1;
+  background: rgba(0, 0, 0, 0.3);
+}
+
+.pause-icon {
+  width: 80px;
+  height: 80px;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s ease;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.video-container:hover .pause-icon {
+  transform: scale(1.1);
+}
+
+.pause-icon svg {
+  width: 28px;
+  height: 28px;
+  fill: #05365f;
+}
+
+/* ============================================
+   MOBILE VIDEO STYLES
+   ============================================ */
+
+@media (max-width: 768px) {
+  .video-container {
+    width: 167px;
+    height: 313px;
+  }
+
+  .play-icon,
+  .pause-icon {
+    width: 60px;
+    height: 60px;
+  }
+
+  .play-icon svg {
+    width: 24px;
+    height: 24px;
+    margin-left: 3px;
+  }
+
+  .pause-icon svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  /* Hide pause overlay on mobile - use tap instead */
+  .pause-overlay {
+    display: none;
   }
 }

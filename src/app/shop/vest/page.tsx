@@ -7,12 +7,21 @@ import { SHOP_PRODUCTS, SHOP_SIZES, ShopSize } from "../shopData";
 import { useCart } from "@/context/CartContext";
 import { ChevronLeft, ChevronRight, Heart, Bluetooth, Spool, HeartHandshake, AudioWaveform, X } from "lucide-react";
 
+// Shop assets
+import shopVest from "@/app/_assets/shared/product-images/shop-vest.png";
+import vestMain from "@/app/_assets/shop/vest/vest.png";
+import slide3 from "@/app/_assets/shop/details/slide3.png";
+import slide4 from "@/app/_assets/shop/details/slide4.png";
+import jeremyModelRunning from "@/app/_assets/shop/jacket/jeremy-model-running.jpg";
+import batterImg from "@/app/_assets/shop/details/batter.png";
+import armsCrossedImg from "@/app/_assets/shop/jacket/arms_crossed_jpg.png";
+
 // Image carousel data
 const carouselImages = [
-  { src: "/assets/shop/shop-vest.png", alt: "Tactus Vibewear Vest - Front View" },
-  { src: "/assets/shop/vest.png", alt: "Tactus Vibewear Vest - Product Shot" },
-  { src: "/jacket_details/slide3.png", alt: "Tactus Vibewear Vest - Side View" },
-  { src: "/jacket_details/slide4.png", alt: "Tactus Vibewear Vest - Back View" },
+  { src: shopVest, alt: "Tactus Vibewear Vest - Front View" },
+  { src: vestMain, alt: "Tactus Vibewear Vest - Product Shot" },
+  { src: slide3, alt: "Tactus Vibewear Vest - Side View" },
+  { src: slide4, alt: "Tactus Vibewear Vest - Back View" },
 ];
 
 export default function VestProductPage() {
@@ -49,7 +58,7 @@ export default function VestProductPage() {
       title: product.title,
       price: product.priceInCents,
       size: selectedSize,
-      image: carouselImages[0].src,
+      image: typeof carouselImages[0].src === 'string' ? carouselImages[0].src : carouselImages[0].src.src,
       stripePriceId,
     });
 
@@ -154,7 +163,7 @@ export default function VestProductPage() {
               <div className="flex gap-3">
                 <div className="relative bg-[#f8eddb] border-2 border-[#f4c592] rounded-[5px] w-[97px] h-[97px] p-1">
                   <Image
-                    src="/assets/shop/vest.png"
+                    src={shopVest}
                     alt="Vibewear Vest"
                     fill
                     className="object-contain rounded-[5px]"
@@ -340,8 +349,8 @@ export default function VestProductPage() {
             {/* Large Image Card - Full Width */}
             <div className="relative rounded-[5px] overflow-hidden h-[215px]">
               <Image
-                src="/jacket_details/running_jpg.png"
-                alt="Running couple by city skyline"
+                src={jeremyModelRunning}
+                alt="Jeremy and a woman running wearing Tactus Vibewear"
                 fill
                 className="object-cover"
                 sizes="100vw"
@@ -373,7 +382,7 @@ export default function VestProductPage() {
               {/* Battery Image Card */}
               <div className="relative rounded-[5px] overflow-hidden h-[187px]">
                 <Image
-                  src="/jacket_details/batter.png"
+                  src={batterImg}
                   alt="Battery charging"
                   fill
                   className="object-cover"
@@ -389,8 +398,8 @@ export default function VestProductPage() {
             {/* Large Image Card */}
             <div className="relative rounded-[5px] overflow-hidden h-[519px] md:col-span-2 lg:col-span-2">
               <Image
-                src="/jacket_details/running_jpg.png"
-                alt="Running couple by city skyline"
+                src={jeremyModelRunning}
+                alt="Jeremy and a woman running wearing Tactus Vibewear"
                 fill
                 className="object-cover"
                 sizes="(max-width: 1024px) 66vw, 731px"
@@ -435,7 +444,7 @@ export default function VestProductPage() {
             {/* Medium Image Card */}
             <div className="relative rounded-[5px] overflow-hidden h-[465px] lg:col-span-1">
               <Image
-                src="/jacket_details/arms_crossed_jpg.png"
+                src={armsCrossedImg}
                 alt="Person wearing vest with arms crossed"
                 fill
                 className="object-cover"
@@ -443,7 +452,7 @@ export default function VestProductPage() {
               />
               <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent p-10 z-10">
                 <p className="text-white text-[24px] font-normal leading-snug">
-                  Lightweight performance fit,<br />
+                  Lightweight performance fit,
                   made with premium materials
                 </p>
               </div>
@@ -452,7 +461,7 @@ export default function VestProductPage() {
             {/* Battery Image Card */}
             <div className="relative rounded-[5px] overflow-hidden h-[465px]">
               <Image
-                src="/jacket_details/batter.png"
+                src={batterImg}
                 alt="Battery charging"
                 fill
                 className="object-cover"

@@ -1,9 +1,9 @@
-import Image from "next/image";
+import Image, { StaticImageData } from "next/image";
 
 import { cn } from "@/lib/utils";
 
 export type GalleryImage = {
-  src: string;
+  src: string | StaticImageData;
   alt: string;
   objectFit?: "cover" | "contain";
   objectPosition?: string;

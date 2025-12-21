@@ -7,6 +7,9 @@ import { ShoppingCart, Menu, X } from "lucide-react";
 import { useCart } from "@/context/CartContext";
 import "./HeaderStyle.css";
 
+// Brand assets
+import tactusLogo from "@/app/_assets/shared/brand/tactus-gif-logo.gif";
+
 export default function CustomHeader() {
   const pathname = usePathname();
   const { items, itemCount, removeFromCart, getCartTotal } = useCart();
@@ -98,7 +101,7 @@ export default function CustomHeader() {
           }}
         >
           <Image
-            src="/tactus-gif-logo.gif"
+            src={tactusLogo}
             alt="Tactus"
             width={40}
             height={20}

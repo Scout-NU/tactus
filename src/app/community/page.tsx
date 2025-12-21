@@ -3,6 +3,9 @@
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 
+// Assets
+import waveInLanding from "@/app/_assets/shared/waves/wave-in-landing.svg";
+
 export default function CommunityPage() {
   const router = useRouter();
 
@@ -34,7 +37,7 @@ export default function CommunityPage() {
       >
         <Image
           alt="wave pattern"
-          src="/wave-in-landing.svg"
+          src={waveInLanding}
           fill
           style={{
             objectFit: "cover",
