@@ -11,14 +11,14 @@ import waveInContact from "@/app/_assets/shared/waves/wave-in-contact.svg";
 import recordImage from "@/app/_assets/shared/brand/record.png";
 
 // Mission photos
-import mission1 from "@/app/_assets/about/mission/our-mission-1.png";
+import mission1 from "@/app/_assets/about/mission/jeremy-with-community.jpg";
 import mission2 from "@/app/_assets/about/mission/our-mission-2.png";
 import mission3 from "@/app/_assets/about/mission/our-mission-3.png";
-import mission4 from "@/app/_assets/about/mission/our-mision-4.png";
+import mission4 from "@/app/_assets/about/mission/jeremy-deaflympics-community.jpg";
 
 // Vinyl covers
 import vinylCover1 from "@/app/_assets/about/vinyl/vinyl-cover-1.jpg";
-import vinylCover2 from "@/app/_assets/about/vinyl/vinyl-cover-2.jpg";
+import vinylCover2 from "@/app/_assets/about/vinyl/jeremy-holding-sign.jpg";
 import vinylCover3 from "@/app/_assets/about/vinyl/vinyl-cover-3.jpg";
 
 // Team photos
