@@ -163,7 +163,7 @@ export default function VestProductPage() {
               <div className="flex gap-3">
                 <div className="relative bg-[#f8eddb] border-2 border-[#f4c592] rounded-[5px] w-[97px] h-[97px] p-1">
                   <Image
-                    src={vestMain}
+                    src={shopVest}
                     alt="Vibewear Vest"
                     fill
                     className="object-contain rounded-[5px]"
