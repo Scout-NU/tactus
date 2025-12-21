@@ -7,8 +7,8 @@
 import type { StaticImageData } from "next/image";
 
 // Video poster imports
-import alleynaPoster from "@/app/_assets/home/videos/Alleyna_Tactus-poster.jpg";
-import ashwinPoster from "@/app/_assets/home/videos/Ashwin_Tactus-poster.jpg";
+import firstVideoPoster from "@/app/_assets/home/videos/First_Video-poster.jpg";
+import secondVideoPoster from "@/app/_assets/home/videos/Second_Video-poster.jpg";
 import dancingPoster from "@/app/_assets/home/videos/Dancing_Testing-poster.jpg";
 import signPoster from "@/app/_assets/home/videos/Sign_Tactus-poster.jpg";
 
@@ -93,16 +93,16 @@ export const HOME_CONTENT = {
 
 export const HOME_VIDEOS: readonly VideoItem[] = [
   {
-    id: "alleyna",
-    src: "/assets/home/videos/Alleyna_Tactus.mp4",
-    poster: alleynaPoster,
-    alt: "Alleyna experiencing Tactus wearable",
+    id: "first",
+    src: "/assets/home/videos/First_Video.mp4",
+    poster: firstVideoPoster,
+    alt: "First video - Tactus experience",
   },
   {
-    id: "ashwin",
-    src: "/assets/home/videos/Ashwin_Tactus.mp4",
-    poster: ashwinPoster,
-    alt: "Ashwin experiencing Tactus wearable",
+    id: "second",
+    src: "/assets/home/videos/Second_Video.MP4",
+    poster: secondVideoPoster,
+    alt: "Second video - Tactus experience",
   },
   {
     id: "dancing",
