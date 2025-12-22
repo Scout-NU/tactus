@@ -20,6 +20,7 @@ import FashionUnited from "@/app/_assets/community/press/FashionUnited.avif";
 
 // Blog fallback image
 import mission1 from "@/app/_assets/about/mission/jeremy-with-community.jpg";
+import laurieImage from "@/app/_assets/community/blog/Laurie.png";
 
 // ============================================
 // TYPES
@@ -185,15 +186,15 @@ function formatDate(dateString: string): string {
 
 const STATIC_BLOG_POSTS: BlogPost[] = [
   {
-    slug: "tactus-changing-music-experience",
-    title: "How Tactus Is Changing the Way We Experience Music",
+    slug: "a-collaborative-journey-with-prof-laurie-achin",
+    title: "A Collaborative Journey With Prof. Laurie Achin",
     excerpt:
-      "Music is universal, but not everyone experiences it the same way. At Tactus, we're on a mission to bridge that gap by creating technology that lets everyone feel the rhythm. In this post, we explore the journey that led us here and what's next for haptic music technology.",
-    featuredImage: mission1,
-    featuredImageAlt: "Tactus music experience",
-    publicationDate: "2025-12-02",
-    formattedDate: formatDate("2025-12-02"),
-    authorName: "Jeremy Chow",
+      "The Deaf Music Enthusiast that started it all. In our pursuit of making music accessible and inclusive for the Deaf community, we embarked on an inspiring collaboration with Prof. Laurie Achin, a Deaf professor, dancer, and choreographer.",
+    featuredImage: laurieImage,
+    featuredImageAlt: "Prof. Laurie Achin",
+    publicationDate: "2023-06-22",
+    formattedDate: formatDate("2023-06-22"),
+    authorName: "Tactus Team",
     featured: true,
   },
 ];
