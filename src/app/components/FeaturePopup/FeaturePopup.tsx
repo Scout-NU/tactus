@@ -69,22 +69,29 @@ export default function FeaturePopup({
 
   const lineConfig = getLineConfig();
 
-  // Position classes for desktop
+  // Position classes for desktop - using calc() to match line endpoints
   const getPopupPositionClasses = () => {
     const baseClasses = "absolute min-h-[123px] w-[332px] rounded-[11px] border border-[#88dde1] bg-gradient-to-b from-[#4daab5] to-transparent p-4 z-[9] animate-in fade-in slide-in-from-top-2 duration-300";
     const mobileClasses = "md:block";
     
     switch (position) {
       case "top-left":
-        return `${baseClasses} ${mobileClasses} top-[111px] left-[146px]`;
+        // Line ends at calc(33.333% - 3px), popup right edge should align there
+        // Popup is 332px wide, so left = calc(33.333% - 3px - 332px) = calc(33.333% - 335px)
+        return `${baseClasses} ${mobileClasses} top-[111px] left-[calc(33.333%-335px)]`;
       case "top-right":
-        return `${baseClasses} ${mobileClasses} top-[119px] right-[108px]`;
+        // Line ends at calc(66.667% + 40px), popup left edge should align there
+        return `${baseClasses} ${mobileClasses} top-[119px] left-[calc(66.667%+40px)]`;
       case "left":
-        return `${baseClasses} ${mobileClasses} top-[386px] left-[103px]`;
+        // Line ends at calc(25% + 75px), popup right edge should align there
+        // Popup is 332px wide, so left = calc(25% + 75px - 332px) = calc(25% - 257px)
+        return `${baseClasses} ${mobileClasses} top-[386px] left-[calc(25%-257px)]`;
       case "right":
-        return `${baseClasses} ${mobileClasses} top-[398px] right-[106px]`;
+        // Line ends at calc(100% - 438px), popup left edge should align there
+        return `${baseClasses} ${mobileClasses} top-[398px] left-[calc(100%-438px)]`;
       case "bottom":
-        return `${baseClasses} ${mobileClasses} top-[690px] left-[calc(50%+100px)] -translate-x-1/2`;
+        // Line ends at calc(50% + 8px), popup centered around that point
+        return `${baseClasses} ${mobileClasses} top-[690px] left-[calc(50%+8px)] -translate-x-1/2`;
       case "mobile":
         return "";
       default:
