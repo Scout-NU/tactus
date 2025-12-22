@@ -1,4 +1,5 @@
 import { createClient, Asset } from "contentful";
+import { Document, BLOCKS, INLINES } from "@contentful/rich-text-types";
 
 // ============================================
 // CONTENTFUL CLIENT SETUP
@@ -67,7 +68,7 @@ export interface ProductPageFields {
   popup4Description?: string;
   popup5Heading?: string;
   popup5Description?: string;
-  preorderSectionHeading?: string;
+  preorderSectionHeading?: Document; // Rich Text
   preorderSectionDescription?: string;
 }
 
@@ -92,6 +93,32 @@ export function getAssetAlt(asset?: Asset): string {
     (asset?.fields?.description as string) ||
     ""
   );
+}
+
+/**
+ * Extract plain text from Contentful Rich Text Document
+ * Preserves line breaks between paragraphs with \n
+ */
+export function richTextToPlainText(document?: Document): string | null {
+  if (!document || !document.content) return null;
+
+  const extractText = (node: typeof document.content[0]): string => {
+    if (node.nodeType === "text") {
+      return (node as { value: string }).value;
+    }
+
+    if ("content" in node && Array.isArray(node.content)) {
+      return node.content.map(extractText).join("");
+    }
+
+    return "";
+  };
+
+  // Join paragraphs with newlines
+  return document.content
+    .map((node) => extractText(node))
+    .filter((text) => text.trim() !== "")
+    .join("\n");
 }
 
 // ============================================

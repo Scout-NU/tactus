@@ -1,6 +1,7 @@
 import {
   fetchProductPageFields,
   getAssetUrl,
+  richTextToPlainText,
 } from "@/lib/contentful";
 
 export type Feature = {
@@ -137,7 +138,7 @@ export async function getProductPageData(): Promise<ProductPageData> {
     },
     features,
     cta: {
-      heading: fields?.preorderSectionHeading || STATIC_CONTENT.cta.heading,
+      heading: richTextToPlainText(fields?.preorderSectionHeading) || STATIC_CONTENT.cta.heading,
       description: fields?.preorderSectionDescription || STATIC_CONTENT.cta.description,
       buttonText: STATIC_CONTENT.cta.buttonText,
       buttonLink: STATIC_CONTENT.cta.buttonLink,
