@@ -185,6 +185,36 @@ export interface ShopProductFields {
 }
 
 // ============================================
+// PRESS RELEASE TYPES
+// ============================================
+
+export interface PressReleaseFields {
+  title: string;
+  slug: string;
+  publicationDate: string;
+  featuredImage: Asset;
+  excerpt: string;
+  externalUrl?: string;
+  sourceName?: string;
+  featured?: boolean;
+}
+
+// ============================================
+// BLOG POST TYPES  
+// ============================================
+
+export interface BlogPostFields {
+  title: string;
+  slug: string;
+  publicationDate: string; // Changed to match Contentful field ID
+  featuredImage: Asset;
+  excerpt: string;
+  body: Document;
+  authorName?: string;
+  featured?: boolean;
+}
+
+// ============================================
 // HELPER FUNCTIONS
 // ============================================
 
@@ -493,6 +523,125 @@ export async function fetchShopProductFields(
     return matchingEntry.fields as ShopProductFields;
   } catch (error) {
     console.error(`❌ Error fetching ${productType} from Contentful:`, error);
+    return null;
+  }
+}
+
+// ============================================
+// PRESS RELEASE FETCHER
+// ============================================
+
+/**
+ * Fetch all press releases from Contentful, sorted by publication date (newest first)
+ * Returns empty array if fetch fails - transformation happens in communityData.ts
+ */
+export async function fetchPressReleases(
+  preview = false,
+  limit = 100
+): Promise<PressReleaseFields[]> {
+  // Guard against missing env vars
+  if (
+    !process.env.CONTENTFUL_SPACE_ID ||
+    !process.env.CONTENTFUL_DELIVERY_KEY
+  ) {
+    console.warn("⚠️ Contentful environment variables not configured");
+    return [];
+  }
+
+  try {
+    const entries = await getClient(preview).getEntries({
+      content_type: "pressRelease",
+      order: ["-fields.publicationDate"],
+      limit,
+      include: 2, // Include linked assets
+    });
+
+    if (entries.items.length === 0) {
+      console.warn("⚠️ No press releases found in Contentful");
+      return [];
+    }
+
+    return entries.items.map((item) => item.fields as unknown as PressReleaseFields);
+  } catch (error) {
+    console.error("❌ Error fetching press releases from Contentful:", error);
+    return [];
+  }
+}
+
+// ============================================
+// BLOG POST FETCHER
+// ============================================
+
+/**
+ * Fetch all blog posts from Contentful, sorted by publish date (newest first)
+ * Returns empty array if fetch fails - transformation happens in communityData.ts
+ */
+export async function fetchBlogPosts(
+  preview = false,
+  limit = 100
+): Promise<BlogPostFields[]> {
+  // Guard against missing env vars
+  if (
+    !process.env.CONTENTFUL_SPACE_ID ||
+    !process.env.CONTENTFUL_DELIVERY_KEY
+  ) {
+    console.warn("⚠️ Contentful environment variables not configured");
+    return [];
+  }
+
+  try {
+    const entries = await getClient(preview).getEntries({
+      content_type: "blogPost",
+      order: ["-fields.publicationDate"],
+      limit,
+      include: 2, // Include linked assets
+    });
+
+    if (entries.items.length === 0) {
+      console.warn("⚠️ No blog posts found in Contentful");
+      return [];
+    }
+
+    return entries.items.map((item) => item.fields as unknown as BlogPostFields);
+  } catch (error) {
+    console.error("❌ Error fetching blog posts from Contentful:", error);
+    return [];
+  }
+}
+
+/**
+ * Fetch a single blog post by slug
+ * Returns null if not found - for individual blog post pages
+ */
+export async function fetchBlogPostBySlug(
+  slug: string,
+  preview = false
+): Promise<BlogPostFields | null> {
+  // Guard against missing env vars
+  if (
+    !process.env.CONTENTFUL_SPACE_ID ||
+    !process.env.CONTENTFUL_DELIVERY_KEY
+  ) {
+    console.warn("⚠️ Contentful environment variables not configured");
+    return null;
+  }
+
+  try {
+    const entries = await getClient(preview).getEntries({
+      content_type: "blogPost",
+      "fields.slug": slug,
+      limit: 1,
+      include: 2,
+    });
+
+    if (entries.items.length === 0) {
+      console.warn(`⚠️ No blog post found with slug: ${slug}`);
+      return null;
+    }
+
+    return entries.items[0].fields as unknown as BlogPostFields;
+  } catch (error) {
+    console.error(`❌ Error fetching blog post ${slug}:`, error);
     return null;
   }
 }
