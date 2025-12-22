@@ -5,7 +5,7 @@ import { NextRequest, NextResponse } from "next/server";
 const CONTENT_TYPE_TO_PATH: Record<string, string> = {
   homepage: "/",
   product: "/product",
-  aboutPage: "/about",
+  aboutUs: "/about",
   shop: "/shop",
   jacketPage: "/shop/jacket",
   vestPage: "/shop/vest",

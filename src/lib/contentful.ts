@@ -1,5 +1,5 @@
 import { createClient, Asset } from "contentful";
-import { Document, BLOCKS, INLINES } from "@contentful/rich-text-types";
+import { Document } from "@contentful/rich-text-types";
 
 // ============================================
 // CONTENTFUL CLIENT SETUP
@@ -93,6 +93,42 @@ export interface ShopPageFields {
   vestFourthImage?: Asset;
   vestFullPrice?: string;
   vestDiscountedPrice?: string;
+}
+
+// Team member structure from JSON field
+export interface ContentfulTeamMember {
+  name: string;
+  title: string;
+  linkedin: string;
+  imageAssetId: string;
+}
+
+// Sponsor link structure from JSON field
+export interface ContentfulSponsorLink {
+  assetID: string;
+  href: string;
+}
+
+export interface AboutUsPageFields {
+  name?: string;
+  header?: string;
+  missionText?: string;
+  missionImage1?: Asset;
+  missionImage2?: Asset;
+  missionImage3?: Asset;
+  missionImage4?: Asset;
+  corePrinciplesHeading?: string;
+  vinylText1?: string;
+  vinylImage1?: Asset;
+  vinylText2?: string;
+  vinylImage2?: Asset;
+  vinylText3?: string;
+  vinylImage3?: Asset;
+  meetTheTeamHeading?: string;
+  teamMembers?: ContentfulTeamMember[];
+  ourSupportersHeading?: string;
+  sponsorImages?: Asset[];
+  sponsorImageLinks?: { sponsors: ContentfulSponsorLink[] };
 }
 
 // ============================================
@@ -255,6 +291,107 @@ export async function fetchShopPageFields(
     return entries.items[0].fields as ShopPageFields;
   } catch (error) {
     console.error("❌ Error fetching shop page from Contentful:", error);
+    return null;
+  }
+}
+
+/**
+ * Fetch a single asset by ID
+ * Used for resolving team member images from JSON field
+ */
+export async function fetchAssetById(
+  assetId: string,
+  preview = false
+): Promise<{ url: string; alt: string } | null> {
+  if (
+    !process.env.CONTENTFUL_SPACE_ID ||
+    !process.env.CONTENTFUL_DELIVERY_KEY
+  ) {
+    return null;
+  }
+
+  try {
+    const asset = await getClient(preview).getAsset(assetId);
+    const url = asset?.fields?.file?.url;
+    if (!url) return null;
+
+    return {
+      url: `https:${url}`,
+      alt: (asset?.fields?.title as string) || "",
+    };
+  } catch (error) {
+    console.error(`❌ Error fetching asset ${assetId}:`, error);
+    return null;
+  }
+}
+
+/**
+ * Fetch multiple assets by IDs in parallel
+ * More efficient for batch fetching team member images
+ */
+export async function fetchAssetsByIds(
+  assetIds: string[],
+  preview = false
+): Promise<Map<string, { url: string; alt: string }>> {
+  const results = new Map<string, { url: string; alt: string }>();
+
+  if (
+    !process.env.CONTENTFUL_SPACE_ID ||
+    !process.env.CONTENTFUL_DELIVERY_KEY ||
+    assetIds.length === 0
+  ) {
+    return results;
+  }
+
+  try {
+    // Fetch all assets in parallel
+    const assetPromises = assetIds.map((id) => fetchAssetById(id, preview));
+    const assets = await Promise.all(assetPromises);
+
+    assetIds.forEach((id, index) => {
+      const asset = assets[index];
+      if (asset) {
+        results.set(id, asset);
+      }
+    });
+  } catch (error) {
+    console.error("❌ Error batch fetching assets:", error);
+  }
+
+  return results;
+}
+
+/**
+ * Fetch raw About Us Page fields from Contentful
+ * Returns null if fetch fails - transformation happens in aboutData.ts
+ */
+export async function fetchAboutUsPageFields(
+  preview = false
+): Promise<AboutUsPageFields | null> {
+  // Guard against missing env vars
+  if (
+    !process.env.CONTENTFUL_SPACE_ID ||
+    !process.env.CONTENTFUL_DELIVERY_KEY
+  ) {
+    console.warn("⚠️ Contentful environment variables not configured");
+    return null;
+  }
+
+  try {
+    const entries = await getClient(preview).getEntries({
+      content_type: "aboutUs",
+      limit: 1,
+      include: 2, // Include linked assets
+    });
+
+    if (entries.items.length === 0) {
+      console.warn("⚠️ No about us page entry found in Contentful");
+      return null;
+    }
+
+    return entries.items[0].fields as AboutUsPageFields;
+  } catch (error) {
+    console.error("❌ Error fetching about us page from Contentful:", error);
     return null;
   }
 }
