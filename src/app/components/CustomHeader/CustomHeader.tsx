@@ -19,7 +19,7 @@ export default function CustomHeader() {
   const [checkoutError, setCheckoutError] = useState<string | null>(null);
   const cartRef = useRef<HTMLDivElement>(null);
 
-  const lightBackgroundPages = ["/shop/jacket", "/shop/vest"];
+  const lightBackgroundPages = ["/shop/jacket", "/shop/vest", "/community"];
   const isDarkText = lightBackgroundPages.includes(pathname);
   const textColor = isDarkText ? "#05365f" : "#FFF";
 
@@ -155,11 +155,20 @@ export default function CustomHeader() {
           <Link
             href="/about"
             style={{
-              fontWeight: pathname === "/community" ? "bold" : "normal",
+              fontWeight: pathname === "/about" ? "bold" : "normal",
               color: textColor,
             }}
           >
             About Us
+          </Link>
+          <Link
+            href="/community"
+            style={{
+              fontWeight: pathname === "/community" ? "bold" : "normal",
+              color: textColor,
+            }}
+          >
+            Community
           </Link>
 
           {/* Cart Icon with Badge */}
@@ -290,6 +299,15 @@ export default function CustomHeader() {
               }}
             >
               About Us
+            </Link>
+            <Link
+              href="/community"
+              onClick={() => setIsMobileMenuOpen(false)}
+              style={{
+                fontWeight: pathname === "/community" ? "bold" : "normal",
+              }}
+            >
+              Community
             </Link>
 
             {/* Cart Section in Mobile Menu */}
