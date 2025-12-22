@@ -212,6 +212,21 @@ export interface BlogPostFields {
   body: Document;
   authorName?: string;
   featured?: boolean;
+  category?: string;
+}
+
+// ============================================
+// COMMUNITY PAGE TYPES
+// ============================================
+
+export interface CommunityPageFields {
+  name?: string;
+  header?: string;
+  subheader?: Document; // Rich Text
+  communityImage1?: Asset;
+  communityImage2?: Asset;
+  communityImage3?: Asset;
+  communityImage4?: Asset;
 }
 
 // ============================================
@@ -642,6 +657,41 @@ export async function fetchBlogPostBySlug(
     return entries.items[0].fields as unknown as BlogPostFields;
   } catch (error) {
     console.error(`❌ Error fetching blog post ${slug}:`, error);
+    return null;
+  }
+}
+
+// ============================================
+// COMMUNITY PAGE FETCHER
+// ============================================
+
+export async function fetchCommunityPage(
+  preview = false
+): Promise<CommunityPageFields | null> {
+  // Guard against missing env vars
+  if (
+    !process.env.CONTENTFUL_SPACE_ID ||
+    !process.env.CONTENTFUL_DELIVERY_KEY
+  ) {
+    console.warn("⚠️ Contentful environment variables not configured");
+    return null;
+  }
+
+  try {
+    const entries = await getClient(preview).getEntries({
+      content_type: "communityPage",
+      limit: 1,
+      include: 2, // Include linked assets
+    });
+
+    if (entries.items.length === 0) {
+      console.warn("⚠️ No community page found in Contentful");
+      return null;
+    }
+
+    return entries.items[0].fields as unknown as CommunityPageFields;
+  } catch (error) {
+    console.error("❌ Error fetching community page from Contentful:", error);
     return null;
   }
 }

@@ -2,8 +2,10 @@ import type { StaticImageData } from "next/image";
 import {
   fetchPressReleases,
   fetchBlogPosts,
+  fetchCommunityPage,
   getAssetUrl,
   getAssetAlt,
+  richTextToPlainText,
 } from "@/lib/contentful";
 
 // Community hero images
@@ -149,7 +151,7 @@ const STATIC_PRESS_RELEASES: PressRelease[] = [
     slug: "tactus-dttproductions",
     title: "Tactus Music!",
     excerpt:
-      "Have you ever been in a club or at a concert and you could feel the music in your chest? Well there’s soon going to be a way to do that without damaging your hearing.",
+      "Have you ever been in a club or at a concert and you could feel the music in your chest? Well there's soon going to be a way to do that without damaging your hearing.",
     featuredImage: DTTP,
     featuredImageAlt: "DTTP",
     publicationDate: "2025-11-10",
@@ -205,10 +207,60 @@ const STATIC_BLOG_POSTS: BlogPost[] = [
 
 export async function getCommunityPageData(): Promise<CommunityPageData> {
   // Fetch from Contentful in parallel
-  const [pressReleaseFields, blogPostFields] = await Promise.all([
+  const [communityPageFields, pressReleaseFields, blogPostFields] = await Promise.all([
+    fetchCommunityPage(),
     fetchPressReleases(),
     fetchBlogPosts(),
   ]);
+
+  // Get hero content from Contentful or use static fallbacks
+  const heroHeading = communityPageFields?.header || STATIC_CONTENT.hero.heading;
+  const heroDescription = communityPageFields?.subheader 
+    ? (richTextToPlainText(communityPageFields.subheader) || STATIC_CONTENT.hero.description)
+    : STATIC_CONTENT.hero.description;
+
+  // Build hero photos from Contentful images or use static fallbacks
+  const heroPhotos: HeroPhoto[] = [];
+  
+  if (communityPageFields?.communityImage1) {
+    const url = getAssetUrl(communityPageFields.communityImage1);
+    if (url) {
+      heroPhotos.push({
+        src: url,
+        alt: getAssetAlt(communityPageFields.communityImage1) || "Tactus community member",
+      });
+    }
+  }
+  if (communityPageFields?.communityImage2) {
+    const url = getAssetUrl(communityPageFields.communityImage2);
+    if (url) {
+      heroPhotos.push({
+        src: url,
+        alt: getAssetAlt(communityPageFields.communityImage2) || "Tactus community event",
+      });
+    }
+  }
+  if (communityPageFields?.communityImage3) {
+    const url = getAssetUrl(communityPageFields.communityImage3);
+    if (url) {
+      heroPhotos.push({
+        src: url,
+        alt: getAssetAlt(communityPageFields.communityImage3) || "Tactus community gathering",
+      });
+    }
+  }
+  if (communityPageFields?.communityImage4) {
+    const url = getAssetUrl(communityPageFields.communityImage4);
+    if (url) {
+      heroPhotos.push({
+        src: url,
+        alt: getAssetAlt(communityPageFields.communityImage4) || "Tactus at Deaflympics",
+      });
+    }
+  }
+
+  // Use static fallbacks if no Contentful images
+  const finalHeroPhotos = heroPhotos.length > 0 ? heroPhotos : STATIC_HERO_PHOTOS;
 
   // Transform press releases from Contentful or use static fallbacks
   let pressReleases: PressRelease[] = STATIC_PRESS_RELEASES;
@@ -251,10 +303,10 @@ export async function getCommunityPageData(): Promise<CommunityPageData> {
 
   return {
     hero: {
-      heading: STATIC_CONTENT.hero.heading,
-      description: STATIC_CONTENT.hero.description,
+      heading: heroHeading,
+      description: heroDescription,
     },
-    heroPhotos: STATIC_HERO_PHOTOS,
+    heroPhotos: finalHeroPhotos,
     press: {
       heading: STATIC_CONTENT.press.heading,
       items: pressReleases.slice(0, 4), // Show max 4 on community page
