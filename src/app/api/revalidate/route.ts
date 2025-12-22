@@ -4,6 +4,7 @@ import { NextRequest, NextResponse } from "next/server";
 // Content type to route mapping (future-proofed for all pages)
 const CONTENT_TYPE_TO_PATH: Record<string, string> = {
   homepage: "/",
+  product: "/product",
   aboutPage: "/about",
   shopPage: "/shop",
   jacketPage: "/shop/jacket",

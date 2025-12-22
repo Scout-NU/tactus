@@ -52,6 +52,25 @@ export interface HomepageFields {
   vestName?: string;
 }
 
+export interface ProductPageFields {
+  name?: string;
+  header?: string;
+  subheader?: string;
+  productImage?: Asset;
+  popup1Heading?: string;
+  popup1Description?: string;
+  popup2Heading?: string;
+  popup2Description?: string;
+  popup3Heading?: string;
+  popup3Description?: string;
+  popup4Heading?: string;
+  popup4Description?: string;
+  popup5Heading?: string;
+  popup5Description?: string;
+  preorderSectionHeading?: string;
+  preorderSectionDescription?: string;
+}
+
 // ============================================
 // HELPER FUNCTIONS
 // ============================================
@@ -110,6 +129,41 @@ export async function fetchHomepageFields(
     return entries.items[0].fields as HomepageFields;
   } catch (error) {
     console.error("❌ Error fetching homepage from Contentful:", error);
+    return null;
+  }
+}
+
+/**
+ * Fetch raw Product Page fields from Contentful
+ * Returns null if fetch fails - transformation happens in productData.ts
+ */
+export async function fetchProductPageFields(
+  preview = false
+): Promise<ProductPageFields | null> {
+  // Guard against missing env vars
+  if (
+    !process.env.CONTENTFUL_SPACE_ID ||
+    !process.env.CONTENTFUL_DELIVERY_KEY
+  ) {
+    console.warn("⚠️ Contentful environment variables not configured");
+    return null;
+  }
+
+  try {
+    const entries = await getClient(preview).getEntries({
+      content_type: "product",
+      limit: 1,
+      include: 2, // Include linked assets
+    });
+
+    if (entries.items.length === 0) {
+      console.warn("⚠️ No product page entry found in Contentful");
+      return null;
+    }
+
+    return entries.items[0].fields as ProductPageFields;
+  } catch (error) {
+    console.error("❌ Error fetching product page from Contentful:", error);
     return null;
   }
 }
