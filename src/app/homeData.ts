@@ -1,10 +1,19 @@
 // ============================================
 // HOMEPAGE DATA - Centralized content structure
 // ============================================
-// This file contains all homepage content for easy maintenance
-// and future CMS integration (Contentful, Sanity, etc.)
+// This file is the SINGLE SOURCE OF TRUTH for homepage data.
+// It fetches from Contentful and falls back to static content.
 
 import type { StaticImageData } from "next/image";
+import {
+  fetchHomepageFields,
+  getAssetUrl,
+  getAssetAlt,
+} from "@/lib/contentful";
+
+// ============================================
+// STATIC ASSET IMPORTS (Fallback)
+// ============================================
 
 // Video poster imports
 import firstVideoPoster from "@/app/_assets/home/videos/First_Video-poster.jpg";
@@ -39,15 +48,13 @@ import shopVestImage from "@/app/_assets/shared/product-images/shop-vest.png";
 export type VideoItem = {
   id: string;
   src: string;
-  poster: string | StaticImageData;
+  poster: string;
   alt: string;
 };
 
-export type SponsorImage = {
-  src: string | StaticImageData;
+export type SponsorItem = {
+  src: string;
   alt: string;
-  width: number;
-  height: number;
 };
 
 export type ProductCard = {
@@ -58,11 +65,46 @@ export type ProductCard = {
   route: string;
 };
 
+// Main data type for client component
+export type HomepageData = {
+  hero: {
+    heading: string;
+    highlightWords: string[];
+    subtext: string;
+    ctaText: string;
+    ctaLink: string;
+    productImageUrl: string | null;
+  };
+  community: {
+    heading: string;
+    quote: string;
+  };
+  videos: VideoItem[];
+  sponsors: SponsorItem[];
+  products: {
+    heading: string;
+    description: string;
+    jacketName: string;
+    vestName: string;
+  };
+  pricing: {
+    jacketOriginal: string;
+    jacketCurrent: string;
+    vestOriginal: string;
+    vestCurrent: string;
+  };
+  contact: {
+    heading: string;
+    description: string;
+    ctaText: string;
+  };
+};
+
 // ============================================
-// TEXT CONTENT
+// STATIC BACKUP CONTENT
 // ============================================
 
-export const HOME_CONTENT = {
+const STATIC_CONTENT = {
   hero: {
     heading: "YOU DON'T NEED TO HEAR THE MUSIC TO FEEL IT",
     highlightWords: ["HEAR", "FEEL"], // Words styled with blue color
@@ -78,6 +120,8 @@ export const HOME_CONTENT = {
     heading: "OUR PRODUCTS",
     description:
       "Experience music through touch. Our wearables transform every beat into a physical sensation, bringing you closer to the music you love.",
+    jacketName: "VIBEWEAR JACKET",
+    vestName: "VIBEWEAR VEST",
   },
   contact: {
     heading: "DON'T MISS A BEAT",
@@ -85,132 +129,60 @@ export const HOME_CONTENT = {
       "Stay connected for early access to news from the Tactus team.",
     ctaText: "STAY IN TOUCH",
   },
+  pricing: {
+    jacketOriginal: "$500",
+    jacketCurrent: "$459",
+    vestOriginal: "$500",
+    vestCurrent: "$459",
+  },
 } as const;
 
-// ============================================
-// VIDEO DATA
-// ============================================
-
-export const HOME_VIDEOS: readonly VideoItem[] = [
+const STATIC_VIDEOS: VideoItem[] = [
   {
     id: "first",
     src: "/assets/home/videos/First_Video.mp4",
-    poster: firstVideoPoster,
+    poster: firstVideoPoster.src,
     alt: "First video - Tactus experience",
   },
   {
     id: "second",
     src: "/assets/home/videos/Second_Video.MP4",
-    poster: secondVideoPoster,
+    poster: secondVideoPoster.src,
     alt: "Second video - Tactus experience",
   },
   {
     id: "dancing",
     src: "/assets/home/videos/Dancing_Testing.mp4",
-    poster: dancingPoster,
+    poster: dancingPoster.src,
     alt: "Dancing while testing Tactus wearable",
   },
   {
     id: "sign",
     src: "/assets/home/videos/Sign_Tactus.mp4",
-    poster: signPoster,
+    poster: signPoster.src,
     alt: "Sign language user with Tactus wearable",
   },
 ];
 
-// ============================================
-// SPONSOR DATA
-// ============================================
-
-export const HOME_SPONSORS: readonly SponsorImage[] = [
-  {
-    src: sponsor1,
-    alt: "Y Combinator Startup School",
-    width: 190,
-    height: 76,
-  },
-  {
-    src: sponsor2,
-    alt: "Sherman Center",
-    width: 224,
-    height: 42,
-  },
-  {
-    src: sponsor3,
-    alt: "Idea Venture Accelerator",
-    width: 168,
-    height: 76,
-  },
-  {
-    src: sponsor4,
-    alt: "MassChallenge",
-    width: 92,
-    height: 76,
-  },
-  {
-    src: sponsor5,
-    alt: "Afya Foundation",
-    width: 167,
-    height: 76,
-  },
-  {
-    src: sponsor6,
-    alt: "Sponsor 6",
-    width: 150,
-    height: 60,
-  },
-  {
-    src: sponsor7,
-    alt: "Sponsor 7",
-    width: 150,
-    height: 60,
-  },
-  {
-    src: sponsor8,
-    alt: "Sponsor 8",
-    width: 150,
-    height: 60,
-  },
-  {
-    src: sponsor9,
-    alt: "Sponsor 9",
-    width: 150,
-    height: 60,
-  },
-  {
-    src: sponsor10,
-    alt: "Sponsor 10",
-    width: 150,
-    height: 60,
-  },
-  {
-    src: sponsor11,
-    alt: "Sponsor 11",
-    width: 150,
-    height: 60,
-  },
-  {
-    src: sponsor12,
-    alt: "Sponsor 12",
-    width: 150,
-    height: 60,
-  },
-  {
-    src: sponsor13,
-    alt: "Sponsor 13",
-    width: 150,
-    height: 60,
-  },
-  {
-    src: sponsor14,
-    alt: "Sponsor 14",
-    width: 150,
-    height: 60,
-  },
+const STATIC_SPONSORS: SponsorItem[] = [
+  { src: sponsor1.src, alt: "Y Combinator Startup School" },
+  { src: sponsor2.src, alt: "Sherman Center" },
+  { src: sponsor3.src, alt: "Idea Venture Accelerator" },
+  { src: sponsor4.src, alt: "MassChallenge" },
+  { src: sponsor5.src, alt: "Afya Foundation" },
+  { src: sponsor6.src, alt: "Sponsor 6" },
+  { src: sponsor7.src, alt: "Sponsor 7" },
+  { src: sponsor8.src, alt: "Sponsor 8" },
+  { src: sponsor9.src, alt: "Sponsor 9" },
+  { src: sponsor10.src, alt: "Sponsor 10" },
+  { src: sponsor11.src, alt: "Sponsor 11" },
+  { src: sponsor12.src, alt: "Sponsor 12" },
+  { src: sponsor13.src, alt: "Sponsor 13" },
+  { src: sponsor14.src, alt: "Sponsor 14" },
 ];
 
 // ============================================
-// PRODUCT DATA
+// PRODUCT DATA (Static - routes tied to code)
 // ============================================
 
 export const HOME_PRODUCTS: readonly ProductCard[] = [
@@ -229,3 +201,154 @@ export const HOME_PRODUCTS: readonly ProductCard[] = [
     route: "/shop/vest",
   },
 ];
+
+// ============================================
+// HELPER FUNCTIONS
+// ============================================
+
+/**
+ * Parse highlighted words from comma or space separated string
+ */
+function parseHighlightedWords(input?: string): string[] {
+  if (!input) return [];
+  return input
+    .split(/[,\s]+/)
+    .map((word) => word.trim().toUpperCase())
+    .filter((word) => word.length > 0);
+}
+
+// ============================================
+// MAIN DATA FETCHER
+// ============================================
+
+/**
+ * Fetch homepage data from Contentful with fallback to static content
+ * This is the single entry point for all homepage data
+ */
+export async function getHomepageData(): Promise<HomepageData> {
+  const fields = await fetchHomepageFields();
+
+  // If Contentful fails, return full static content
+  if (!fields) {
+    console.log("📦 Using static homepage content (fallback)");
+    return {
+      hero: {
+        ...STATIC_CONTENT.hero,
+        highlightWords: [...STATIC_CONTENT.hero.highlightWords],
+        productImageUrl: null,
+      },
+      community: { ...STATIC_CONTENT.community },
+      videos: STATIC_VIDEOS,
+      sponsors: STATIC_SPONSORS,
+      products: { ...STATIC_CONTENT.products },
+      pricing: { ...STATIC_CONTENT.pricing },
+      contact: { ...STATIC_CONTENT.contact },
+    };
+  }
+
+  console.log("✅ Using Contentful homepage content");
+
+  // Parse highlighted words
+  const highlightWords = parseHighlightedWords(fields.highlightedHeroText);
+
+  // Build videos array from Contentful
+  const videos: VideoItem[] = [];
+  const videoConfigs = [
+    {
+      id: "first",
+      video: fields.firstVideo,
+      thumbnail: fields.firstVideoThumbnail,
+      fallback: STATIC_VIDEOS[0],
+    },
+    {
+      id: "second",
+      video: fields.secondVideo,
+      thumbnail: fields.secondVideoThumbnail,
+      fallback: STATIC_VIDEOS[1],
+    },
+    {
+      id: "third",
+      video: fields.thirdVideo,
+      thumbnail: fields.thirdVideoThumbnail,
+      fallback: STATIC_VIDEOS[2],
+    },
+    {
+      id: "fourth",
+      video: fields.fourthVideo,
+      thumbnail: fields.fourthVideoThumbnail,
+      fallback: STATIC_VIDEOS[3],
+    },
+  ];
+
+  for (const config of videoConfigs) {
+    const videoUrl = getAssetUrl(config.video);
+    const thumbnailUrl = getAssetUrl(config.thumbnail);
+
+    if (videoUrl) {
+      videos.push({
+        id: config.id,
+        src: videoUrl,
+        poster: thumbnailUrl || config.fallback?.poster || "",
+        alt: getAssetAlt(config.video) || `${config.id} video - Tactus experience`,
+      });
+    } else if (config.fallback) {
+      // Use fallback if Contentful video not available
+      videos.push(config.fallback);
+    }
+  }
+
+  // Build sponsors array from Contentful
+  const sponsors: SponsorItem[] = [];
+  if (fields.sponsorImages && Array.isArray(fields.sponsorImages)) {
+    for (const sponsorAsset of fields.sponsorImages) {
+      const url = getAssetUrl(sponsorAsset);
+      if (url) {
+        sponsors.push({
+          src: url,
+          alt: getAssetAlt(sponsorAsset) || "Sponsor",
+        });
+      }
+    }
+  }
+
+  // Fall back to static sponsors if none from Contentful
+  const finalSponsors = sponsors.length > 0 ? sponsors : STATIC_SPONSORS;
+
+  return {
+    hero: {
+      heading: fields.heroText || STATIC_CONTENT.hero.heading,
+      highlightWords:
+        highlightWords.length > 0
+          ? highlightWords
+          : [...STATIC_CONTENT.hero.highlightWords],
+      subtext: fields.heroSubtext || STATIC_CONTENT.hero.subtext,
+      ctaText: fields.heroButtonText || STATIC_CONTENT.hero.ctaText,
+      ctaLink: STATIC_CONTENT.hero.ctaLink, // Always use static route
+      productImageUrl: getAssetUrl(fields.heroProductImage),
+    },
+    community: {
+      heading: fields.videoSectionHeader || STATIC_CONTENT.community.heading,
+      quote: fields.videoSectionQuote || STATIC_CONTENT.community.quote,
+    },
+    videos: videos.length > 0 ? videos : STATIC_VIDEOS,
+    sponsors: finalSponsors,
+    products: {
+      heading: fields.productSectionHeader || STATIC_CONTENT.products.heading,
+      description:
+        fields.productSectionSubtext || STATIC_CONTENT.products.description,
+      jacketName: fields.jacketName || STATIC_CONTENT.products.jacketName,
+      vestName: fields.vestName || STATIC_CONTENT.products.vestName,
+    },
+    pricing: {
+      jacketOriginal:
+        fields.jacketFullPrice || STATIC_CONTENT.pricing.jacketOriginal,
+      jacketCurrent:
+        fields.jacketDiscountedPrice || STATIC_CONTENT.pricing.jacketCurrent,
+      vestOriginal:
+        fields.vestFullPrice || STATIC_CONTENT.pricing.vestOriginal,
+      vestCurrent:
+        fields.vestDiscountedPrice || STATIC_CONTENT.pricing.vestCurrent,
+    },
+    contact: { ...STATIC_CONTENT.contact }, // Contact rarely changes
+  };
+}
