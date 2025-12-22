@@ -1,16 +1,17 @@
 import { revalidatePath } from "next/cache";
 import { NextRequest, NextResponse } from "next/server";
 
-// Content type to route mapping (future-proofed for all pages)
-const CONTENT_TYPE_TO_PATH: Record<string, string> = {
-  homepage: "/",
-  aboutPage: "/about",
-  shopPage: "/shop",
-  jacketPage: "/shop/jacket",
-  vestPage: "/shop/vest",
-  communityPage: "/community",
-  blogPost: "/community",
-  pressItem: "/community",
+// Content type to route mapping
+// Note: Some content types map to multiple paths (e.g., shopJacket -> jacket & vest)
+const CONTENT_TYPE_TO_PATHS: Record<string, string[]> = {
+  homepage: ["/"],
+  product: ["/product"],
+  aboutUs: ["/about"],
+  shop: ["/shop"],
+  shopJacket: ["/shop/jacket", "/shop/vest"], // Both use same content type
+  communityPage: ["/community"],
+  blogPost: ["/community"],
+  pressItem: ["/community"],
 };
 
 export async function POST(request: NextRequest) {
@@ -49,10 +50,10 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Get the path to revalidate
-    const pathToRevalidate = CONTENT_TYPE_TO_PATH[contentType];
+    // Get the paths to revalidate
+    const pathsToRevalidate = CONTENT_TYPE_TO_PATHS[contentType];
 
-    if (!pathToRevalidate) {
+    if (!pathsToRevalidate || pathsToRevalidate.length === 0) {
       console.warn(`⚠️ Unknown content type: ${contentType}`);
       return NextResponse.json(
         { error: `Unknown content type: ${contentType}` },
@@ -60,14 +61,15 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Revalidate the path
-    revalidatePath(pathToRevalidate);
-
-    console.log(`✅ Revalidated path: ${pathToRevalidate} (content type: ${contentType})`);
+    // Revalidate all paths for this content type
+    for (const path of pathsToRevalidate) {
+      revalidatePath(path);
+      console.log(`✅ Revalidated path: ${path} (content type: ${contentType})`);
+    }
 
     return NextResponse.json({
       revalidated: true,
-      path: pathToRevalidate,
+      paths: pathsToRevalidate,
       contentType,
     });
   } catch (error) {

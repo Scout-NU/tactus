@@ -1,17 +1,23 @@
 import type { StaticImageData } from "next/image";
+import {
+  fetchAboutUsPageFields,
+  fetchAssetsByIds,
+  getAssetUrl,
+  getAssetAlt,
+} from "@/lib/contentful";
 
-// Mission photos
+// Mission photos (static fallbacks)
 import mission1 from "@/app/_assets/about/mission/jeremy-with-community.jpg";
 import mission2 from "@/app/_assets/about/mission/our-mission-2.png";
 import mission3 from "@/app/_assets/about/mission/our-mission-3.png";
 import mission4 from "@/app/_assets/about/mission/jeremy-deaflympics-community.jpg";
 
-// Vinyl covers
+// Vinyl covers (static fallbacks)
 import vinylCover1 from "@/app/_assets/about/vinyl/vinyl-cover-1.jpg";
 import vinylCover2 from "@/app/_assets/about/vinyl/jeremy-holding-sign.jpg";
 import vinylCover3 from "@/app/_assets/about/vinyl/vinyl-cover-3.jpg";
 
-// Team photos
+// Team photos (static fallbacks)
 import jeremyTeam from "@/app/_assets/about/team/jeremy-team.png";
 import johanTeam from "@/app/_assets/about/team/johan-team.png";
 import alexTeam from "@/app/_assets/about/team/alex-team.png";
@@ -19,7 +25,7 @@ import cayleTeam from "@/app/_assets/about/team/cayle-team.png";
 import antoinetteTeam from "@/app/_assets/about/team/antoinette-team.png";
 import nicholasTeam from "@/app/_assets/about/team/nicholas-team.png";
 
-// Sponsor images
+// Sponsor images (static fallbacks)
 import sponsor1 from "@/app/_assets/shared/sponsor-images/sponsor-1.png";
 import sponsor2 from "@/app/_assets/shared/sponsor-images/sponsor-2.png";
 import sponsor3 from "@/app/_assets/shared/sponsor-images/sponsor-3.png";
@@ -35,25 +41,29 @@ import sponsor12 from "@/app/_assets/shared/sponsor-images/sponsor-12.png";
 import sponsor13 from "@/app/_assets/shared/sponsor-images/sponsor-13.png";
 import sponsor14 from "@/app/_assets/shared/sponsor-images/sponsor-14.png";
 
+// ============================================
+// TYPES
+// ============================================
+
 export type TeamMember = {
   name: string;
   role: string;
-  image: StaticImageData;
+  image: StaticImageData | string;
   linkedinUrl: string;
 };
 
 export type Principle = {
   title: string;
-  vinylCover: StaticImageData;
+  vinylCover: StaticImageData | string;
 };
 
 export type MissionPhoto = {
-  src: StaticImageData;
+  src: StaticImageData | string;
   zIndex: number;
 };
 
 export type Sponsor = {
-  src: StaticImageData;
+  src: StaticImageData | string;
   alt: string;
   href?: string;
 };
@@ -83,6 +93,10 @@ export type AboutPageData = {
   };
 };
 
+// ============================================
+// STATIC FALLBACK CONTENT
+// ============================================
+
 const STATIC_CONTENT = {
   mission: {
     label: "Our Mission",
@@ -105,20 +119,20 @@ const STATIC_CONTENT = {
   },
 } as const;
 
-const MISSION_PHOTOS: MissionPhoto[] = [
+const STATIC_MISSION_PHOTOS: MissionPhoto[] = [
   { src: mission1, zIndex: 40 },
   { src: mission2, zIndex: 39 },
   { src: mission3, zIndex: 38 },
   { src: mission4, zIndex: 37 },
 ];
 
-const PRINCIPLES: Principle[] = [
+const STATIC_PRINCIPLES: Principle[] = [
   { title: "Embrace Music", vinylCover: vinylCover1 },
   { title: "Empower Connection", vinylCover: vinylCover2 },
   { title: "Celebrate Inclusion", vinylCover: vinylCover3 },
 ];
 
-const TEAM_MEMBERS: TeamMember[] = [
+const STATIC_TEAM_MEMBERS: TeamMember[] = [
   {
     name: "Jeremy Chow",
     role: "Founder",
@@ -157,7 +171,7 @@ const TEAM_MEMBERS: TeamMember[] = [
   },
 ];
 
-const SPONSORS: Sponsor[] = [
+const STATIC_SPONSORS: Sponsor[] = [
   { src: sponsor1, alt: "Sponsor 1" },
   { src: sponsor2, alt: "Sponsor 2" },
   { src: sponsor3, alt: "Sponsor 3" },
@@ -194,30 +208,127 @@ const SPONSORS: Sponsor[] = [
   },
 ];
 
+// ============================================
+// DATA FETCHER
+// ============================================
+
 export async function getAboutPageData(): Promise<AboutPageData> {
+  // Fetch from Contentful
+  const fields = await fetchAboutUsPageFields();
+
+  // If no Contentful data, return static fallbacks
+  if (!fields) {
+    return {
+      mission: {
+        label: STATIC_CONTENT.mission.label,
+        heading: STATIC_CONTENT.mission.heading,
+      },
+      missionPhotos: STATIC_MISSION_PHOTOS,
+      principles: {
+        heading: STATIC_CONTENT.principles.heading,
+        items: STATIC_PRINCIPLES,
+      },
+      team: {
+        heading: STATIC_CONTENT.team.heading,
+        members: STATIC_TEAM_MEMBERS,
+      },
+      sponsors: {
+        heading: STATIC_CONTENT.sponsors.heading,
+        items: STATIC_SPONSORS,
+      },
+      contact: { ...STATIC_CONTENT.contact },
+    };
+  }
+
+  // Build mission photos from Contentful
+  const missionImageFields = [
+    fields.missionImage1,
+    fields.missionImage2,
+    fields.missionImage3,
+    fields.missionImage4,
+  ];
+  const missionPhotos: MissionPhoto[] = missionImageFields.map((asset, index) => {
+    const url = getAssetUrl(asset);
+    return {
+      src: url || STATIC_MISSION_PHOTOS[index].src,
+      zIndex: 40 - index, // 40, 39, 38, 37
+    };
+  });
+
+  // Build principles from Contentful
+  const vinylImageFields = [fields.vinylImage1, fields.vinylImage2, fields.vinylImage3];
+  const vinylTextFields = [fields.vinylText1, fields.vinylText2, fields.vinylText3];
+  const principles: Principle[] = vinylTextFields.map((text, index) => ({
+    title: text || STATIC_PRINCIPLES[index].title,
+    vinylCover: getAssetUrl(vinylImageFields[index]) || STATIC_PRINCIPLES[index].vinylCover,
+  }));
+
+  // Build team members from Contentful (with async asset resolution)
+  let teamMembers: TeamMember[] = STATIC_TEAM_MEMBERS;
+  if (fields.teamMembers && Array.isArray(fields.teamMembers) && fields.teamMembers.length > 0) {
+    // Collect all asset IDs for batch fetching
+    const assetIds = fields.teamMembers
+      .map((member) => member.imageAssetId)
+      .filter((id): id is string => !!id);
+
+    // Fetch all team member images in parallel
+    const assetMap = await fetchAssetsByIds(assetIds);
+
+    teamMembers = fields.teamMembers.map((member, index) => {
+      const asset = assetMap.get(member.imageAssetId);
+      return {
+        name: member.name,
+        role: member.title,
+        image: asset?.url || STATIC_TEAM_MEMBERS[index]?.image || jeremyTeam,
+        linkedinUrl: member.linkedin,
+      };
+    });
+  }
+
+  // Build sponsors from Contentful
+  let sponsors: Sponsor[] = STATIC_SPONSORS;
+  if (fields.sponsorImages && Array.isArray(fields.sponsorImages) && fields.sponsorImages.length > 0) {
+    // Create a map of assetID to href from sponsorImageLinks
+    const linkMap = new Map<string, string>();
+    if (fields.sponsorImageLinks?.sponsors) {
+      fields.sponsorImageLinks.sponsors.forEach((link) => {
+        linkMap.set(link.assetID, link.href);
+      });
+    }
+
+    sponsors = fields.sponsorImages.map((asset, index) => {
+      const url = getAssetUrl(asset);
+      const alt = getAssetAlt(asset) || `Sponsor ${index + 1}`;
+      // Get the asset's sys.id to match with links
+      const assetId = (asset as { sys?: { id?: string } })?.sys?.id;
+      const href = assetId ? linkMap.get(assetId) : undefined;
+
+      return {
+        src: url || STATIC_SPONSORS[index]?.src || sponsor1,
+        alt,
+        href,
+      };
+    });
+  }
+
   return {
     mission: {
-      label: STATIC_CONTENT.mission.label,
-      heading: STATIC_CONTENT.mission.heading,
+      label: fields.header || STATIC_CONTENT.mission.label,
+      heading: fields.missionText || STATIC_CONTENT.mission.heading,
     },
-    missionPhotos: MISSION_PHOTOS,
+    missionPhotos,
     principles: {
-      heading: STATIC_CONTENT.principles.heading,
-      items: PRINCIPLES,
+      heading: fields.corePrinciplesHeading || STATIC_CONTENT.principles.heading,
+      items: principles,
     },
     team: {
-      heading: STATIC_CONTENT.team.heading,
-      members: TEAM_MEMBERS,
+      heading: fields.meetTheTeamHeading || STATIC_CONTENT.team.heading,
+      members: teamMembers,
     },
     sponsors: {
-      heading: STATIC_CONTENT.sponsors.heading,
-      items: SPONSORS,
+      heading: fields.ourSupportersHeading || STATIC_CONTENT.sponsors.heading,
+      items: sponsors,
     },
-    contact: {
-      heading: STATIC_CONTENT.contact.heading,
-      description: STATIC_CONTENT.contact.description,
-      ctaText: STATIC_CONTENT.contact.ctaText,
-    },
+    contact: { ...STATIC_CONTENT.contact },
   };
 }
-
