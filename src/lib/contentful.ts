@@ -102,13 +102,19 @@ export function getAssetAlt(asset?: Asset): string {
 export function richTextToPlainText(document?: Document): string | null {
   if (!document || !document.content) return null;
 
-  const extractText = (node: typeof document.content[0]): string => {
-    if (node.nodeType === "text") {
-      return (node as { value: string }).value;
+  const extractText = (node: unknown): string => {
+    if (!node || typeof node !== "object") return "";
+    
+    const n = node as Record<string, unknown>;
+    
+    // Text node
+    if (n.nodeType === "text" && typeof n.value === "string") {
+      return n.value;
     }
 
-    if ("content" in node && Array.isArray(node.content)) {
-      return node.content.map(extractText).join("");
+    // Node with content array
+    if (Array.isArray(n.content)) {
+      return n.content.map(extractText).join("");
     }
 
     return "";
