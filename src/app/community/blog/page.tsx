@@ -4,7 +4,7 @@ import laurieImage from "@/app/_assets/community/blog/Laurie.png";
 
 export const revalidate = 3600; // 1 hour
 
-// Static fallback blog posts
+// Static fallback blog posts (always shown unless duplicated in Contentful)
 const STATIC_BLOG_POSTS = [
   {
     slug: "a-collaborative-journey-with-prof-laurie-achin",
@@ -22,20 +22,32 @@ const STATIC_BLOG_POSTS = [
 export default async function BlogListPage() {
   const posts = await fetchBlogPosts();
 
-  // Use Contentful data if available, otherwise use static fallbacks
-  const transformedPosts =
-    posts.length > 0
-      ? posts.map((post) => ({
-          slug: post.slug,
-          title: post.title,
-          excerpt: post.excerpt,
-          publicationDate: post.publicationDate,
-          authorName: post.authorName,
-          featuredImageUrl: getAssetUrl(post.featuredImage),
-          featuredImageAlt: getAssetAlt(post.featuredImage) || post.title,
-          featured: post.featured,
-        }))
-      : STATIC_BLOG_POSTS;
+  // Transform Contentful posts
+  const contentfulPosts = posts.map((post) => ({
+    slug: post.slug,
+    title: post.title,
+    excerpt: post.excerpt,
+    publicationDate: post.publicationDate,
+    authorName: post.authorName,
+    featuredImageUrl: getAssetUrl(post.featuredImage),
+    featuredImageAlt: getAssetAlt(post.featuredImage) || post.title,
+    featured: post.featured,
+  }));
 
-  return <BlogListClient posts={transformedPosts} />;
+  // Get slugs of Contentful posts to avoid duplicates
+  const contentfulSlugs = new Set(contentfulPosts.map((p) => p.slug));
+
+  // Add static posts that aren't already in Contentful
+  const staticPostsToAdd = STATIC_BLOG_POSTS.filter(
+    (post) => !contentfulSlugs.has(post.slug)
+  );
+
+  // Merge: Contentful posts first (sorted by date), then static fallbacks
+  const allPosts = [...contentfulPosts, ...staticPostsToAdd].sort(
+    (a, b) =>
+      new Date(b.publicationDate).getTime() -
+      new Date(a.publicationDate).getTime()
+  );
+
+  return <BlogListClient posts={allPosts} />;
 }
