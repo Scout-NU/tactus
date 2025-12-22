@@ -6,7 +6,7 @@ const CONTENT_TYPE_TO_PATH: Record<string, string> = {
   homepage: "/",
   product: "/product",
   aboutPage: "/about",
-  shopPage: "/shop",
+  shop: "/shop",
   jacketPage: "/shop/jacket",
   vestPage: "/shop/vest",
   communityPage: "/community",
