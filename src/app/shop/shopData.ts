@@ -8,11 +8,10 @@ import armsCrossed from "@/app/_assets/shop/jacket/arms_crossed_jpg.png";
 import runningJacket from "@/app/_assets/shop/jacket/running-jacket.jpeg";
 
 // Vest images
-import jeremyVest from "@/app/_assets/shop/vest/jeremy-vest.png"
+import jeremyVest from "@/app/_assets/shop/vest/jeremy-vest.png";
 import shopVestImage from "@/app/_assets/shared/product-images/shop-vest.png";
 import vestModel from "@/app/_assets/shop/vest/vest-model.jpg";
 import jeremyModelVest from "@/app/_assets/shop/vest/jeremy-and-model-vest.jpeg";
-
 
 export const SHOP_SIZES = ["XS", "S", "M", "L", "XL"] as const;
 
@@ -117,3 +116,21 @@ export const SHOP_PRODUCTS: readonly ShopProduct[] = [
     ],
   },
 ];
+
+export type ShopPageData = {
+  heading: string;
+  sizes: readonly ShopSize[];
+  products: readonly ShopProduct[];
+};
+
+const STATIC_CONTENT = {
+  heading: "Explore Our Products",
+} as const;
+
+export async function getShopPageData(): Promise<ShopPageData> {
+  return {
+    heading: STATIC_CONTENT.heading,
+    sizes: SHOP_SIZES,
+    products: SHOP_PRODUCTS,
+  };
+}
