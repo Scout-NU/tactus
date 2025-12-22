@@ -131,6 +131,59 @@ export interface AboutUsPageFields {
   sponsorImageLinks?: { sponsors: ContentfulSponsorLink[] };
 }
 
+// Size chart row from JSON field
+export interface ContentfulSizeChartRow {
+  size: string;
+  length: number;
+  chestWidth: number;
+  shoulderWidth: number;
+  bottom: number;
+  sleeveLength?: number; // Only jacket has this
+}
+
+// Specifications from JSON field
+export interface ContentfulSpecifications {
+  specifications: {
+    materials: {
+      outer_shell: string;
+      lining: string;
+      haptic_system: string;
+      care: string;
+    };
+    tech_info: {
+      connectivity: string;
+      battery_life: string;
+      charging: string;
+      range: string;
+    };
+    size_chart: {
+      description: string;
+    };
+  };
+}
+
+// Shop Product fields (shared by jacket and vest)
+export interface ShopProductFields {
+  name?: string;
+  jacketPrimaryImage?: Asset;
+  jacketSecondImage?: Asset;
+  jacketThirdImage?: Asset;
+  jacketFourthImage?: Asset;
+  productTitle?: string;
+  productDescription?: Document; // Rich Text
+  aboutDescription?: Document; // Rich Text
+  sizeChart?: ContentfulSizeChartRow[];
+  specifications?: ContentfulSpecifications;
+  featureGridLargeImage?: Asset;
+  featureGridSecondImage?: Asset;
+  featureGridThirdImage?: Asset;
+  featureGridText1?: Document; // Rich Text
+  featureGridText2?: Document; // Rich Text
+  featureGridText3?: Document; // Rich Text
+  featureGridText4?: Document; // Rich Text
+  featureGridText5?: Document; // Rich Text
+}
+
 // ============================================
 // HELPER FUNCTIONS
 // ============================================
@@ -392,6 +445,54 @@ export async function fetchAboutUsPageFields(
     return entries.items[0].fields as AboutUsPageFields;
   } catch (error) {
     console.error("❌ Error fetching about us page from Contentful:", error);
+    return null;
+  }
+}
+
+/**
+ * Fetch Shop Product fields from Contentful (jacket or vest)
+ * Uses content type "shopJacket" and filters by name to get correct entry
+ * Returns null if fetch fails - transformation happens in jacketData.ts/vestData.ts
+ */
+export async function fetchShopProductFields(
+  productType: "jacket" | "vest",
+  preview = false
+): Promise<ShopProductFields | null> {
+  // Guard against missing env vars
+  if (
+    !process.env.CONTENTFUL_SPACE_ID ||
+    !process.env.CONTENTFUL_DELIVERY_KEY
+  ) {
+    console.warn("⚠️ Contentful environment variables not configured");
+    return null;
+  }
+
+  try {
+    const entries = await getClient(preview).getEntries({
+      content_type: "shopJacket",
+      include: 2, // Include linked assets
+    });
+
+    if (entries.items.length === 0) {
+      console.warn("⚠️ No shop product entries found in Contentful");
+      return null;
+    }
+
+    // Filter by name to find the correct entry
+    const searchTerm = productType === "jacket" ? "Jacket" : "Vest";
+    const matchingEntry = entries.items.find((entry) => {
+      const name = (entry.fields as ShopProductFields).name || "";
+      return name.includes(searchTerm);
+    });
+
+    if (!matchingEntry) {
+      console.warn(`⚠️ No ${productType} entry found in Contentful`);
+      return null;
+    }
+
+    return matchingEntry.fields as ShopProductFields;
+  } catch (error) {
+    console.error(`❌ Error fetching ${productType} from Contentful:`, error);
     return null;
   }
 }

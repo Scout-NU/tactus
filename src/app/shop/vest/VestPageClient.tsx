@@ -50,12 +50,16 @@ export default function VestPageClient({ data }: VestPageClientProps) {
   const handleAddToCart = () => {
     const stripePriceId = data.stripePriceIds?.[selectedSize];
 
+    // Handle both string URLs (from Contentful) and StaticImageData (local imports)
+    const imageSrc = data.carouselImages[0]?.src;
+    const imageUrl = typeof imageSrc === "string" ? imageSrc : imageSrc?.src;
+
     addToCart({
       productId: "vibewear-vest",
       title: data.title,
       price: data.priceInCents,
       size: selectedSize,
-      image: data.carouselImages[0].src.src,
+      image: imageUrl,
       stripePriceId,
     });
 

@@ -1,6 +1,15 @@
 import type { StaticImageData } from "next/image";
 import { SHOP_SIZES, type ShopSize } from "../shopData";
+import {
+  fetchShopProductFields,
+  getAssetUrl,
+  getAssetAlt,
+  richTextToPlainText,
+  type ContentfulSpecifications,
+  type ContentfulSizeChartRow,
+} from "@/lib/contentful";
 
+// Static fallback images
 import shopVest from "@/app/_assets/shared/product-images/shop-vest.png";
 import vestMain from "@/app/_assets/shop/vest/vest.png";
 import slide3 from "@/app/_assets/shop/details/slide3.png";
@@ -9,8 +18,12 @@ import jeremyModelRunning from "@/app/_assets/shop/jacket/jeremy-model-running.j
 import batterImg from "@/app/_assets/shop/details/batter.png";
 import armsCrossedImg from "@/app/_assets/shop/jacket/arms_crossed_jpg.png";
 
+// ============================================
+// TYPES
+// ============================================
+
 export type CarouselImage = {
-  src: StaticImageData;
+  src: StaticImageData | string;
   alt: string;
 };
 
@@ -39,13 +52,13 @@ export type VestPageData = {
   stripePriceIds: Record<string, string>;
   sizes: readonly ShopSize[];
   carouselImages: CarouselImage[];
-  productImage: StaticImageData;
+  productImage: StaticImageData | string;
   specifications: SpecSection[];
   sizeChart: SizeChartRow[];
   featureGrid: {
-    runningImage: StaticImageData;
-    armsCrossedImage: StaticImageData;
-    batteryImage: StaticImageData;
+    runningImage: StaticImageData | string;
+    armsCrossedImage: StaticImageData | string;
+    batteryImage: StaticImageData | string;
     movementText: string;
     heartText: string;
     feelBeatText: string;
@@ -54,14 +67,18 @@ export type VestPageData = {
   };
 };
 
-const CAROUSEL_IMAGES: CarouselImage[] = [
+// ============================================
+// STATIC FALLBACK CONTENT
+// ============================================
+
+const STATIC_CAROUSEL_IMAGES: CarouselImage[] = [
   { src: shopVest, alt: "Tactus Vibewear Vest - Front View" },
   { src: vestMain, alt: "Tactus Vibewear Vest - Product Shot" },
   { src: slide3, alt: "Tactus Vibewear Vest - Side View" },
   { src: slide4, alt: "Tactus Vibewear Vest - Back View" },
 ];
 
-const SIZE_CHART: SizeChartRow[] = [
+const STATIC_SIZE_CHART: SizeChartRow[] = [
   { size: "XS", length: "54", chestWidth: "87", shoulderWidth: "40.5", bottom: "79" },
   { size: "S", length: "60", chestWidth: "94.5", shoulderWidth: "43.5", bottom: "85" },
   { size: "M", length: "66", chestWidth: "102", shoulderWidth: "46.5", bottom: "91" },
@@ -69,7 +86,7 @@ const SIZE_CHART: SizeChartRow[] = [
   { size: "XL", length: "78", chestWidth: "119", shoulderWidth: "52.5", bottom: "108" },
 ];
 
-const SPECIFICATIONS: SpecSection[] = [
+const STATIC_SPECIFICATIONS: SpecSection[] = [
   {
     id: "size-chart",
     title: "Size Chart",
@@ -116,7 +133,7 @@ const STATIC_CONTENT = {
   },
 } as const;
 
-// Stripe price IDs for vest sizes
+// Stripe price IDs for vest sizes (hardcoded - not from CMS)
 const VEST_STRIPE_PRICE_IDS: Record<string, string> = {
   XS: process.env.NEXT_PUBLIC_STRIPE_PRICE_VEST_XS || "",
   S: process.env.NEXT_PUBLIC_STRIPE_PRICE_VEST_S || "",
@@ -125,31 +142,169 @@ const VEST_STRIPE_PRICE_IDS: Record<string, string> = {
   XL: process.env.NEXT_PUBLIC_STRIPE_PRICE_VEST_XL || "",
 };
 
+// ============================================
+// HELPER FUNCTIONS
+// ============================================
+
+/**
+ * Transform Contentful size chart JSON to our SizeChartRow format
+ * Note: Vest does not have sleeveLength field
+ */
+function transformSizeChart(contentfulData?: ContentfulSizeChartRow[]): SizeChartRow[] {
+  if (!contentfulData || contentfulData.length === 0) {
+    return STATIC_SIZE_CHART;
+  }
+
+  return contentfulData.map((row) => ({
+    size: row.size as ShopSize,
+    length: String(row.length),
+    chestWidth: String(row.chestWidth),
+    shoulderWidth: String(row.shoulderWidth),
+    bottom: String(row.bottom),
+  }));
+}
+
+/**
+ * Transform Contentful specifications JSON to our SpecSection[] format
+ */
+function transformSpecifications(contentfulData?: ContentfulSpecifications): SpecSection[] {
+  if (!contentfulData?.specifications) {
+    return STATIC_SPECIFICATIONS;
+  }
+
+  const specs = contentfulData.specifications;
+  const result: SpecSection[] = [];
+
+  // Size chart section
+  if (specs.size_chart?.description) {
+    result.push({
+      id: "size-chart",
+      title: "Size Chart",
+      content: specs.size_chart.description,
+    });
+  } else {
+    result.push(STATIC_SPECIFICATIONS[0]);
+  }
+
+  // Bluetooth/battery info section
+  if (specs.tech_info) {
+    result.push({
+      id: "bluetooth",
+      title: "Bluetooth/battery info",
+      content: [
+        { label: "Connectivity", value: specs.tech_info.connectivity },
+        { label: "Battery Life", value: specs.tech_info.battery_life },
+        { label: "Charging", value: specs.tech_info.charging },
+        { label: "Range", value: specs.tech_info.range },
+      ],
+    });
+  } else {
+    result.push(STATIC_SPECIFICATIONS[1]);
+  }
+
+  // Materials section
+  if (specs.materials) {
+    result.push({
+      id: "materials",
+      title: "Materials",
+      content: [
+        { label: "Outer Shell", value: specs.materials.outer_shell },
+        { label: "Lining", value: specs.materials.lining },
+        { label: "Haptic System", value: specs.materials.haptic_system },
+        { label: "Care", value: specs.materials.care },
+      ],
+    });
+  } else {
+    result.push(STATIC_SPECIFICATIONS[2]);
+  }
+
+  return result;
+}
+
+// ============================================
+// DATA FETCHER
+// ============================================
+
 export async function getVestPageData(): Promise<VestPageData> {
+  // Fetch from Contentful
+  const fields = await fetchShopProductFields("vest");
+
+  // If no Contentful data, return static fallbacks
+  if (!fields) {
+    return {
+      title: STATIC_CONTENT.title,
+      shortDescription: STATIC_CONTENT.shortDescription,
+      fullDescription: STATIC_CONTENT.fullDescription,
+      productLabel: STATIC_CONTENT.productLabel,
+      originalPrice: STATIC_CONTENT.originalPrice,
+      currentPrice: STATIC_CONTENT.currentPrice,
+      priceInCents: STATIC_CONTENT.priceInCents,
+      stripePriceIds: VEST_STRIPE_PRICE_IDS,
+      sizes: SHOP_SIZES,
+      carouselImages: STATIC_CAROUSEL_IMAGES,
+      productImage: shopVest,
+      specifications: STATIC_SPECIFICATIONS,
+      sizeChart: STATIC_SIZE_CHART,
+      featureGrid: {
+        runningImage: jeremyModelRunning,
+        armsCrossedImage: armsCrossedImg,
+        batteryImage: batterImg,
+        movementText: STATIC_CONTENT.featureGrid.movementText,
+        heartText: STATIC_CONTENT.featureGrid.heartText,
+        feelBeatText: STATIC_CONTENT.featureGrid.feelBeatText,
+        lightweightText: STATIC_CONTENT.featureGrid.lightweightText,
+        batteryText: STATIC_CONTENT.featureGrid.batteryText,
+      },
+    };
+  }
+
+  // Build carousel images from Contentful
+  const carouselImageFields = [
+    { asset: fields.jacketPrimaryImage, fallback: STATIC_CAROUSEL_IMAGES[0] },
+    { asset: fields.jacketSecondImage, fallback: STATIC_CAROUSEL_IMAGES[1] },
+    { asset: fields.jacketThirdImage, fallback: STATIC_CAROUSEL_IMAGES[2] },
+    { asset: fields.jacketFourthImage, fallback: STATIC_CAROUSEL_IMAGES[3] },
+  ];
+
+  const carouselImages: CarouselImage[] = carouselImageFields.map(({ asset, fallback }) => {
+    const url = getAssetUrl(asset);
+    return {
+      src: url || fallback.src,
+      alt: getAssetAlt(asset) || fallback.alt,
+    };
+  });
+
+  // Get primary product image
+  const productImageUrl = getAssetUrl(fields.jacketPrimaryImage);
+
+  // Build feature grid images
+  const runningImageUrl = getAssetUrl(fields.featureGridLargeImage);
+  const armsCrossedImageUrl = getAssetUrl(fields.featureGridSecondImage);
+  const batteryImageUrl = getAssetUrl(fields.featureGridThirdImage);
+
   return {
-    title: STATIC_CONTENT.title,
-    shortDescription: STATIC_CONTENT.shortDescription,
-    fullDescription: STATIC_CONTENT.fullDescription,
+    title: fields.productTitle || STATIC_CONTENT.title,
+    shortDescription: richTextToPlainText(fields.productDescription) || STATIC_CONTENT.shortDescription,
+    fullDescription: richTextToPlainText(fields.aboutDescription) || STATIC_CONTENT.fullDescription,
     productLabel: STATIC_CONTENT.productLabel,
     originalPrice: STATIC_CONTENT.originalPrice,
     currentPrice: STATIC_CONTENT.currentPrice,
     priceInCents: STATIC_CONTENT.priceInCents,
     stripePriceIds: VEST_STRIPE_PRICE_IDS,
     sizes: SHOP_SIZES,
-    carouselImages: CAROUSEL_IMAGES,
-    productImage: shopVest,
-    specifications: SPECIFICATIONS,
-    sizeChart: SIZE_CHART,
+    carouselImages,
+    productImage: productImageUrl || shopVest,
+    specifications: transformSpecifications(fields.specifications),
+    sizeChart: transformSizeChart(fields.sizeChart),
     featureGrid: {
-      runningImage: jeremyModelRunning,
-      armsCrossedImage: armsCrossedImg,
-      batteryImage: batterImg,
-      movementText: STATIC_CONTENT.featureGrid.movementText,
-      heartText: STATIC_CONTENT.featureGrid.heartText,
-      feelBeatText: STATIC_CONTENT.featureGrid.feelBeatText,
-      lightweightText: STATIC_CONTENT.featureGrid.lightweightText,
-      batteryText: STATIC_CONTENT.featureGrid.batteryText,
+      runningImage: runningImageUrl || jeremyModelRunning,
+      armsCrossedImage: armsCrossedImageUrl || armsCrossedImg,
+      batteryImage: batteryImageUrl || batterImg,
+      movementText: richTextToPlainText(fields.featureGridText1) || STATIC_CONTENT.featureGrid.movementText,
+      heartText: richTextToPlainText(fields.featureGridText2) || STATIC_CONTENT.featureGrid.heartText,
+      feelBeatText: richTextToPlainText(fields.featureGridText3) || STATIC_CONTENT.featureGrid.feelBeatText,
+      lightweightText: richTextToPlainText(fields.featureGridText4) || STATIC_CONTENT.featureGrid.lightweightText,
+      batteryText: richTextToPlainText(fields.featureGridText5) || STATIC_CONTENT.featureGrid.batteryText,
     },
   };
 }
-
