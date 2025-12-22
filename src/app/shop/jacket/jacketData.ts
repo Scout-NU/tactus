@@ -55,8 +55,8 @@ export type JacketPageData = {
 };
 
 const CAROUSEL_IMAGES: CarouselImage[] = [
-  { src: slide1, alt: "Tactus Vibewear Jacket - Front View" },
   { src: productHomePhoto, alt: "Tactus Vibewear Jacket - Product Shot" },
+  { src: slide1, alt: "Tactus Vibewear Jacket - Front View" },
   { src: armsCrossedImg, alt: "Arms crossed model wearing the Vibewear jacket" },
   { src: runningJacket, alt: "Jeremy and a woman running wearing Tactus Vibewear" },
 ];

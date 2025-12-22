@@ -57,15 +57,15 @@ export default function ProductPageClient({ data }: ProductPageClientProps) {
             {data.hero.subtext}
           </p>
 
-          <div className="relative mx-auto mb-[150px] mb-5 min-h-[380px] w-full max-w-[1440px] pb-5 md:mb-0 md:min-h-[850px] md:pb-0">
-            <div className="absolute left-1/2 top-0 z-[5] mb-5 flex w-full -translate-x-1/2 justify-center md:relative md:left-auto md:mb-0 md:w-auto md:transform-none">
+          <div className="relative mx-auto mb-5 w-full max-w-[1440px] min-h-[380px] md:min-h-[1000px] mb-[150px] pb-5 md:mb-0 md:min-h-[850px] md:pb-0">
+            <div className="absolute left-1/2 top-0 z-[5] mb-5 flex w-full -translate-x-1/2 justify-center md:mb-0 md:w-auto md:transform-none md:relative md:left-auto">
               <Image
                 src={productHomePhoto}
                 alt="Tactus Jacket"
                 width={537}
                 height={630}
                 priority
-                className="!h-auto !w-[90%] md:!w-[537px]"
+                className="!w-[90%] !h-auto md:!w-[537px]"
                 style={{ objectFit: "contain" }}
               />
             </div>
