@@ -72,6 +72,29 @@ export interface ProductPageFields {
   preorderSectionDescription?: string;
 }
 
+export interface ShopPageFields {
+  name?: string;
+  header?: string;
+  // Jacket fields
+  jacketTitle?: string;
+  jacketDescription?: string;
+  jacketPrimaryImage?: Asset;
+  jacketSecondImage?: Asset;
+  jacketThirdImage?: Asset;
+  jacketFourthImage?: Asset;
+  jacketFullPrice?: string;
+  jacketDiscountedPrice?: string;
+  // Vest fields
+  vestTitle?: string;
+  vestDescription?: string;
+  vestPrimaryImage?: Asset;
+  vestSecondImage?: Asset;
+  vestThirdImage?: Asset;
+  vestFourthImage?: Asset;
+  vestFullPrice?: string;
+  vestDiscountedPrice?: string;
+}
+
 // ============================================
 // HELPER FUNCTIONS
 // ============================================
@@ -197,6 +220,41 @@ export async function fetchProductPageFields(
     return entries.items[0].fields as ProductPageFields;
   } catch (error) {
     console.error("❌ Error fetching product page from Contentful:", error);
+    return null;
+  }
+}
+
+/**
+ * Fetch raw Shop Page fields from Contentful
+ * Returns null if fetch fails - transformation happens in shopData.ts
+ */
+export async function fetchShopPageFields(
+  preview = false
+): Promise<ShopPageFields | null> {
+  // Guard against missing env vars
+  if (
+    !process.env.CONTENTFUL_SPACE_ID ||
+    !process.env.CONTENTFUL_DELIVERY_KEY
+  ) {
+    console.warn("⚠️ Contentful environment variables not configured");
+    return null;
+  }
+
+  try {
+    const entries = await getClient(preview).getEntries({
+      content_type: "shop",
+      limit: 1,
+      include: 2, // Include linked assets
+    });
+
+    if (entries.items.length === 0) {
+      console.warn("⚠️ No shop page entry found in Contentful");
+      return null;
+    }
+
+    return entries.items[0].fields as ShopPageFields;
+  } catch (error) {
+    console.error("❌ Error fetching shop page from Contentful:", error);
     return null;
   }
 }

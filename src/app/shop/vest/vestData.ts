@@ -1,5 +1,5 @@
 import type { StaticImageData } from "next/image";
-import { SHOP_PRODUCTS, SHOP_SIZES, type ShopSize } from "../shopData";
+import { SHOP_SIZES, type ShopSize } from "../shopData";
 
 import shopVest from "@/app/_assets/shared/product-images/shop-vest.png";
 import vestMain from "@/app/_assets/shop/vest/vest.png";
@@ -104,6 +104,9 @@ const STATIC_CONTENT = {
   fullDescription:
     "Each piece is designed with intention from the premium, breathable materials to the lightweight, stretchable fit that moves naturally with you. The Tactus Vibewear line combines handcrafted design with advanced haptic technology to create a responsive, wearable experience that lets you feel every beat. With seamless Bluetooth connectivity, it syncs effortlessly with your music. Innovation in one refined design.",
   productLabel: "Vibewear Vest",
+  originalPrice: "$500",
+  currentPrice: "$459",
+  priceInCents: 45900,
   featureGrid: {
     movementText: "Built for movement\nto match your\nlifestyle",
     heartText: "Built for movement\nto match your\nlifestyle",
@@ -113,18 +116,25 @@ const STATIC_CONTENT = {
   },
 } as const;
 
-export async function getVestPageData(): Promise<VestPageData> {
-  const product = SHOP_PRODUCTS.find((p) => p.id === "vibewear-vest");
+// Stripe price IDs for vest sizes
+const VEST_STRIPE_PRICE_IDS: Record<string, string> = {
+  XS: process.env.NEXT_PUBLIC_STRIPE_PRICE_VEST_XS || "",
+  S: process.env.NEXT_PUBLIC_STRIPE_PRICE_VEST_S || "",
+  M: process.env.NEXT_PUBLIC_STRIPE_PRICE_VEST_M || "",
+  L: process.env.NEXT_PUBLIC_STRIPE_PRICE_VEST_L || "",
+  XL: process.env.NEXT_PUBLIC_STRIPE_PRICE_VEST_XL || "",
+};
 
+export async function getVestPageData(): Promise<VestPageData> {
   return {
     title: STATIC_CONTENT.title,
     shortDescription: STATIC_CONTENT.shortDescription,
     fullDescription: STATIC_CONTENT.fullDescription,
     productLabel: STATIC_CONTENT.productLabel,
-    originalPrice: product?.originalPrice || "$500",
-    currentPrice: product?.price || "$459",
-    priceInCents: product?.priceInCents || 45900,
-    stripePriceIds: product?.stripePriceIds || {},
+    originalPrice: STATIC_CONTENT.originalPrice,
+    currentPrice: STATIC_CONTENT.currentPrice,
+    priceInCents: STATIC_CONTENT.priceInCents,
+    stripePriceIds: VEST_STRIPE_PRICE_IDS,
     sizes: SHOP_SIZES,
     carouselImages: CAROUSEL_IMAGES,
     productImage: shopVest,
