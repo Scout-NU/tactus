@@ -282,14 +282,21 @@ export async function getVestPageData(): Promise<VestPageData> {
   const armsCrossedImageUrl = getAssetUrl(fields.featureGridSecondImage);
   const batteryImageUrl = getAssetUrl(fields.featureGridThirdImage);
 
+  // Parse price from Contentful (e.g., "$459" -> 45900 cents)
+  const parsePriceToCents = (priceStr?: string): number => {
+    if (!priceStr) return STATIC_CONTENT.priceInCents;
+    const numericValue = parseFloat(priceStr.replace(/[^0-9.]/g, ""));
+    return isNaN(numericValue) ? STATIC_CONTENT.priceInCents : Math.round(numericValue * 100);
+  };
+
   return {
     title: fields.productTitle || STATIC_CONTENT.title,
     shortDescription: richTextToPlainText(fields.productDescription) || STATIC_CONTENT.shortDescription,
     fullDescription: richTextToPlainText(fields.aboutDescription) || STATIC_CONTENT.fullDescription,
     productLabel: STATIC_CONTENT.productLabel,
-    originalPrice: STATIC_CONTENT.originalPrice,
-    currentPrice: STATIC_CONTENT.currentPrice,
-    priceInCents: STATIC_CONTENT.priceInCents,
+    originalPrice: fields.productFullPrice || STATIC_CONTENT.originalPrice,
+    currentPrice: fields.productDiscountedPrice || STATIC_CONTENT.currentPrice,
+    priceInCents: parsePriceToCents(fields.productDiscountedPrice),
     stripePriceIds: VEST_STRIPE_PRICE_IDS,
     sizes: SHOP_SIZES,
     carouselImages,

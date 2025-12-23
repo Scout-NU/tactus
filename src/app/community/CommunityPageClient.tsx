@@ -119,10 +119,18 @@ function PressSection({ data }: { data: CommunityPageData }) {
   return (
     <section className="px-5 py-16 md:px-[116px] md:py-[60px]">
       <div className="mx-auto max-w-[1055px]">
-        {/* Section heading */}
-        <h2 className="mb-12 font-heading text-[40px] font-bold uppercase text-[#05365f] md:text-[64px]">
-          {data.press.heading}
-        </h2>
+        {/* Section header */}
+        <div className="mb-12 flex items-center justify-between">
+          <h2 className="font-heading text-[40px] font-bold uppercase text-[#05365f] md:text-[64px]">
+            {data.press.heading}
+          </h2>
+          <Link
+            href={data.press.seeAllLink}
+            className="font-body text-[16px] font-semibold text-[#05365f] underline transition-opacity hover:opacity-80 md:text-[24px]"
+          >
+            {data.press.seeAllText}
+          </Link>
+        </div>
 
         {/* 2x2 Grid of press cards */}
         <div className="grid grid-cols-1 gap-10 md:grid-cols-2 md:gap-x-10 md:gap-y-10">

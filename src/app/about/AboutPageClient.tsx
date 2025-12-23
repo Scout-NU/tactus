@@ -351,17 +351,6 @@ function SponsorsSection({ data }: { data: AboutPageData }) {
       </div>
       <div className="mx-auto flex max-w-[1240px] flex-wrap justify-center gap-8 md:gap-x-12 md:gap-y-16">
         {data.sponsors.items.map((sponsor, index) => {
-          const Content = (
-            <div className="relative mx-auto h-[80px] w-full max-w-[200px] md:h-[100px]">
-              <Image
-                src={sponsor.src}
-                alt={sponsor.alt}
-                fill
-                className="object-contain"
-              />
-            </div>
-          );
-
           const itemClassName = "w-[calc(50%-1rem)] md:w-[calc(25%-2.25rem)]";
 
           return sponsor.href ? (
@@ -370,13 +359,33 @@ function SponsorsSection({ data }: { data: AboutPageData }) {
               href={sponsor.href}
               target="_blank"
               rel="noopener noreferrer"
-              className={`block transition-opacity hover:opacity-80 ${itemClassName}`}
+              className={`group relative block ${itemClassName}`}
             >
-              {Content}
+              <div className="relative mx-auto h-[80px] w-full max-w-[200px] md:h-[100px]">
+                <Image
+                  src={sponsor.src}
+                  alt={sponsor.alt}
+                  fill
+                  className="object-contain transition-all duration-300 group-hover:brightness-50"
+                />
+                {/* Read more overlay */}
+                <div className="absolute inset-0 flex items-center justify-center opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                  <span className="rounded-full bg-[#05365f] px-4 py-2 font-heading text-[12px] font-semibold text-white md:text-[14px]">
+                    Read more
+                  </span>
+                </div>
+              </div>
             </a>
           ) : (
             <div key={index} className={itemClassName}>
-              {Content}
+              <div className="relative mx-auto h-[80px] w-full max-w-[200px] md:h-[100px]">
+                <Image
+                  src={sponsor.src}
+                  alt={sponsor.alt}
+                  fill
+                  className="object-contain"
+                />
+              </div>
             </div>
           );
         })}
