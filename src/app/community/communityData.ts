@@ -64,6 +64,8 @@ export type CommunityPageData = {
   heroPhotos: HeroPhoto[];
   press: {
     heading: string;
+    seeAllText: string;
+    seeAllLink: string;
     items: PressRelease[];
   };
   blog: {
@@ -91,6 +93,8 @@ const STATIC_CONTENT = {
   },
   press: {
     heading: "PRESS",
+    seeAllText: "See all press releases →",
+    seeAllLink: "/community/press",
   },
   blog: {
     heading: "BLOG",
@@ -309,6 +313,8 @@ export async function getCommunityPageData(): Promise<CommunityPageData> {
     heroPhotos: finalHeroPhotos,
     press: {
       heading: STATIC_CONTENT.press.heading,
+      seeAllText: STATIC_CONTENT.press.seeAllText,
+      seeAllLink: STATIC_CONTENT.press.seeAllLink,
       items: pressReleases.slice(0, 4), // Show max 4 on community page
     },
     blog: {

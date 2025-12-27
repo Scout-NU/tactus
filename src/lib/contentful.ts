@@ -173,6 +173,8 @@ export interface ShopProductFields {
   productDescription?: Document; // Rich Text
   aboutDescription?: Document; // Rich Text
   sizeChart?: ContentfulSizeChartRow[];
+  productFullPrice?: string;
+  productDiscountedPrice?: string;
   specifications?: ContentfulSpecifications;
   featureGridLargeImage?: Asset;
   featureGridSecondImage?: Asset;
