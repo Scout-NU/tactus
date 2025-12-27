@@ -232,6 +232,23 @@ export interface CommunityPageFields {
 }
 
 // ============================================
+// STRIPE PRICE IDS (for dynamic pricing from CMS)
+// ============================================
+
+export interface StripePriceIDsFields {
+  vibewearJacketXs?: string;
+  vibewearJacketS?: string;
+  vibewearJacketM?: string;
+  vibewearJacketL?: string;
+  vibewearJacketXl?: string;
+  vibewearVestXs?: string;
+  vibewearVestS?: string;
+  vibewearVestM?: string;
+  vibewearVestL?: string;
+  vibewearVestXl?: string;
+}
+
+// ============================================
 // HELPER FUNCTIONS
 // ============================================
 
@@ -694,6 +711,44 @@ export async function fetchCommunityPage(
     return entries.items[0].fields as unknown as CommunityPageFields;
   } catch (error) {
     console.error("❌ Error fetching community page from Contentful:", error);
+    return null;
+  }
+}
+
+// ============================================
+// STRIPE PRICE IDS FETCHER
+// ============================================
+
+/**
+ * Fetch Stripe Price IDs from Contentful
+ * Returns null if fetch fails - allows env var fallback in shop data files
+ */
+export async function fetchStripePriceIDs(
+  preview = false
+): Promise<StripePriceIDsFields | null> {
+  // Guard against missing env vars
+  if (
+    !process.env.CONTENTFUL_SPACE_ID ||
+    !process.env.CONTENTFUL_DELIVERY_KEY
+  ) {
+    console.warn("⚠️ Contentful environment variables not configured");
+    return null;
+  }
+
+  try {
+    const entries = await getClient(preview).getEntries({
+      content_type: "stripePriceIDs",
+      limit: 1,
+    });
+
+    if (entries.items.length === 0) {
+      console.warn("⚠️ No Stripe Price IDs entry found in Contentful");
+      return null;
+    }
+
+    return entries.items[0].fields as unknown as StripePriceIDsFields;
+  } catch (error) {
+    console.error("❌ Error fetching Stripe Price IDs from Contentful:", error);
     return null;
   }
 }
