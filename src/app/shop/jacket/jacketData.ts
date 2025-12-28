@@ -2,6 +2,7 @@ import type { StaticImageData } from "next/image";
 import { SHOP_SIZES, type ShopSize } from "../shopData";
 import {
   fetchShopProductFields,
+  fetchStripePriceIDs,
   getAssetUrl,
   getAssetAlt,
   richTextToPlainText,
@@ -133,8 +134,8 @@ const STATIC_CONTENT = {
   },
 } as const;
 
-// Stripe price IDs for jacket sizes (hardcoded - not from CMS)
-const JACKET_STRIPE_PRICE_IDS: Record<string, string> = {
+// Fallback Stripe price IDs (env vars used when Contentful not available)
+const FALLBACK_JACKET_STRIPE_PRICE_IDS: Record<string, string> = {
   XS: process.env.NEXT_PUBLIC_STRIPE_PRICE_JACKET_XS || "",
   S: process.env.NEXT_PUBLIC_STRIPE_PRICE_JACKET_S || "",
   M: process.env.NEXT_PUBLIC_STRIPE_PRICE_JACKET_M || "",
@@ -227,7 +228,19 @@ function transformSpecifications(contentfulData?: ContentfulSpecifications): Spe
 
 export async function getJacketPageData(): Promise<JacketPageData> {
   // Fetch from Contentful
-  const fields = await fetchShopProductFields("jacket");
+  const [fields, priceIds] = await Promise.all([
+    fetchShopProductFields("jacket"),
+    fetchStripePriceIDs(),
+  ]);
+
+  // Build Stripe Price IDs with Contentful as primary, env vars as fallback
+  const jacketStripePriceIds: Record<string, string> = {
+    XS: priceIds?.vibewearJacketXs || FALLBACK_JACKET_STRIPE_PRICE_IDS.XS,
+    S: priceIds?.vibewearJacketS || FALLBACK_JACKET_STRIPE_PRICE_IDS.S,
+    M: priceIds?.vibewearJacketM || FALLBACK_JACKET_STRIPE_PRICE_IDS.M,
+    L: priceIds?.vibewearJacketL || FALLBACK_JACKET_STRIPE_PRICE_IDS.L,
+    XL: priceIds?.vibewearJacketXl || FALLBACK_JACKET_STRIPE_PRICE_IDS.XL,
+  };
 
   // If no Contentful data, return static fallbacks
   if (!fields) {
@@ -239,7 +252,7 @@ export async function getJacketPageData(): Promise<JacketPageData> {
       originalPrice: STATIC_CONTENT.originalPrice,
       currentPrice: STATIC_CONTENT.currentPrice,
       priceInCents: STATIC_CONTENT.priceInCents,
-      stripePriceIds: JACKET_STRIPE_PRICE_IDS,
+      stripePriceIds: jacketStripePriceIds,
       sizes: SHOP_SIZES,
       carouselImages: STATIC_CAROUSEL_IMAGES,
       productImage: productHomePhoto,
@@ -297,7 +310,7 @@ export async function getJacketPageData(): Promise<JacketPageData> {
     originalPrice: fields.productFullPrice || STATIC_CONTENT.originalPrice,
     currentPrice: fields.productDiscountedPrice || STATIC_CONTENT.currentPrice,
     priceInCents: parsePriceToCents(fields.productDiscountedPrice),
-    stripePriceIds: JACKET_STRIPE_PRICE_IDS,
+    stripePriceIds: jacketStripePriceIds,
     sizes: SHOP_SIZES,
     carouselImages,
     productImage: productImageUrl || productHomePhoto,

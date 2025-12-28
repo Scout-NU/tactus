@@ -2,6 +2,7 @@ import type { ProductGalleryVariant } from "@/app/components/shop/ProductGallery
 import type { GalleryImage } from "@/app/components/shop/GalleryPlaceholder";
 import {
   fetchShopPageFields,
+  fetchStripePriceIDs,
   getAssetUrl,
   getAssetAlt,
 } from "@/lib/contentful";
@@ -105,31 +106,17 @@ const STATIC_VEST_GALLERY: readonly GalleryImage[] = [
   },
 ];
 
-// Static product configurations (hardcoded - not from CMS)
+// Static product configurations (non-pricing config)
 const STATIC_PRODUCT_CONFIGS = {
   jacket: {
     id: "vibewear-jacket",
     galleryVariant: "feature" as ProductGalleryVariant,
     priceInCents: 45900,
-    stripePriceIds: {
-      XS: process.env.NEXT_PUBLIC_STRIPE_PRICE_JACKET_XS,
-      S: process.env.NEXT_PUBLIC_STRIPE_PRICE_JACKET_S,
-      M: process.env.NEXT_PUBLIC_STRIPE_PRICE_JACKET_M,
-      L: process.env.NEXT_PUBLIC_STRIPE_PRICE_JACKET_L,
-      XL: process.env.NEXT_PUBLIC_STRIPE_PRICE_JACKET_XL,
-    } as Record<string, string>,
   },
   vest: {
     id: "vibewear-vest",
     galleryVariant: "simple" as ProductGalleryVariant,
     priceInCents: 45900,
-    stripePriceIds: {
-      XS: process.env.NEXT_PUBLIC_STRIPE_PRICE_VEST_XS,
-      S: process.env.NEXT_PUBLIC_STRIPE_PRICE_VEST_S,
-      M: process.env.NEXT_PUBLIC_STRIPE_PRICE_VEST_M,
-      L: process.env.NEXT_PUBLIC_STRIPE_PRICE_VEST_L,
-      XL: process.env.NEXT_PUBLIC_STRIPE_PRICE_VEST_XL,
-    } as Record<string, string>,
   },
 };
 
@@ -145,7 +132,10 @@ export type ShopPageData = {
 
 export async function getShopPageData(): Promise<ShopPageData> {
   // Fetch from Contentful
-  const fields = await fetchShopPageFields();
+  const [fields, priceIds] = await Promise.all([
+    fetchShopPageFields(),
+    fetchStripePriceIDs(),
+  ]);
 
   // Build jacket gallery images from Contentful or fallback to static
   const jacketGalleryImages: GalleryImage[] = [];
@@ -195,10 +185,28 @@ export async function getShopPageData(): Promise<ShopPageData> {
     }
   });
 
+  // Build Stripe Price IDs with Contentful as primary, env vars as fallback
+  const jacketStripePriceIds: Record<string, string> = {
+    XS: priceIds?.vibewearJacketXs || process.env.NEXT_PUBLIC_STRIPE_PRICE_JACKET_XS || "",
+    S: priceIds?.vibewearJacketS || process.env.NEXT_PUBLIC_STRIPE_PRICE_JACKET_S || "",
+    M: priceIds?.vibewearJacketM || process.env.NEXT_PUBLIC_STRIPE_PRICE_JACKET_M || "",
+    L: priceIds?.vibewearJacketL || process.env.NEXT_PUBLIC_STRIPE_PRICE_JACKET_L || "",
+    XL: priceIds?.vibewearJacketXl || process.env.NEXT_PUBLIC_STRIPE_PRICE_JACKET_XL || "",
+  };
+
+  const vestStripePriceIds: Record<string, string> = {
+    XS: priceIds?.vibewearVestXs || process.env.NEXT_PUBLIC_STRIPE_PRICE_VEST_XS || "",
+    S: priceIds?.vibewearVestS || process.env.NEXT_PUBLIC_STRIPE_PRICE_VEST_S || "",
+    M: priceIds?.vibewearVestM || process.env.NEXT_PUBLIC_STRIPE_PRICE_VEST_M || "",
+    L: priceIds?.vibewearVestL || process.env.NEXT_PUBLIC_STRIPE_PRICE_VEST_L || "",
+    XL: priceIds?.vibewearVestXl || process.env.NEXT_PUBLIC_STRIPE_PRICE_VEST_XL || "",
+  };
+
   // Build products array
   const products: ShopProduct[] = [
     {
       ...STATIC_PRODUCT_CONFIGS.jacket,
+      stripePriceIds: jacketStripePriceIds,
       title: fields?.jacketTitle || STATIC_CONTENT.jacket.title,
       description: fields?.jacketDescription || STATIC_CONTENT.jacket.description,
       price: fields?.jacketDiscountedPrice || STATIC_CONTENT.jacket.price,
@@ -208,6 +216,7 @@ export async function getShopPageData(): Promise<ShopPageData> {
     },
     {
       ...STATIC_PRODUCT_CONFIGS.vest,
+      stripePriceIds: vestStripePriceIds,
       title: fields?.vestTitle || STATIC_CONTENT.vest.title,
       description: fields?.vestDescription || STATIC_CONTENT.vest.description,
       price: fields?.vestDiscountedPrice || STATIC_CONTENT.vest.price,
